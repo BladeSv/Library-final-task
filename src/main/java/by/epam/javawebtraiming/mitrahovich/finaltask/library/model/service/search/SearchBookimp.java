@@ -2,8 +2,11 @@ package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.sear
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,14 +33,15 @@ public class SearchBookimp implements SearchBook {
 
 		String searchRequest = request.getParameter(ConstConteiner.SEARCH);
 		log.trace("Search request--" + searchRequest);
-		BookDAO bookDAO = DaoManager.getInstance().getBookDAO();
-		List<Book> findBook = bookDAO.getAllFreeBook();
 
-		String[] slit = searchRequest.split(ConstConteiner.SEARCH_REQUEST_SPLIT_REGEX);
-		log.trace("request split on pieces--" + slit.length);
-		List<String> pieces = Arrays.asList(slit);
-		Arrays.asList(slit).add(searchRequest);
-		Arrays.sort(slit, new Comparator<String>() {
+		List<Book> findBook = searchAllFreeBook();
+
+		String[] split = searchRequest.split(ConstConteiner.SEARCH_REQUEST_SPLIT_REGEX);
+		log.trace("request split on pieces--" + split.length + " pieces--" + split.toString());
+		List<String> pieces = new ArrayList<>(Arrays.asList(split));
+		pieces.add(searchRequest);
+
+		Collections.sort(pieces, new Comparator<String>() {
 
 			@Override
 			public int compare(String o1, String o2) {
@@ -46,25 +50,35 @@ public class SearchBookimp implements SearchBook {
 			}
 		});
 
-		List<Book> searchBook = new ArrayList();
-		for (int i = 0; i < slit.length; i++) {
+		Set<Book> searchBook = new HashSet<>();
+
+		for (String splits : pieces) {
 			for (Book book : findBook) {
 				String title = book.getTitle();
 
-				if (checkMatch(title, slit[i])) {
+				if (checkMatch(title, splits)) {
 					searchBook.add(book);
+
 				}
 
 			}
 
 		}
 
-		return findBook;
+		return new ArrayList<>(searchBook);
 	}
 
 	private boolean checkMatch(String title, String searchString) {
-		title.contains(searchString);
-		return true;
+		log.trace("check contins--in--" + title + " piece--" + searchString);
+		return title.toLowerCase().contains(searchString.toLowerCase());
+	}
+
+	@Override
+	public List<Book> searchAllFreeBook() throws DaoSQLExcetion {
+		BookDAO bookDAO = DaoManager.getInstance().getBookDAO();
+		List<Book> findBook = bookDAO.getAllFreeBook();
+
+		return findBook;
 	}
 
 }

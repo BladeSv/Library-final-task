@@ -16,7 +16,7 @@
 
 
 <div class="header">
-  <a href="${startUrl}/jsp/main.jsp" class="logo">Library</a>
+  <a href="${startUrl}/" class="logo">Library</a>
     
   <div class="header-right">
 

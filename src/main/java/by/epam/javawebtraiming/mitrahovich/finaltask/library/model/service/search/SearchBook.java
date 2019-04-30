@@ -9,4 +9,6 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.B
 
 public interface SearchBook {
 	public List<Book> search(HttpServletRequest request) throws DaoSQLExcetion;
+
+	public List<Book> searchAllFreeBook() throws DaoSQLExcetion;
 }

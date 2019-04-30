@@ -11,9 +11,8 @@
 	<fmt:message key="index.singin" var="singin" />
 	<fmt:message key="login.worng.data.message" var="message" />
 
-
-
 </fmt:bundle>
+
 <html>
 <head>
 <title>${title}</title>
