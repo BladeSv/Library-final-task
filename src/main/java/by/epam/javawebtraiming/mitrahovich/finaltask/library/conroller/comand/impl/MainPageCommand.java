@@ -13,9 +13,9 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.searc
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
-public class IndexPageCommand extends AbstractCommand {
+public class MainPageCommand extends AbstractCommand {
 
-	public IndexPageCommand() {
+	public MainPageCommand() {
 
 	}
 

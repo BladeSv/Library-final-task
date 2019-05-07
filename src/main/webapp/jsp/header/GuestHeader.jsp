@@ -6,6 +6,7 @@
 <fmt:bundle basename="locale">
     <fmt:message key="index.login" var="login"/>
     <fmt:message key="index.registration" var="registration"/>
+     <fmt:message key="index.order" var="order"/>
 </fmt:bundle>
 <head>
 
@@ -20,7 +21,11 @@
     
   <div class="header-right">
 
-  
+  <c:if test="${role == 'user'}">	
+	  <a href="${startUrl}/main?command=оrder" class="logo">${order}</a>
+	
+			
+		</c:if>
     <a href="jsp/login/login.jsp">${login}</a>
     <a href="jsp/singup/singup.jsp">${registration}</a>
   </div>

@@ -1,0 +1,15 @@
+BEGIN 
+DECLARE R INT DEFAULT 0;
+IF
+(SELECT book.instances FROM book WHERE book.id_book=id_order_book) > 
+(SELECT COUNT(subscription.id_book) FROM subscription WHERE subscription.id_book=id_order_book)
+THEN
+INSERT INTO subscription (id_book, id_user, place) VALUE (id_order_book, id_order_user, place);
+SET R=(SELECT subscription.id_subscription FROM subscription WHERE subscription.id_book=id_order_book AND subscription.id_user=id_order_user AND subscription.place=place ORDER BY subscription.id_subscription DESC LIMIT 1);
+
+END IF;
+
+
+RETURN R;
+
+END

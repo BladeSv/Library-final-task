@@ -1,8 +1,10 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.BookDAO;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.OrderDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.UserDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.impl.BookDAOImpl;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.impl.OrderDAOImpl;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.impl.UserDAOImpl;
 
 public class DaoManager {
@@ -10,6 +12,7 @@ public class DaoManager {
 
 	private UserDAO userDAO = new UserDAOImpl();
 	private BookDAO bookDAO = new BookDAOImpl();
+	private OrderDAO orderDAO = new OrderDAOImpl();
 
 	private DaoManager() {
 
@@ -25,5 +28,9 @@ public class DaoManager {
 
 	public BookDAO getBookDAO() {
 		return bookDAO;
+	}
+
+	public OrderDAO getOrderDAO() {
+		return orderDAO;
 	}
 }

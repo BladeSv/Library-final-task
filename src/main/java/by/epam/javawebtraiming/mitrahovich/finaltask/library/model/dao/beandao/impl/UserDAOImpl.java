@@ -8,9 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.AbstactDAO;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.UserDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.WrongLoginDateException;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Order;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.RoleType;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.User;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.SQLRequestConteiner;
@@ -36,7 +38,8 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 
 				String name = rs.getString("name");
 				RoleType role = RoleType.valueOf(rs.getString("role").toUpperCase());
-				user = new User(id, name, role);
+				List<Order> takeOrder = DaoManager.getInstance().getOrderDAO().getAllOrderUserById(id);
+				user = new User(id, name, role, takeOrder);
 			}
 
 		} catch (SQLException e) {
@@ -62,7 +65,8 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 				int id = rs.getInt("id_user");
 				String name = rs.getString("name");
 				RoleType role = RoleType.valueOf(rs.getString("role").toUpperCase());
-				users.add(new User(id, name, role));
+				List<Order> takeOrder = DaoManager.getInstance().getOrderDAO().getAllOrderUserById(id);
+				users.add(new User(id, name, role, takeOrder));
 			}
 
 		} catch (SQLException e) {
@@ -141,7 +145,8 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 				int userId = rs.getInt("id_user");
 				String userName = rs.getString("name");
 				RoleType userRole = RoleType.valueOf(rs.getString("role").toUpperCase());
-				user = new User(userId, userName, userRole);
+				List<Order> takeOrder = DaoManager.getInstance().getOrderDAO().getAllOrderUserById(userId);
+				user = new User(userId, userName, userRole, takeOrder);
 			}
 		} catch (SQLException e) {
 			log.warn("User login", e);

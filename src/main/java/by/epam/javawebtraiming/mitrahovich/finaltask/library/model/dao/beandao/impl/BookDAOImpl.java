@@ -13,7 +13,6 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Autor;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.GenreType;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Item;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.SQLRequestConteiner;
 
 public class BookDAOImpl extends AbstactDAO implements BookDAO {
@@ -23,9 +22,32 @@ public class BookDAOImpl extends AbstactDAO implements BookDAO {
 	}
 
 	@Override
-	public Item getById(int id) throws DaoSQLExcetion {
-		// TODO Auto-generated method stub
-		return null;
+	public Book getById(int id) throws DaoSQLExcetion {
+		Book book = null;
+		Connection connection = getConnection();
+
+		try (PreparedStatement preparedStatementUser = connection
+				.prepareStatement(SQLRequestConteiner.USER_BOOK_BY_ID)) {
+			ResultSet rs = preparedStatementUser.executeQuery();
+			while (rs.next()) {
+				int idBook = rs.getInt("id_book");
+				String bookTitle = rs.getString("book_title");
+				String annotation = rs.getString("annotation");
+				int idAutor = rs.getInt("id_autor");
+				String name = rs.getString("name");
+				String surname = rs.getString("surname");
+				String genre = rs.getString("genre_title");
+				book = new Book(idBook, bookTitle, annotation, new Autor(idAutor, name, surname),
+						GenreType.valueOf(genre));
+			}
+		} catch (SQLException e) {
+			log.warn("Get book by Id", e);
+			throw new DaoSQLExcetion(e.getCause());
+		} finally {
+			returnConnection(connection);
+		}
+
+		return book;
 	}
 
 	@Override

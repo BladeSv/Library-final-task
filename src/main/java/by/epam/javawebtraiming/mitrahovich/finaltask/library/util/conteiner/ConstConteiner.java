@@ -16,7 +16,11 @@ public class ConstConteiner {
 	public static final String ROLE_GUEST = "guest";
 	public static final String COMMAND = "command";
 	public static final String SEARCH = "search";
+	public static final String LIBRARY_OBSERVER = "libraryObserver";
+
 	public static final String TABLE_BOOKS = "tableBooks";
+	public static final String TABLE_BOOKS_CHECK = "checkBookOrder";
+	public static final String TABLE_BOOKS_PLACE_PREFIX = "place-";
 
 	public static final String LOCALE = "locale";
 	public static final String DEFAULT_LOCALE = "en";
@@ -31,6 +35,9 @@ public class ConstConteiner {
 	public static final String COMMAND_PAGE_LOGIN = "login";
 	public static final String COMMAND_PAGE_SINGUP = "singup";
 	public static final String COMMAND_PAGE_SEARCH = "search";
+	public static final String COMMAND_PAGE_CREATE_ORDER = "createOrder";
+	public static final String COMMAND_PAGE_TO_ORDER = "order";
 
 	public static final String SEARCH_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
+	public static final String CHARACTERS_ENCODING = "characterEncoding";
 }

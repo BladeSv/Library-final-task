@@ -43,7 +43,7 @@
  <input type="radio" name="place-${book.id}" value="hall"> ${hall}<Br>
 		</td>
 		<td style=" width:50px"  >		 
- <input type="checkbox" name="checkOrder" value="${book.id}"><Br> 
+ <input type="checkbox" name="checkBookOrder" value="${book.id}"><Br> 
 		</td>
 		</c:if>
   
@@ -52,7 +52,10 @@
 </c:forEach>
 
 </table>
+ <c:if test="${role == 'user'}">	
 <input type="hidden" value="createOrder" name="command">
+
 <button type="submit" class="registerbtn"> ${button}</button>
+</c:if>
  </form>
 </div>

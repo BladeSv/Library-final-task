@@ -13,11 +13,13 @@ public class AbstactDAO {
 	protected static Logger log;
 
 	static {
-		log = Logger.getLogger("S");
+		log = Logger.getLogger("AbstactDAO");
 	}
 
 	public Connection getConnection() throws DaoSQLExcetion {
+
 		try {
+
 			return ConnectionPool.getInstanse().getConnertion();
 		} catch (ConnectionPoolException e) {
 			log.warn("get connection from pool", e);

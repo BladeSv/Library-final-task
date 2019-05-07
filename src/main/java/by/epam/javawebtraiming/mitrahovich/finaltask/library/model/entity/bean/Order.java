@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 /**
  * @author Mitrahovich
  */
-public class Order {
+public class Order extends Item {
 
 	private Book book;
 	private PlaceType place;
@@ -16,12 +16,13 @@ public class Order {
 	}
 
 	/**
+	 * @param id
 	 * @param book
 	 * @param place
 	 * @param takenDate
 	 */
-	public Order(Book book, PlaceType place, GregorianCalendar takenDate) {
-
+	public Order(int id, Book book, PlaceType place, GregorianCalendar takenDate) {
+		super(id);
 		this.book = book;
 		this.place = place;
 		this.takenDate = takenDate;
@@ -54,7 +55,7 @@ public class Order {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((book == null) ? 0 : book.hashCode());
 		result = prime * result + ((place == null) ? 0 : place.hashCode());
 		result = prime * result + ((takenDate == null) ? 0 : takenDate.hashCode());
@@ -65,7 +66,7 @@ public class Order {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;

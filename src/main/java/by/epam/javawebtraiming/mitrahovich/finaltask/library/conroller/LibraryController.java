@@ -1,7 +1,6 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,15 +59,11 @@ public class LibraryController extends HttpServlet {
 		log.trace("start processRequest");
 		String command = request.getParameter(ConstConteiner.COMMAND);
 		log.trace("command--" + command);
-		Enumeration<String> s = request.getAttributeNames();
-		while (s.hasMoreElements()) {
-			String key = s.nextElement();
-			log.trace("Param key--" + key + " valuse--" + request.getParameter(key));
-		}
 
 		CommandManager commandManager = CommandManager.getInstance();
+		log.trace("command--" + command);
 		Command requestCommand = commandManager.getCommand(command);
-
+		log.trace("command--" + command + " requestCommand---" + requestCommand.getClass().getSimpleName());
 		page = requestCommand.execute(request);
 
 		log.trace("choose command--" + requestCommand.getClass().getSimpleName() + " page-" + page);

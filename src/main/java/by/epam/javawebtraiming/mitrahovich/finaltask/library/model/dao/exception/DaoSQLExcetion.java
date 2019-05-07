@@ -8,4 +8,8 @@ public class DaoSQLExcetion extends LibraryException {
 		super(cause);
 	}
 
+	public DaoSQLExcetion() {
+
+	}
+
 }

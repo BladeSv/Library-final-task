@@ -48,7 +48,7 @@ public class SingUpCommand extends AbstractCommand {
 			} catch (DaoSQLExcetion e) {
 				log.warn("try singup" + e);
 				page = ManagerConfig.get("path.page.bad.request");
-				e.printStackTrace();
+
 			} catch (WrongLoginDateException e) {
 				log.warn("try sing up" + e);
 				request.setAttribute(ConstConteiner.WRONG_DATE_SINGUP, ConstConteiner.WRONG_DATE_SINGUP);

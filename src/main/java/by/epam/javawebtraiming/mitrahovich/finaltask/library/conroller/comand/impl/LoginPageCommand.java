@@ -8,6 +8,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.C
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.WrongLoginDateException;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Observable;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.User;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.Validation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.ValidationManager;
@@ -36,6 +37,9 @@ public class LoginPageCommand extends AbstractCommand {
 				HttpSession session = request.getSession(true);
 				session.setAttribute(ConstConteiner.ROLE, user.getRole().toString().toLowerCase());
 				session.setAttribute(ConstConteiner.USER, user);
+				Observable libraryObserver = (Observable) session.getServletContext()
+						.getAttribute(ConstConteiner.LIBRARY_OBSERVER);
+				libraryObserver.addObserver(user);
 				page = ManagerConfig.get("path.page.main");
 			} else {
 				throw new WrongLoginDateException();

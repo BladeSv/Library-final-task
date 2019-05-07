@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.IndexPageCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateOrderCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToOrderPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.LoginPageCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.MainPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SearchCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SingUpCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
@@ -21,56 +23,14 @@ public class CommandManager {
 	private final Map<String, Command> commandList;
 
 	private CommandManager() {
-		commandList = new HashMap<>();
 
-		commandList.put(ConstConteiner.COMMAND_PAGE_INDEX, new IndexPageCommand());
+		commandList = new HashMap<String, Command>();
+		commandList.put(ConstConteiner.COMMAND_PAGE_TO_ORDER, new GoToOrderPageCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_INDEX, new MainPageCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_LOGIN, new LoginPageCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_SINGUP, new SingUpCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_SEARCH, new SearchCommand());
-//		Properties properties = new Properties();
-//
-//		try {
-//			InputStream inputStream = this.getClass().getClassLoader()
-//					.getResourceAsStream(ManagerConfig.get("path.command.list"));
-//			properties.load(inputStream);
-//
-//			Enumeration<?> commandNames = properties.propertyNames();
-//			String currentCommandClassName;
-//			String currentCommandName;
-//
-//			while (commandNames.hasMoreElements()) {
-//
-//				currentCommandName = (String) commandNames.nextElement();
-//				currentCommandClassName = properties.getProperty(currentCommandName);
-//				properties.put(currentCommandName, (Command) Class.forName(currentCommandClassName).newInstance());
-//
-//			}
-
-//			for (String key : properties.stringPropertyNames()) {
-//				Command value = (Command) Class.forName(properties.getProperty(key)).newInstance();
-//				log.trace("put-command: " + key + " class- " + value.getClass().getSimpleName());
-//				commandList.put(key, value);
-//			}
-//			currentCommandName = (String) commandNames.nextElement();
-//			currentCommandClassName = property.getProperty(currentCommandName);
-//			navigator.put(currentCommandName, (Command) Class.forName(currentCommandClassName).newInstance());
-
-//		} catch (FileNotFoundException e) {
-//
-//			e.printStackTrace();
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} catch (InstantiationException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		commandList.put(ConstConteiner.COMMAND_PAGE_CREATE_ORDER, new CreateOrderCommand());
 
 	}
 
@@ -80,6 +40,7 @@ public class CommandManager {
 	}
 
 	public Command getCommand(String commandName) {
+
 		if (commandName == null || commandName.equals("")) {
 			commandName = ConstConteiner.COMMAND_PAGE_INDEX;
 		}
