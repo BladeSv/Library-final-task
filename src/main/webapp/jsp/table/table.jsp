@@ -39,7 +39,7 @@
   <td>${book.genre}</td>
   <c:if test="${role == 'user'}">		
 		<td style=" text-align:left, width:100px"  >		 
-<input type="radio" name="place-${book.id}" value="out"> ${out}<Br>
+<input type="radio" name="place-${book.id}" value="out" checked> ${out}<Br>
  <input type="radio" name="place-${book.id}" value="hall"> ${hall}<Br>
 		</td>
 		<td style=" width:50px"  >		 

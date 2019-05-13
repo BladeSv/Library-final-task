@@ -34,6 +34,7 @@ public class LoginPageCommand extends AbstractCommand {
 
 				User user = daoManager.getUserDAO().login(login, password);
 				log.trace("user-" + user);
+				System.out.println("login user-" + user);
 				HttpSession session = request.getSession(true);
 				session.setAttribute(ConstConteiner.ROLE, user.getRole().toString().toLowerCase());
 				session.setAttribute(ConstConteiner.USER, user);

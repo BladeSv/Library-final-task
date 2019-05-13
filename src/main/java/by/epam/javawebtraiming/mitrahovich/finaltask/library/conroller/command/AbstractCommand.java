@@ -6,7 +6,7 @@ public abstract class AbstractCommand implements Command {
 
 	protected static Logger log;
 	static {
-		log = Logger.getLogger("AbstractCommand");
+		log = Logger.getLogger("AbstractCommand.class");
 
 	}
 

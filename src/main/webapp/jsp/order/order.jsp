@@ -12,14 +12,10 @@
 	<fmt:message key="order.table.book.title" var="Tbook" />
 	<fmt:message key="order.table.book.autor" var="Abook" />
 	<fmt:message key="order.table.date.on.confirm" var="Oconfirm" />
+	<fmt:message key="order.button" var="button" />
+
 </fmt:bundle>
-order.table.title=Order
-order.table.user.name=User name
-order.table.book.title=Book title
-order.table.book.autor=Book autor
-order.table.book.place=The place where you took the book
-order.table.date.taken=Date taken
-order.table.date.on.confirm=Confirmation request
+
 
 
 <c:set var="startUrl" value="${pageContext.request.contextPath}" />
@@ -37,11 +33,15 @@ order.table.date.on.confirm=Confirmation request
 		<c:if test="${role == 'guest'}">		
 			 <jsp:include page="../header/GuestHeader.jsp"/>
 		</c:if>
-		<c:if test="${role == 'user'}">	
-		<jsp:include page=../header/GuestHeader.jsp"/>	
-			 ${user.name}<br>
+			<c:if test="${role == 'user'}">
+		<jsp:include page="../header/GuestHeader.jsp"/>	
+		 ${sessionScope.user.name}<br>
+				</c:if>
 			
-		</c:if>
+			
+			
+			
+	
 <div class="table-order-conteiner">
  <form name="takeChange" method="post" action="/Library/main">
 <table>
@@ -64,15 +64,19 @@ order.table.date.on.confirm=Confirmation request
   <td ><p>${Tbook}:${order.book.title}</p><p>${Abook}:${order.book.autor.name} ${order.book.autor.surname}</p></td>
   <td>${order.place}</td>
   <c:if test="${order.takenDate == null}">		
-		<td >		 
+			 
   <td>${Oconfirm}</td>
-		</td>
+		
 		
 		</c:if>
+		
    <c:if test="${order.takenDate != null}">		
-		<td >		 
-  <td>${order.takenDate}</td>
-		</td>
+			 
+			
+ 
+<td> <fmt:formatDate type="date" value="${order.takenDate}"/></td>
+
+		
 		
 		</c:if>
 </tr>

@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.AbstactDAO;
@@ -56,7 +55,7 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 		Order order = null;
 		Connection connection = getConnection();
 		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.ORDER_GET_BY_ID)) {
-
+			preparedStatement.setInt(1, id);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				int idOrder = rs.getInt("id_subscription");
@@ -71,10 +70,10 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 
 				PlaceType place = PlaceType.valueOf(rs.getString("place"));
 				Date takenDateSQL = rs.getDate("taken_date");
-				GregorianCalendar takenDate = null;
+				java.util.Date takenDate = null;
 				if (takenDateSQL != null) {
-					takenDate = new GregorianCalendar();
-					takenDate.setTime(takenDateSQL);
+
+					takenDate = new java.util.Date(takenDateSQL.getTime());
 				}
 
 				Autor autor = new Autor(idAutor, autorName, autorSurname);
@@ -121,10 +120,11 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 
 				PlaceType place = PlaceType.valueOf(rs.getString("place"));
 				Date takenDateSQL = rs.getDate("taken_date");
-				GregorianCalendar takenDate = null;
+				System.out.println("taken_date-" + takenDateSQL);
+				java.util.Date takenDate = null;
 				if (takenDateSQL != null) {
-					takenDate = new GregorianCalendar();
-					takenDate.setTime(takenDateSQL);
+					takenDate = new java.util.Date(takenDateSQL.getTime());
+
 				}
 
 				Autor autor = new Autor(idAutor, autorName, autorSurname);

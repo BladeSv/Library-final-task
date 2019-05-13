@@ -7,7 +7,7 @@ public class ManagerConfig {
 	public static final ResourceBundle rb;
 
 	static {
-		rb = ResourceBundle.getBundle("config");
+		rb = ResourceBundle.getBundle("config.config");
 	}
 
 	public ManagerConfig() {

@@ -1,6 +1,6 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean;
 
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 
 public class User extends Item implements Observer {
@@ -90,7 +90,7 @@ public class User extends Item implements Observer {
 	}
 
 	@Override
-	public void confirmOrder(int idOrder, GregorianCalendar takenDate) {
+	public void confirmOrder(int idOrder, Date takenDate) {
 		for (Order order : takenOrder) {
 
 			if (order.getId() == idOrder) {

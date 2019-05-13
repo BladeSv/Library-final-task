@@ -19,12 +19,12 @@
 
 	<div class="main">
 	
-		<c:if test="${role == 'guest'}">		
+		<c:if test="${sessionScope.role == 'guest'}">		
 			 <jsp:include page="header/GuestHeader.jsp"/>
 		</c:if>
-		<c:if test="${role == 'user'}">	
+		<c:if test="${sessionScope.role == 'user'}">	
 		<jsp:include page="header/GuestHeader.jsp"/>	
-			 ${user.name}<br>
+			 ${sessionScope.user.name}<br>
 			
 		</c:if>
 
@@ -40,6 +40,6 @@
 
 
 	</br> Hello Worlddsdsddsddddddddddddd ${login}
-	</br> ${role}
+	</br> ${sessionScope.role}
 </body>
 </html>

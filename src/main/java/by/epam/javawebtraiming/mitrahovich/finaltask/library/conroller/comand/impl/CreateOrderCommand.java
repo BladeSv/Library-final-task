@@ -31,19 +31,21 @@ public class CreateOrderCommand extends AbstractCommand {
 			for (int i = 0; i < checkedBooks.length; i++) {
 
 				User user = (User) (session.getAttribute(ConstConteiner.USER));
+				log.trace("create order command -user- " + user);
 				int userId = user.getId();
 				Integer idBook = Integer.parseInt(checkedBooks[i]);
 				String bookPlace = request.getParameter(ConstConteiner.TABLE_BOOKS_PLACE_PREFIX + idBook);
 
 				try {
-					int idOrder = orderDAO.add(userId, idBook, PlaceType.valueOf(bookPlace));
+					int idOrder = orderDAO.add(userId, idBook, PlaceType.valueOf(bookPlace.toUpperCase()));
+					log.trace("create order command -id-order- " + idOrder);
 					if (idOrder > 0) {
 						Order order = (Order) orderDAO.getById(idOrder);
 						user.getTakenOrder().add(order);
 
 					}
 				} catch (DaoSQLExcetion e) {
-					log.warn("try singup" + e);
+					log.warn("create order command" + e);
 					page = ManagerConfig.get("path.page.bad.request");
 				}
 			}

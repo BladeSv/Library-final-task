@@ -1,6 +1,6 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean;
 
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 /**
  * @author Mitrahovich
@@ -9,7 +9,7 @@ public class Order extends Item {
 
 	private Book book;
 	private PlaceType place;
-	private GregorianCalendar takenDate;
+	private Date takenDate;
 
 	public Order() {
 
@@ -21,7 +21,7 @@ public class Order extends Item {
 	 * @param place
 	 * @param takenDate
 	 */
-	public Order(int id, Book book, PlaceType place, GregorianCalendar takenDate) {
+	public Order(int id, Book book, PlaceType place, Date takenDate) {
 		super(id);
 		this.book = book;
 		this.place = place;
@@ -44,11 +44,11 @@ public class Order extends Item {
 		this.place = place;
 	}
 
-	public GregorianCalendar getTakenDate() {
+	public Date getTakenDate() {
 		return takenDate;
 	}
 
-	public void setTakenDate(GregorianCalendar takenDate) {
+	public void setTakenDate(Date takenDate) {
 		this.takenDate = takenDate;
 	}
 
