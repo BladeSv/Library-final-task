@@ -22,7 +22,7 @@
   <div class="header-right">
 
   <c:if test="${role == 'user'}">	
-	  <a href="jsp/order/order.jsp"" class="logo">${order}</a>
+	  <a href="jsp/order/order.jsp" class="logo">${order}</a>
 	
 			
 		</c:if>

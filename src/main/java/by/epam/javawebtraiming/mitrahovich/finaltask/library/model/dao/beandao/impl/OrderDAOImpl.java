@@ -145,4 +145,20 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 		return orders;
 	}
 
+	@Override
+	public void remote(int idOrder) throws DaoSQLExcetion {
+		Connection connection = getConnection();
+		try (
+
+				PreparedStatement preparedStatement = connection
+						.prepareStatement(SQLRequestConteiner.ORDER_DELETE_BY_ID)) {
+			preparedStatement.setInt(1, idOrder);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			log.warn("Delete order ", e);
+			throw new DaoSQLExcetion(e.getCause());
+		} finally {
+			returnConnection(connection);
+		}
+	}
 }

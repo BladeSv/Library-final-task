@@ -1,6 +1,6 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean;
 
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class LibraryObserver implements Observable {
 	}
 
 	@Override
-	public void NotifyConfirmOrder(int idOrder, GregorianCalendar takenDate) {
+	public void NotifyConfirmOrder(int idOrder, Date takenDate) {
 
 		for (Observer obs : observers) {
 			obs.confirmOrder(idOrder, takenDate);

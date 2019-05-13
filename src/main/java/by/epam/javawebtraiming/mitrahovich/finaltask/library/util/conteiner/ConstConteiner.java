@@ -22,6 +22,8 @@ public class ConstConteiner {
 	public static final String TABLE_BOOKS_CHECK = "checkBookOrder";
 	public static final String TABLE_BOOKS_PLACE_PREFIX = "place-";
 
+	public static final String ORDER_DELETE_CHECK = "checkOrderDelete";
+
 	public static final String LOCALE = "locale";
 	public static final String DEFAULT_LOCALE = "en";
 	public static final String RU_LOCALE = "ru";
@@ -36,6 +38,8 @@ public class ConstConteiner {
 	public static final String COMMAND_PAGE_SINGUP = "singup";
 	public static final String COMMAND_PAGE_SEARCH = "search";
 	public static final String COMMAND_PAGE_CREATE_ORDER = "createOrder";
+	public static final String COMMAND_PAGE_DELETE_ORDER = "deleteOrder";
+
 	public static final String COMMAND_PAGE_TO_ORDER = "order";
 
 	public static final String SEARCH_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";

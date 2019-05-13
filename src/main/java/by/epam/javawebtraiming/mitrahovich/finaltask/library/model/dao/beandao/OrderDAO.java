@@ -11,4 +11,6 @@ public interface OrderDAO extends DAO {
 
 	public List<Order> getAllOrderUserById(int userId) throws DaoSQLExcetion;
 
+	public void remote(int idOrder) throws DaoSQLExcetion;
+
 }

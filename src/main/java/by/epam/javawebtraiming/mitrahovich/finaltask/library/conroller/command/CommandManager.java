@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateOrderCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteOrderCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToOrderPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.LoginPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.MainPageCommand;
@@ -31,7 +32,7 @@ public class CommandManager {
 		commandList.put(ConstConteiner.COMMAND_PAGE_SINGUP, new SingUpCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_SEARCH, new SearchCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_CREATE_ORDER, new CreateOrderCommand());
-
+		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_ORDER, new DeleteOrderCommand());
 	}
 
 	public static CommandManager getInstance() {

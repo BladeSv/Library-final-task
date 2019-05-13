@@ -32,5 +32,6 @@ public class SQLRequestConteiner {
 			+ " INNER JOIN genre ON book.id_genre=genre.id_genre \r\n"
 			+ " INNER JOIN user ON subscription.id_user=user.id_user \r\n" + " WHERE subscription.id_subscription=?";
 
+	public static final String ORDER_DELETE_BY_ID = "DELETE FROM subscription WHERE id_subscription=?";
 //	SELECT id_user FROM user WHERE login=? && user.PASSWORD=?
 }
