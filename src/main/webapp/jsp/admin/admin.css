@@ -1,0 +1,9 @@
+@charset "UTF-8";
+  BODY { background: #fff1e4; margin: 0; }
+   .layout { width: 970px; margin: 0 auto 10px; background: #fff; }
+   .content { margin-right: 350px; padding: 10px; }
+   .sidebar { width: 320px; float: right; background: #e0ecb8; }
+   .footer {
+    clear: both; /* Отмена обтекания */
+    border-top: 1px solid #ccc; padding: 10px;
+   }
