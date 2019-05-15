@@ -35,6 +35,7 @@ public class ConstConteiner {
 
 	public static final String COMMAND_PAGE_INDEX = "index";
 	public static final String COMMAND_PAGE_LOGIN = "login";
+	public static final String COMMAND_PAGE_LOGOUT = "logout";
 	public static final String COMMAND_PAGE_SINGUP = "singup";
 	public static final String COMMAND_PAGE_SEARCH = "search";
 	public static final String COMMAND_PAGE_CREATE_ORDER = "createOrder";

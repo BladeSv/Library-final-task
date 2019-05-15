@@ -8,7 +8,7 @@
 	<fmt:message key="login.login" var="login" />
 	<fmt:message key="login.password" var="password" />
 	<fmt:message key="login.button" var="button" />
-	<fmt:message key="index.singin" var="singin" />
+	<fmt:message key="login.singup" var="singup" />
 	<fmt:message key="login.worng.data.message" var="message" />
 
 </fmt:bundle>
@@ -49,7 +49,7 @@
 <!--===============================================================================================-->
 </head>
 <body>
-
+ <jsp:include page="../header/GuestHeader.jsp"/>
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
@@ -85,8 +85,8 @@
 
 
 							<div>
-								<a href="${startUrl}/Library/singin.jsp" class="txt3">
-									${singin} </a>
+								<a href="${startUrl}/jsp/singup/singup.jsp" class="txt3">
+									${singup} </a>
 							</div>
 						</div>
 						<input type="hidden" value="login" name="command">

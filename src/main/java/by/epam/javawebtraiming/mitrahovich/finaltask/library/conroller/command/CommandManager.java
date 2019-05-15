@@ -9,6 +9,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.im
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteOrderCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToOrderPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.LoginPageCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.LogoutCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.MainPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SearchCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SingUpCommand;
@@ -33,6 +34,7 @@ public class CommandManager {
 		commandList.put(ConstConteiner.COMMAND_PAGE_SEARCH, new SearchCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_CREATE_ORDER, new CreateOrderCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_ORDER, new DeleteOrderCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_LOGOUT, new LogoutCommand());
 	}
 
 	public static CommandManager getInstance() {

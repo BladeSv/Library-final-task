@@ -19,14 +19,9 @@
 
 	<div class="main">
 	
-		<c:if test="${sessionScope.role == 'guest'}">		
+	
 			 <jsp:include page="header/GuestHeader.jsp"/>
-		</c:if>
-		<c:if test="${sessionScope.role == 'user'}">	
-		<jsp:include page="header/GuestHeader.jsp"/>	
-			 ${sessionScope.user.name}<br>
-			
-		</c:if>
+		
 
 <div>
  <jsp:include page="search/search.jsp"/>
