@@ -1,6 +1,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="pag" uri="pagination" %>
 <c:set var="startUrl"  value="${pageContext.request.contextPath}"/>
 
 <fmt:bundle basename="locale">
@@ -58,4 +59,6 @@
 <button type="submit" class="registerbtn"> ${button}</button>
 </c:if>
  </form>
+ <pag:pagination maxPage="${maxPage}" paginationUrl="${paginationUrl}" startUrl="${startUrl}" numberPage="${numberPage}"/>
+ 
 </div>

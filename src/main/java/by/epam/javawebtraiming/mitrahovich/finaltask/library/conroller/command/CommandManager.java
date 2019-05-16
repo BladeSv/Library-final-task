@@ -10,7 +10,6 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.im
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToOrderPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.LoginPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.LogoutCommand;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.MainPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SearchCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SingUpCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
@@ -28,7 +27,8 @@ public class CommandManager {
 
 		commandList = new HashMap<String, Command>();
 		commandList.put(ConstConteiner.COMMAND_PAGE_TO_ORDER, new GoToOrderPageCommand());
-		commandList.put(ConstConteiner.COMMAND_PAGE_INDEX, new MainPageCommand());
+		// commandList.put(ConstConteiner.COMMAND_PAGE_INDEX, new MainPageCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_INDEX, new SearchCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_LOGIN, new LoginPageCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_SINGUP, new SingUpCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_SEARCH, new SearchCommand());

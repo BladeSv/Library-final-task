@@ -1,25 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
-  <servlet>
-    <servlet-name>LibraryServles</servlet-name>
-    <servlet-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.LibraryController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LibraryServles</servlet-name>
-    <url-pattern>/main</url-pattern>
-  </servlet-mapping>
-  <listener>
-    <listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.RoleListener</listener-class>
-  </listener>
-  <listener>
-    <listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.ServletInit</listener-class>
-  </listener>
-  <listener>
-    <listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.LocaleListener</listener-class>
-  </listener>
-  <welcome-file-list>
-  <welcome-file>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<servlet>
+		<servlet-name>LibraryServles</servlet-name>
+		<servlet-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.LibraryController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LibraryServles</servlet-name>
+		<url-pattern>/main</url-pattern>
+	</servlet-mapping>
+	<listener>
+		<listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.RoleListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.ServletInit</listener-class>
+	</listener>
+	<listener>
+		<listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.LocaleListener</listener-class>
+	</listener>
+	<welcome-file-list>
+		<welcome-file>
   index.jsp
   </welcome-file>
-  </welcome-file-list>
+	</welcome-file-list>
+	
+<jsp-config>
+		<taglib>
+			<taglib-uri>pagination</taglib-uri>
+			<taglib-location>/WEB-INF/classes/tld/Pagination.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
+	<session-config>
+	<session-timeout>
+		30
+	</session-timeout>
+</session-config>
+	
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/jsp/error/ErrorPage.jsp</location>
+	</error-page>
+
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/error/Error404Page.jsp</location>
+	</error-page>
 </web-app>

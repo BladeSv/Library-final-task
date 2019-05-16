@@ -15,18 +15,12 @@
 </head>
  <form id="searchForm" method="get" action="/Library/main">
 		<fieldset>
-        
-           	<input id="search" type="text" name="search"/>
+   
+           	<input id="search" type="text" name="search" value="${searchValue}"/>
             
             <input type="submit" value="Submit" id="submitButton" />
             <input type="hidden" value="search" name="command"/>
-            <div id="searchInContainer">
-                <input type="radio" name="check" value="site" id="searchSite" checked />
-                <label for="searchSite" id="siteNameLabel">Seadsdh</label>
-                
-                <input type="radio" name="check" value="web" id="searchWeb" />
-                <label for="searchWeb">Search The Web</label>
-			</div>
+      
                         
             
             

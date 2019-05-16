@@ -3,7 +3,6 @@ package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.i
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -21,12 +20,6 @@ public class MainPageCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-
-		HttpSession session = request.getSession(true);
-//		String role = (String) session.getAttribute(ConstConteiner.ROLE);
-//		if (role.equals(ConstConteiner.ROLE_GUEST)) {
-//
-//		}
 
 		log.trace("URL indexPageCommand-" + request.getContextPath());
 

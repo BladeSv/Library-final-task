@@ -44,3 +44,22 @@ text-align: left;
   background-color: grey;
 
 }
+
+.paginator {
+  width: 280px;
+  margin: 30px auto;
+  padding: 10px;
+
+  white-space: nowrap;
+
+  background-color: #ecf0f1;
+}
+
+.paginator a,
+.paginator span {
+  display: inline-block;
+  min-width: 20px;
+  height: 30px;
+  padding: 0 10px;
+  background-color: #95a5a6;
+}
