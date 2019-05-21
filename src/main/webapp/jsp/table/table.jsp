@@ -59,6 +59,10 @@
 <button type="submit" class="registerbtn"> ${button}</button>
 </c:if>
  </form>
- <pag:pagination maxPage="${maxPage}" paginationUrl="${paginationUrl}" startUrl="${startUrl}" numberPage="${numberPage}"/>
+
+ <pag:pagination maxPage="${maxPage}" paginationUrl="${paginationUrl}" numberPage="${numberPage}"/>
+ 
+  maxPage="${maxPage}" paginationUrl="${paginationUrl}" startUrl="${startUrl}" numberPage="${numberPage}"
+
  
 </div>

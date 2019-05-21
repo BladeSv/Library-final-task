@@ -2,15 +2,23 @@ package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.tabl
 
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
 public class TableHadlerImpl implements TableHadler {
+	private static Logger log;
+	static {
+
+		log = Logger.getLogger("Service.class");
+	}
 
 	private int maxBookOnPage;
 
 	public TableHadlerImpl() {
 		maxBookOnPage = Integer.parseInt(ManagerConfig.get("max.book.page"));
+		log.trace("books on page=" + maxBookOnPage);
 	}
 
 	@Override
@@ -21,9 +29,11 @@ public class TableHadlerImpl implements TableHadler {
 				if (numPage > getMaxPage(bookList)) {
 					numPage = getMaxPage(bookList);
 				}
-				int maxIndex = maxBookOnPage * numPage < bookList.size() ? maxBookOnPage * numPage - 1
-						: bookList.size() - 1;
+				int maxIndex = maxBookOnPage * numPage < bookList.size() ? maxBookOnPage * numPage : bookList.size();
+
 				pageBookList = bookList.subList(maxBookOnPage * (numPage - 1), maxIndex);
+
+				System.out.println(pageBookList);
 
 			} else {
 				pageBookList = bookList;
@@ -40,12 +50,14 @@ public class TableHadlerImpl implements TableHadler {
 
 		if (bookList != null) {
 
-			if (bookList.size() / maxBookOnPage > 1) {
-				maxPage = (maxPage % maxBookOnPage > 0) ? maxPage / maxBookOnPage + 1 : maxPage / maxBookOnPage;
+			if (bookList.size() / maxBookOnPage >= 1) {
+				maxPage = (bookList.size() % maxBookOnPage > 0) ? bookList.size() / maxBookOnPage + 1
+						: bookList.size() / maxBookOnPage;
 			}
 		} else {
 			maxPage = -1;
 		}
+		log.trace("Max page= " + maxPage);
 		return maxPage;
 	}
 

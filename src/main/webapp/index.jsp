@@ -6,8 +6,6 @@
       <title>Library</title>
   </head>
   <body>
-
-    <c:redirect url="/main"/>
-
+<jsp:forward page="/main"></jsp:forward>
   </body>
 </html>

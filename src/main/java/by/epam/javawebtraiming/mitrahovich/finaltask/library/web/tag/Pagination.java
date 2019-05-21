@@ -17,7 +17,7 @@ public class Pagination extends SimpleTagSupport {
 
 	}
 
-	public void setCurrentPage(int numberPage) {
+	public void setNumberPage(int numberPage) {
 		this.numberPage = numberPage;
 	}
 
@@ -39,7 +39,7 @@ public class Pagination extends SimpleTagSupport {
 		if (maxPage > 1) {
 
 			out.print("<div class=\"paginator\">");
-
+			out.print("<div>");
 			if (numberPage > 3) {
 				out.print(createPageLink(1, false));
 				out.print("<span>&hellip;</span>");
@@ -52,8 +52,9 @@ public class Pagination extends SimpleTagSupport {
 			} else if (numberPage == 2) {
 				out.print(createPageLink(1, false));
 				out.print(createPageLink(numberPage, true));
+			} else {
+				out.print(createPageLink(numberPage, true));
 			}
-			out.print(createPageLink(numberPage, true));
 
 			if (numberPage + 2 < maxPage) {
 				out.print(createPageLink(numberPage + 1, false));
@@ -68,6 +69,7 @@ public class Pagination extends SimpleTagSupport {
 				out.print(createPageLink(maxPage, false));
 			}
 			out.print(" </div>");
+			out.print(" </div>");
 
 		} else {
 			out.print("</br>");
@@ -78,14 +80,14 @@ public class Pagination extends SimpleTagSupport {
 
 		StringBuilder form = new StringBuilder();
 
-		form.append("<a href=\"").append(startUrl).append(paginationUrl).append(page);
+		form.append("<a href=\"").append(paginationUrl).append(page);
 
 		if (!active) {
 			form.append("\">");
 		} else {
 			form.append("\" class=\"active\">");
 		}
-		form.append("</a>");
+		form.append(page).append("</a>");
 		return form.toString();
 	}
 

@@ -59,6 +59,10 @@
 	</dependencies>
 	<build>
 		<finalName>Library</finalName>
-
+<resources>
+<resource>
+<directory>src\main\resources\config</directory>
+</resource>
+</resources>
 	</build>
 </project>

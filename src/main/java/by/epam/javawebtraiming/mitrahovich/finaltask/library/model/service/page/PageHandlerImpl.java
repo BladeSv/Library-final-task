@@ -1,7 +1,5 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.page;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
@@ -14,15 +12,13 @@ public class PageHandlerImpl implements PageHandler {
 
 	public int getNumberPage(HttpServletRequest request) {
 		int numberPage = 1;
-		Enumeration<String> enumAttr = request.getAttributeNames();
+		System.out.println("Method- getNumberPage--start");
+		String numPage = request.getParameter(ConstConteiner.PAGE);
 
-		while (enumAttr.hasMoreElements()) {
+		if (numPage != null && numPage != "") {
+			System.out.println("Method- getNumberPage=" + numPage);
+			numberPage = Integer.parseInt(numPage);
 
-			if (enumAttr.nextElement().equals(ConstConteiner.PAGE)) {
-				String numPage = request.getParameter(ConstConteiner.PAGE);
-				numberPage = Integer.parseInt(numPage);
-
-			}
 		}
 
 		return numberPage;

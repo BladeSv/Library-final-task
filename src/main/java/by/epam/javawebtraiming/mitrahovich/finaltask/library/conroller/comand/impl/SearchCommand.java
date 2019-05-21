@@ -32,20 +32,25 @@ public class SearchCommand extends AbstractCommand {
 				request.setAttribute(ConstConteiner.SEARCH_VALUE, searchRequest);
 
 			} else {
+
 				books = searchBook.searchAllFreeBook();
+
 			}
 			int numberPage = ServiceFactory.getInstance().getPageHandler().getNumberPage(request);
 			TableHadler tableHadler = ServiceFactory.getInstance().getTableHadler();
 			int numberMaxPage = tableHadler.getMaxPage(books);
+
+			System.out.println("numberPage=" + numberPage);
 			books = tableHadler.getBookPage(books, numberPage);
 
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_PAGE, numberPage);
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_MAX_PAGE, numberMaxPage);
 
+			searchRequest = searchRequest != null ? searchRequest : "";
 			String paginationUrl = request.getRequestURI() + "?" + ConstConteiner.SEARCH + "=" + searchRequest + "&"
 					+ ConstConteiner.COMMAND + "=" + ConstConteiner.COMMAND_PAGE_SEARCH + "&" + ConstConteiner.PAGE
 					+ "=";
-			System.err.println(paginationUrl + " " + request.getContextPath());
+			log.trace("paginationUrl= " + paginationUrl);
 
 			request.setAttribute(ConstConteiner.PAGINATION_URL, paginationUrl);
 			request.setAttribute(ConstConteiner.TABLE_BOOKS, books);

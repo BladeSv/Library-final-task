@@ -24,11 +24,7 @@
             <required>true</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
-        <attribute>
-            <name>startUrl</name>
-            <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
+      
         <attribute>
             <name>paginationUrl</name>
             <required>true</required>

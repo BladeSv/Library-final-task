@@ -20,7 +20,7 @@ public class ConstConteiner {
 	public static final String PAGE = "page";
 
 	public static final String PAGINATION_NUMBER_PAGE = "numberPage";
-	public static final String PAGINATION_NUMBER_MAX_PAGE = "numberMaxPage";
+	public static final String PAGINATION_NUMBER_MAX_PAGE = "maxPage";
 	public static final String PAGINATION_URL = "paginationUrl";
 
 	public static final String LIBRARY_OBSERVER = "libraryObserver";
