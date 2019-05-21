@@ -5,6 +5,7 @@ import java.util.List;
 
 public class User extends Item implements Observer {
 	private String name;
+	private String surname;
 	private RoleType role;
 	private List<Order> takenOrder;
 
@@ -15,12 +16,14 @@ public class User extends Item implements Observer {
 	/**
 	 * @param id
 	 * @param name
+	 * @param surname
 	 * @param role
 	 * @param takenOrder
 	 */
-	public User(int id, String name, RoleType role, List<Order> takenOrder) {
+	public User(int id, String name, String surname, RoleType role, List<Order> takenOrder) {
 		super(id);
 		this.name = name;
+		this.surname = surname;
 		this.role = role;
 		this.takenOrder = takenOrder;
 	}
@@ -31,6 +34,14 @@ public class User extends Item implements Observer {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public RoleType getRole() {
@@ -55,6 +66,7 @@ public class User extends Item implements Observer {
 		int result = super.hashCode();
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((role == null) ? 0 : role.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
 		result = prime * result + ((takenOrder == null) ? 0 : takenOrder.hashCode());
 		return result;
 	}
@@ -75,6 +87,11 @@ public class User extends Item implements Observer {
 			return false;
 		if (role != other.role)
 			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
+			return false;
 		if (takenOrder == null) {
 			if (other.takenOrder != null)
 				return false;
@@ -85,7 +102,8 @@ public class User extends Item implements Observer {
 
 	@Override
 	public String toString() {
-		return super.toString() + ", name: " + name + ", role: " + role + ", taken order: " + takenOrder;
+		return super.toString() + ", name: " + name + ", surname: " + surname + ", role: " + role + ", taken order: "
+				+ takenOrder;
 
 	}
 

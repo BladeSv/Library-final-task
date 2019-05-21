@@ -37,9 +37,10 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 			while (rs.next()) {
 
 				String name = rs.getString("name");
+				String surname = rs.getString("surname");
 				RoleType role = RoleType.valueOf(rs.getString("role").toUpperCase());
 				List<Order> takeOrder = DaoManager.getInstance().getOrderDAO().getAllOrderUserById(id);
-				user = new User(id, name, role, takeOrder);
+				user = new User(id, name, surname, role, takeOrder);
 			}
 
 		} catch (SQLException e) {
@@ -64,9 +65,10 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 			while (rs.next()) {
 				int id = rs.getInt("id_user");
 				String name = rs.getString("name");
+				String surname = rs.getString("surname");
 				RoleType role = RoleType.valueOf(rs.getString("role").toUpperCase());
 				List<Order> takeOrder = DaoManager.getInstance().getOrderDAO().getAllOrderUserById(id);
-				users.add(new User(id, name, role, takeOrder));
+				users.add(new User(id, name, surname, role, takeOrder));
 			}
 
 		} catch (SQLException e) {
@@ -80,7 +82,7 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 	}
 
 	@Override
-	public User registration(String login, String pass, String name, RoleType role)
+	public User registration(String login, String pass, String name, String surname, RoleType role)
 			throws DaoSQLExcetion, WrongLoginDateException {
 		User user = null;
 		Connection connection = getConnection();
@@ -103,7 +105,8 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 				preparedStatementRegustration.setString(1, login);
 				preparedStatementRegustration.setString(2, pass);
 				preparedStatementRegustration.setString(3, name);
-				preparedStatementRegustration.setString(4, role.name());
+				preparedStatementRegustration.setString(4, surname);
+				preparedStatementRegustration.setString(5, role.name());
 
 				if (preparedStatementRegustration.executeUpdate() == 1) {
 					user = login(login, pass);
@@ -144,9 +147,10 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 			} else {
 				int userId = rs.getInt("id_user");
 				String userName = rs.getString("name");
+				String userSurname = rs.getString("surname");
 				RoleType userRole = RoleType.valueOf(rs.getString("role").toUpperCase());
 				List<Order> takeOrder = DaoManager.getInstance().getOrderDAO().getAllOrderUserById(userId);
-				user = new User(userId, userName, userRole, takeOrder);
+				user = new User(userId, userName, userSurname, userRole, takeOrder);
 			}
 		} catch (SQLException e) {
 			log.warn("User login", e);

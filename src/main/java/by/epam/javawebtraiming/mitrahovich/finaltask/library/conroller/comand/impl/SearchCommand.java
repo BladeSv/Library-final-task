@@ -23,12 +23,12 @@ public class SearchCommand extends AbstractCommand {
 	public String execute(HttpServletRequest request) {
 		String page = ManagerConfig.get("path.page.main");
 		String searchRequest = request.getParameter(ConstConteiner.SEARCH);
-		SearchBook searchBook = ServiceFactory.getInstance().getSearchBoo();
+		SearchBook searchBook = ServiceFactory.getInstance().getSearchBooK();
 		try {
 			List<Book> books = null;
 			if (searchRequest != null && searchRequest != "") {
 
-				books = searchBook.search(request);
+				books = searchBook.search(searchRequest);
 				request.setAttribute(ConstConteiner.SEARCH_VALUE, searchRequest);
 
 			} else {
@@ -36,11 +36,11 @@ public class SearchCommand extends AbstractCommand {
 				books = searchBook.searchAllFreeBook();
 
 			}
+
 			int numberPage = ServiceFactory.getInstance().getPageHandler().getNumberPage(request);
 			TableHadler tableHadler = ServiceFactory.getInstance().getTableHadler();
 			int numberMaxPage = tableHadler.getMaxPage(books);
 
-			System.out.println("numberPage=" + numberPage);
 			books = tableHadler.getBookPage(books, numberPage);
 
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_PAGE, numberPage);

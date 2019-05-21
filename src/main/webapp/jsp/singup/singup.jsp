@@ -12,6 +12,8 @@
 	<fmt:message key="singup.password.placeholder" var="ppassword" />
 	<fmt:message key="singup.name" var="name" />
 	<fmt:message key="singup.name.placeholder" var="pname" />
+		<fmt:message key="singup.surname" var="surname" />
+		<fmt:message key="singup.surname.placeholder" var="psurname" />
 	<fmt:message key="singup.button" var="button" />
 	<fmt:message key="singup.worng.data.message" var="message" />
 
@@ -45,6 +47,9 @@
 				placeholder="${ppassword}" name="password" required> <label
 				for="psw-repeat"><b>${name}</b></label> <input type="text"
 				placeholder="${pname}" name="name" required>
+				<label for="psw-repeat"><b>${surname}</b></label> <input type="text"
+				placeholder="${psurname}" name="surmame" required>
+				
 			<hr>
 
 			<input type="hidden" name="command" value="singup">

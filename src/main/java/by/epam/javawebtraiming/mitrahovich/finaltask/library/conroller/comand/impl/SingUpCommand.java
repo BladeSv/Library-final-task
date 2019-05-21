@@ -29,11 +29,12 @@ public class SingUpCommand extends AbstractCommand {
 			String login = request.getParameter(ConstConteiner.LOGIN);
 			String pass = request.getParameter(ConstConteiner.PASSWORD);
 			String name = request.getParameter(ConstConteiner.NAME);
+			String surname = request.getParameter(ConstConteiner.SURNAME);
 			RoleType role = RoleType.USER;
 			Validation validation = ValidationManager.getInstance().getSingUpValidation();
 			try {
 				if (validation.vadidate(request)) {
-					User user = DaoManager.getInstance().getUserDAO().registration(login, pass, name, role);
+					User user = DaoManager.getInstance().getUserDAO().registration(login, pass, name, surname, role);
 					System.out.println(user);
 					HttpSession session = request.getSession(true);
 					session.setAttribute(ConstConteiner.ROLE, user.getRole().toString().toLowerCase());

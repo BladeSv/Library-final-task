@@ -26,7 +26,7 @@ public class MainPageCommand extends AbstractCommand {
 		String page = ManagerConfig.get("path.page.main");
 		String searchRequest = request.getParameter(ConstConteiner.SEARCH);
 
-		SearchBook searchBook = ServiceFactory.getInstance().getSearchBoo();
+		SearchBook searchBook = ServiceFactory.getInstance().getSearchBooK();
 
 		try {
 			List<Book> books = searchBook.searchAllFreeBook();

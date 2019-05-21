@@ -14,7 +14,9 @@
 <body>
 
  <jsp:include page="../header/GuestHeader.jsp"/>
+  <jsp:include page="../search/userSearch.jsp"/>
   <div class="layout">
+  
   <div class="sidebar">
    <ul>
     <li>Главная</li><li>Все коктейли</li><li>Коллекции</li>
@@ -22,8 +24,10 @@
    </ul>
   </div>
   <div class="content">
+ <jsp:include page="../table/userTable.jsp"/>
 
-   <h1>Яблочный эг-ног</h1>
+
+
    <p>Молоко — 40 мл, сок яблочный — 100 мл, сироп сахарный — 30 мм,
    один яичный желток.</p>
    <p>Приготовить напиток в миксере, подать в бокале хайбол 

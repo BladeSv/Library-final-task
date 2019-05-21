@@ -8,8 +8,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.log4j.Logger;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
@@ -29,14 +27,13 @@ public class SearchBookimp implements SearchBook {
 	}
 
 	@Override
-	public List<Book> search(HttpServletRequest request) throws DaoSQLExcetion {
+	public List<Book> search(String searchRequest) throws DaoSQLExcetion {
 
-		String searchRequest = request.getParameter(ConstConteiner.SEARCH);
 		log.trace("Search request--" + searchRequest);
 
 		List<Book> findBook = searchAllFreeBook();
 
-		String[] split = searchRequest.split(ConstConteiner.SEARCH_REQUEST_SPLIT_REGEX);
+		String[] split = searchRequest.split(ConstConteiner.SEARCH_BOOK_REQUEST_SPLIT_REGEX);
 		log.trace("request split on pieces--" + split.length + " pieces--" + split.toString());
 		List<String> pieces = new ArrayList<>(Arrays.asList(split));
 		pieces.add(searchRequest);
@@ -56,7 +53,7 @@ public class SearchBookimp implements SearchBook {
 			for (Book book : findBook) {
 				String title = book.getTitle();
 
-				if (checkMatch(title, splits)) {
+				if (checkContains(title, splits)) {
 					searchBook.add(book);
 
 				}
@@ -68,7 +65,7 @@ public class SearchBookimp implements SearchBook {
 		return new ArrayList<>(searchBook);
 	}
 
-	private boolean checkMatch(String title, String searchString) {
+	private boolean checkContains(String title, String searchString) {
 		log.trace("check contins--in--" + title + " piece--" + searchString);
 		return title.toLowerCase().contains(searchString.toLowerCase());
 	}

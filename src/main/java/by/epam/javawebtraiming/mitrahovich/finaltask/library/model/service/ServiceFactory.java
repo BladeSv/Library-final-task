@@ -4,6 +4,8 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.page.
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.page.PageHandlerImpl;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.search.SearchBook;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.search.SearchBookimp;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.search.SearchUser;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.search.SearchUserImpl;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.table.TableHadler;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.table.TableHadlerImpl;
 
@@ -12,6 +14,7 @@ public class ServiceFactory {
 	private SearchBook searchBook = new SearchBookimp();
 	private PageHandler pageHandler = new PageHandlerImpl();
 	private TableHadler tableHadler = new TableHadlerImpl();
+	private SearchUser searchUser = new SearchUserImpl();
 
 	public ServiceFactory() {
 
@@ -22,7 +25,7 @@ public class ServiceFactory {
 
 	}
 
-	public SearchBook getSearchBoo() {
+	public SearchBook getSearchBooK() {
 		return searchBook;
 
 	}
@@ -33,6 +36,10 @@ public class ServiceFactory {
 
 	public TableHadler getTableHadler() {
 		return tableHadler;
+	}
+
+	public SearchUser getSearchUser() {
+		return searchUser;
 	}
 
 }

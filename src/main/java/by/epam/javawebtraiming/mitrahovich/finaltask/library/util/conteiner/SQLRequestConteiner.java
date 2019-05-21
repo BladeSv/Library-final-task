@@ -5,13 +5,13 @@ public class SQLRequestConteiner {
 	public SQLRequestConteiner() {
 	}
 
-	public static final String USER_GET_BY_ID = "SELECT user.name, role FROM user WHERE id_user=?";
+	public static final String USER_GET_BY_ID = "SELECT user.name, user.surname, role FROM user WHERE id_user=?";
 	public static final String USER_BOOK_BY_ID = "SELECT id_book, book.title AS book_title, annotation,book.id_autor, autor.name, autor.surname, genre.title AS genre_title FROM book INNER JOIN autor ON autor.id_autor=book.id_autor\r\n"
 			+ "INNER JOIN genre ON book.id_genre=genre.id_genre WHERE book.id_book=?";
-	public static final String USER_GET_BY_LOGIN_AND_PASS = "SELECT id_user, user.name, role FROM user WHERE login=? AND user.PASSWORD=?";
-	public static final String USER_REGISTRATION = "INSERT INTO user (login, user.password, user.name, role) VALUES (?,?,?,?) ";
+	public static final String USER_GET_BY_LOGIN_AND_PASS = "SELECT id_user, user.name, user.surname, role FROM user WHERE login=? AND user.PASSWORD=?";
+	public static final String USER_REGISTRATION = "INSERT INTO user (login, user.password, user.name, user.surname, role) VALUES (?,?,?,?,?) ";
 
-	public static final String USER_GET_ALL_USER = "SELECT id_user,user.name, role FROM user";
+	public static final String USER_GET_ALL_USER = "SELECT id_user, user.name, user.surname, role FROM user";
 
 	public static final String USER_GET_ALL_FREE_BOOK = " SELECT id_book, book.title AS book_title, annotation,book.id_autor, autor.name, autor.surname, genre.title AS genre_title\r\n"
 			+ "FROM book\r\n" + "INNER JOIN autor ON autor.id_autor=book.id_autor\r\n"

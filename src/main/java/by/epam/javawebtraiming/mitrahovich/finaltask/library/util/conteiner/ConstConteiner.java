@@ -9,6 +9,7 @@ public class ConstConteiner {
 	public static final String LOGIN = "login";
 	public static final String PASSWORD = "password";
 	public static final String NAME = "name";
+	public static final String SURNAME = "surname";
 	public static final String USER = "user";
 	public static final String ROLE = "role";
 	public static final String ROLE_ANDMIN = "admin";
@@ -29,6 +30,8 @@ public class ConstConteiner {
 	public static final String TABLE_BOOKS_CHECK = "checkBookOrder";
 	public static final String TABLE_BOOKS_PLACE_PREFIX = "place-";
 
+	public static final String TABLE_USERS = "tableUsers";
+
 	public static final String ORDER_DELETE_CHECK = "checkOrderDelete";
 
 	public static final String LOCALE = "locale";
@@ -45,11 +48,14 @@ public class ConstConteiner {
 	public static final String COMMAND_PAGE_LOGOUT = "logout";
 	public static final String COMMAND_PAGE_SINGUP = "singup";
 	public static final String COMMAND_PAGE_SEARCH = "search";
+	public static final String COMMAND_PAGE_SEARCH_USER = "userSearch";
+
 	public static final String COMMAND_PAGE_CREATE_ORDER = "createOrder";
 	public static final String COMMAND_PAGE_DELETE_ORDER = "deleteOrder";
 
 	public static final String COMMAND_PAGE_TO_ORDER = "order";
 
-	public static final String SEARCH_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
+	public static final String SEARCH_BOOK_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
+	public static final String SEARCH_USER_REQUEST_SPLIT_REGEX = "[ ]";
 	public static final String CHARACTERS_ENCODING = "characterEncoding";
 }
