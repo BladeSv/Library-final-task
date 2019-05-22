@@ -120,13 +120,8 @@ public class User extends Item implements Observer {
 
 	@Override
 	public void removeOrder(int idOrder) {
-		for (Order order : takenOrder) {
 
-			if (order.getId() == idOrder) {
-
-				takenOrder.remove(order);
-			}
-		}
+		takenOrder.removeIf(order -> order.getId() == idOrder);
 
 	}
 

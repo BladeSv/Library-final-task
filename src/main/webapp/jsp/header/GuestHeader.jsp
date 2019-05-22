@@ -25,7 +25,13 @@
   <div class="header-right">
 <c:if test="${role == 'admin'}">	
 
- <a href="jsp/admin/admin.jsp" class="logo">${admin}</a>
+ 
+ 	  <form name="goToOrder" method="post" action="main">
+	  <input type="hidden" name="command" value="userSearch">	  
+    <button type="submit" class="orderbtn">${admin}</button>
+</form>
+ 
+ 
 </c:if>
   <c:if test="${role == 'user' or role == 'admin'}">	
   

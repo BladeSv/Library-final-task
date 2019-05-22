@@ -34,6 +34,10 @@ public class ConstConteiner {
 
 	public static final String ORDER_DELETE_CHECK = "checkOrderDelete";
 	public static final String ORDER_USER = "orderUser";
+	public static final String ORDER_ADMIN_RETURN_CHECK = "checkBookReturn";
+	public static final String ORDER_ADMIN_NOT_CONFIRM_CHECK = "notConfirmOrder";
+	public static final String ORDER_ADMIN_DELETE_CHECK_PREFIX = "checkOrderDelete-";
+	public static final String ORDER_ADMIN_CONFIRM_CHECK_PREFIX = "checkOrderConfirm-";
 
 	public static final String LOCALE = "locale";
 	public static final String DEFAULT_LOCALE = "en";
@@ -42,17 +46,17 @@ public class ConstConteiner {
 
 	public static final String WRONG_DATE_LOGIN = "wronglogin";
 	public static final String WRONG_DATE_SINGUP = "wrongsingup";
-	public static final String PATH_COMMAND_LIST = "commandList.properties";
 
-	public static final String COMMAND_PAGE_INDEX = "index";
 	public static final String COMMAND_PAGE_LOGIN = "login";
 	public static final String COMMAND_PAGE_LOGOUT = "logout";
 	public static final String COMMAND_PAGE_SINGUP = "singup";
 	public static final String COMMAND_PAGE_SEARCH = "search";
 	public static final String COMMAND_PAGE_SEARCH_USER = "userSearch";
+	public static final String COMMAND_PAGE_DELETE_USER = "deteteUser";
 
 	public static final String COMMAND_PAGE_CREATE_ORDER = "createOrder";
 	public static final String COMMAND_PAGE_DELETE_ORDER = "deleteOrder";
+	public static final String COMMAND_PAGE_ADMIN_ORDER = "adminOrder";
 
 	public static final String COMMAND_PAGE_TO_ORDER = "toOrder";
 

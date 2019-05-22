@@ -57,6 +57,7 @@
 <input type="hidden" value="createOrder" name="command">
 
 <button type="submit" class="registerbtn"> ${button}</button>
+
 </c:if>
  </form>
 

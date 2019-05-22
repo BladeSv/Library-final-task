@@ -21,7 +21,7 @@ public class LogoutCommand extends AbstractCommand {
 		session = request.getSession(true);
 		session.setAttribute(ConstConteiner.ROLE, ConstConteiner.ROLE_GUEST);
 
-		return CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_INDEX).execute(request);
+		return CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request);
 	}
 
 }

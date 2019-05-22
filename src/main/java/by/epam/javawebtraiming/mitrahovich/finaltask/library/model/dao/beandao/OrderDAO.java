@@ -1,5 +1,6 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao;
 
+import java.util.Date;
 import java.util.List;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -10,6 +11,8 @@ public interface OrderDAO extends DAO {
 	public int add(int userId, int bookId, PlaceType place) throws DaoSQLExcetion;
 
 	public List<Order> getAllOrderUserById(int userId) throws DaoSQLExcetion;
+
+	public void uptateDateById(Date date, int id) throws DaoSQLExcetion;
 
 	public void remote(int idOrder) throws DaoSQLExcetion;
 

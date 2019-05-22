@@ -161,4 +161,27 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 			returnConnection(connection);
 		}
 	}
+
+	@Override
+	public void uptateDateById(java.util.Date date, int id) throws DaoSQLExcetion {
+		Connection connection = getConnection();
+		try (
+
+				PreparedStatement preparedStatement = connection
+						.prepareStatement(SQLRequestConteiner.ORDER_UPDATE_TAKEN_DATE_BY_ID)) {
+			Date takenDate = null;
+			if (date != null) {
+				takenDate = new Date(date.getTime());
+			}
+			preparedStatement.setDate(1, takenDate);
+			preparedStatement.setInt(2, id);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			log.warn("Delete order ", e);
+			throw new DaoSQLExcetion(e.getCause());
+		} finally {
+			returnConnection(connection);
+		}
+
+	}
 }

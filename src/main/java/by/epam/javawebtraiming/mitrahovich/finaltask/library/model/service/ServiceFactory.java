@@ -1,5 +1,7 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service;
 
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check.RoleChecker;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check.RoleCheckerImpl;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.page.PageHandler;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.page.PageHandlerImpl;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.search.SearchBook;
@@ -15,6 +17,7 @@ public class ServiceFactory {
 	private PageHandler pageHandler = new PageHandlerImpl();
 	private TableHadler tableHadler = new TableHadlerImpl();
 	private SearchUser searchUser = new SearchUserImpl();
+	private RoleChecker roleChecker = new RoleCheckerImpl();
 
 	public ServiceFactory() {
 
@@ -40,6 +43,10 @@ public class ServiceFactory {
 
 	public SearchUser getSearchUser() {
 		return searchUser;
+	}
+
+	public RoleChecker getRoleChecker() {
+		return roleChecker;
 	}
 
 }

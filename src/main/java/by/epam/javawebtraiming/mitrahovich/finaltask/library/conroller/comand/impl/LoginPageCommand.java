@@ -8,6 +8,8 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.C
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.WrongLoginDateException;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Observable;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Observer;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.User;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.Validation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.ValidationManager;
@@ -33,14 +35,18 @@ public class LoginPageCommand extends AbstractCommand {
 
 				User user = daoManager.getUserDAO().login(login, password);
 				log.trace("user-" + user);
-				System.out.println("login user-" + user);
+
 				HttpSession session = request.getSession();
 				session.setAttribute(ConstConteiner.ROLE, user.getRole().toString().toLowerCase());
 				session.setAttribute(ConstConteiner.USER, user);
+				Observable observer = (Observable) request.getServletContext()
+						.getAttribute(ConstConteiner.LIBRARY_OBSERVER);
+				Observer obs = (Observer) user;
+				observer.addObserver(obs);
 				switch (user.getRole()) {
 				case USER:
 
-					page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_INDEX).execute(request);
+					page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request);
 					break;
 				case ADMIN:
 					page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH_USER)

@@ -15,6 +15,7 @@
 	<fmt:message key="order.table.checkbox.cancel.confirm" var="CCancelConfirm" />
 	<fmt:message key="order.table.checkbox.choose.confirm" var="CChooseConfirm" />
 	<fmt:message key="order.table.checkbox.return" var="CReturnBook" />
+<fmt:message key="order.admin.button.reset" var="Areset" />
 <fmt:message key="order.admin.button" var="Abutton" />
 	<fmt:message key="order.button" var="button" />
 
@@ -64,10 +65,16 @@
 						</c:if>
 
 					</tr>
-					<c:forEach items="${orderUser.takenOrder}" var="order">
+					<c:if test="${role == 'user'}">
+							<c:set var="currentUser" value="${sessionScope.user}" />
+						</c:if>
+						<c:if test="${role == 'admin'}">
+							<c:set var="currentUser" value="${orderUser}" />
+						</c:if>
+					<c:forEach items="${currentUser.takenOrder}" var="order">
 
 						<tr>
-							<td style="width: 100px">${sessionScope.user.name}</td>
+							<td style="width: 100px">${orderUser.name} ${orderUser.surname}</td>
 
 
 							<td style="width: 300px"><p>${Tbook}:${order.book.title}</p>
@@ -86,10 +93,10 @@
 							<c:if test="${order.takenDate == null and role == 'admin'}">
 													
 								<td style="width: 200px">${CCancelConfirm}<Br> <input
-									type="radio"  name="checkOrderDelete" value="${order.id}">
+									type="radio"  name="notConfirmOrder" value="checkOrderDelete-${order.id}">
 								</td>
 								<td style="width: 200px">${CChooseConfirm}<Br> <input
-									type="radio"  name="checkOrderConfirm" value="${order.id}">
+									type="radio"  name="notConfirmOrder" value="checkOrderConfirm-${order.id}">
 								</td>
 								
 							</c:if>
@@ -120,8 +127,9 @@
 				
 				<c:if test="${role == 'admin'}">
 					<input type="hidden" value="adminOrder" name="command">
-
+					<input type="hidden" name="id" value="${orderUser.id}" >
 					<button type="submit" class="registerbtn">${Abutton}</button>
+					<button type="reset" class="registerbtn">${Areset}</button>
 				</c:if>
 			</form>
 		</div>

@@ -57,7 +57,7 @@ public class SingUpCommand extends AbstractCommand {
 			}
 
 		}
-		return CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_INDEX).execute(request);
+		return CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request);
 	}
 
 }

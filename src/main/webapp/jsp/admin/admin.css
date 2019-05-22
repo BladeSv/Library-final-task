@@ -2,7 +2,7 @@
   body { background: #718693; margin: 0; }
    .layout { width: 80%; margin: 10px auto 10px; background: #fff; }
    .content { margin-left: 350px; padding: 10px;  background: #718693; border: 1px solid black;}
-   .sidebar { width: 320px;  background: #e0ecb8;  float: left; }
+   .sidebar { width: 320px;  background: #808080;  float: left; }
    .footer {
     clear: both; /* Отмена обтекания */
     border-top: 1px solid #ccc; padding: 10px;

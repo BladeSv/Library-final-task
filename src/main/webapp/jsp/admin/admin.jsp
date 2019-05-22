@@ -1,6 +1,15 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+    
+    <fmt:bundle basename="locale">
+	<fmt:message key="admin.page.title" var="title" />
+	<fmt:message key="admin.sidebar.button.books" var="BBooks" />
+	<fmt:message key="order.table.user.book" var="Obook" />
+
+
+</fmt:bundle>
     
 <c:set var="startUrl"  value="${pageContext.request.contextPath}"/>
 
@@ -19,8 +28,17 @@
   
   <div class="sidebar">
    <ul>
-    <li>Главная</li><li>Все коктейли</li><li>Коллекции</li>
-    <li>Бокалы</li><li>Компоненты</li><li>Фичи</li>
+    <li>
+    <form method="post" action="main">	 
+	 <input type="hidden" name="command" value="search">
+    <button type="submit" class="orderbtn">${BBooks}</button>
+    </form>
+    </li>
+    <li>Все коктейли</li>
+    <li>Коллекции</li>
+    <li>Бокалы</li>
+    <li>Компоненты</li>
+    <li>Фичи</li>
    </ul>
   </div>
   <div class="content">
@@ -28,10 +46,7 @@
 
 
 
-   <p>Молоко — 40 мл, сок яблочный — 100 мл, сироп сахарный — 30 мм,
-   один яичный желток.</p>
-   <p>Приготовить напиток в миксере, подать в бокале хайбол 
-   со льдом и соломинкой.</p>
+  
   </div>
   <div class="footer">&copy; Приготовление коктейлей</div>
  </div>

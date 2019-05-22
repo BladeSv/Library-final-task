@@ -19,9 +19,8 @@ public class DeleteOrderCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		String page = null;
+		String page = ManagerConfig.get("path.page.order");
 		String[] checkedOrder = request.getParameterValues(ConstConteiner.ORDER_DELETE_CHECK);
-		page = ManagerConfig.get("path.page.order");
 		if (checkedOrder != null) {
 			HttpSession session = request.getSession(true);
 			OrderDAO orderDAO = DaoManager.getInstance().getOrderDAO();
