@@ -29,7 +29,14 @@
 </c:if>
   <c:if test="${role == 'user' or role == 'admin'}">	
   
-	  <a href="jsp/order/order.jsp" class="logo">${order}</a>
+	
+	  <form name="goToOrder" method="post" action="main">
+	  <input type="hidden" name="command" value="toOrder">
+	  <input type="hidden" name="id" value="${user.id}">
+    <button type="submit" class="orderbtn">${order}</button>
+</form>
+	  
+	  
 	  
 	 <a href="${startUrl}/main" class="logo"> ${sessionScope.user.name}</a>
 	<a href="${startUrl}/main?command=logout" >${logout}</a>

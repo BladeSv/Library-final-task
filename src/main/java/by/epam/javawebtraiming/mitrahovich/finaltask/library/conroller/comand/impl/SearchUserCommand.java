@@ -26,20 +26,24 @@ public class SearchUserCommand extends AbstractCommand {
 		SearchUser searchUser = ServiceFactory.getInstance().getSearchUser();
 
 		List<User> users = null;
-		if (searchRequest != null && searchRequest != "") {
+		try {
+			if (searchRequest != null && searchRequest != "") {
 
-			try {
 				users = searchUser.searchUser(searchRequest);
 				System.err.println(users);
-				request.setAttribute(ConstConteiner.TABLE_USERS, users);
-			} catch (DaoSQLExcetion e) {
-				log.warn("try search users" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+
+				request.setAttribute(ConstConteiner.SEARCH_VALUE, searchRequest);
+
+			} else {
+
+				users = searchUser.searchAllUser();
+
 			}
-			request.setAttribute(ConstConteiner.SEARCH_VALUE, searchRequest);
-
+			request.setAttribute(ConstConteiner.TABLE_USERS, users);
+		} catch (DaoSQLExcetion e) {
+			log.warn("try search users" + e);
+			page = ManagerConfig.get("path.page.bad.request");
 		}
-
 		return page;
 	}
 

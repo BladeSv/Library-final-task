@@ -39,11 +39,12 @@ public class LoginPageCommand extends AbstractCommand {
 				session.setAttribute(ConstConteiner.USER, user);
 				switch (user.getRole()) {
 				case USER:
-					CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_INDEX).execute(request);
-					page = ManagerConfig.get("path.page.main");
+
+					page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_INDEX).execute(request);
 					break;
 				case ADMIN:
-					page = ManagerConfig.get("path.page.admin");
+					page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH_USER)
+							.execute(request);
 				}
 
 			} else {

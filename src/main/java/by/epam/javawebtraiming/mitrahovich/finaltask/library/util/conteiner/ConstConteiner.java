@@ -33,6 +33,7 @@ public class ConstConteiner {
 	public static final String TABLE_USERS = "tableUsers";
 
 	public static final String ORDER_DELETE_CHECK = "checkOrderDelete";
+	public static final String ORDER_USER = "orderUser";
 
 	public static final String LOCALE = "locale";
 	public static final String DEFAULT_LOCALE = "en";
@@ -53,7 +54,7 @@ public class ConstConteiner {
 	public static final String COMMAND_PAGE_CREATE_ORDER = "createOrder";
 	public static final String COMMAND_PAGE_DELETE_ORDER = "deleteOrder";
 
-	public static final String COMMAND_PAGE_TO_ORDER = "order";
+	public static final String COMMAND_PAGE_TO_ORDER = "toOrder";
 
 	public static final String SEARCH_BOOK_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
 	public static final String SEARCH_USER_REQUEST_SPLIT_REGEX = "[ ]";

@@ -7,6 +7,7 @@
 }
 
 /* Style the header links */
+
 .header a {
   float: left;
   color: black;
@@ -23,6 +24,7 @@
   font-size: 25px;
   font-weight: bold;
 }
+
 
 /* Change the background color on mouse-over */
 .header a:hover {
@@ -51,4 +53,23 @@
   .header-right {
     float: none;
   }
+}
+form{
+	display: inline-block;
+	  float: left;
+	
+}
+.orderbtn {
+  background-color: #4C5A65;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100px;
+  opacity: 0.9;
+}
+.orderbtn:hover {
+  background-color: grey;
+
 }

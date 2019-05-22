@@ -42,7 +42,7 @@ public class CreateOrderCommand extends AbstractCommand {
 					if (idOrder > 0) {
 						Order order = (Order) orderDAO.getById(idOrder);
 						user.getTakenOrder().add(order);
-
+						request.setAttribute(ConstConteiner.ORDER_USER, user);
 					}
 				} catch (DaoSQLExcetion e) {
 					log.warn("create order command" + e);

@@ -11,7 +11,11 @@
 	<fmt:message key="order.table.date.taken" var="Odate" />
 	<fmt:message key="order.table.book.title" var="Tbook" />
 	<fmt:message key="order.table.book.autor" var="Abook" />
-	<fmt:message key="order.table.date.on.confirm" var="Oconfirm" />
+	<fmt:message key="order.table.date.on.confirm" var="Odconfirm" />
+	<fmt:message key="order.table.checkbox.cancel.confirm" var="CCancelConfirm" />
+	<fmt:message key="order.table.checkbox.choose.confirm" var="CChooseConfirm" />
+	<fmt:message key="order.table.checkbox.return" var="CReturnBook" />
+<fmt:message key="order.admin.button" var="Abutton" />
 	<fmt:message key="order.button" var="button" />
 
 </fmt:bundle>
@@ -29,75 +33,104 @@
 <body>
 
 	<div class="main">
-	
-		<c:if test="${role == 'guest'}">		
-			 <jsp:include page="../header/GuestHeader.jsp"/>
+
+		<c:if test="${role == 'guest' or role == 'user'}">
+			<jsp:include page="../header/GuestHeader.jsp" />
 		</c:if>
-			<c:if test="${role == 'user'}">
-		<jsp:include page="../header/GuestHeader.jsp"/>	
-		 ${sessionScope.user.name}<br>
+		<c:if test="${role == 'admin'}">
+			<jsp:include page="../header/GuestHeader.jsp" />
+		</c:if>
+
+
+
+
+
+		<div class="table-conteiner">
+			<form name="takeChange" method="post" action="/Library/main">
+				<table>
+					<tr>
+						<th>${Uname}</th>
+						<th>${Obook}</th>
+						<th>${Oplace}</th>
+						<th>${Odate}</th>
+						<c:if test="${role == 'user'}">
+							<th>${pchoose}</th>
+							<th>${scheck}</th>
+						</c:if>
+
+						<c:if test="${role == 'admin'}">
+							<th>${pchoose}</th>
+							<th>${scheck}</th>
+						</c:if>
+
+					</tr>
+					<c:forEach items="${orderUser.takenOrder}" var="order">
+
+						<tr>
+							<td style="width: 100px">${sessionScope.user.name}</td>
+
+
+							<td style="width: 300px"><p>${Tbook}:${order.book.title}</p>
+								<p>${Abook}:${order.book.autor.name}
+									${order.book.autor.surname}</p></td>
+							<td style="width: 50px">${order.place}</td>
+							
+							
+							<c:if test="${order.takenDate == null and role == 'user'}">
+								<c:set var="checkDelete" value="true" />
+								<td style="width: 200px">${Oconfirm}<Br> <input
+									type="checkbox" name="checkOrderDelete" value="${order.id}">
+								</td>
+									</c:if>
+								
+							<c:if test="${order.takenDate == null and role == 'admin'}">
+													
+								<td style="width: 200px">${CCancelConfirm}<Br> <input
+									type="radio"  name="checkOrderDelete" value="${order.id}">
+								</td>
+								<td style="width: 200px">${CChooseConfirm}<Br> <input
+									type="radio"  name="checkOrderConfirm" value="${order.id}">
+								</td>
+								
+							</c:if>
+
+							<c:if test="${order.takenDate != null}">
+								<td style="width: 200px"><fmt:formatDate type="date"
+										value="${order.takenDate}" /></td>
+
+							</c:if>
+							
+							<c:if test="${order.takenDate != null and role == 'admin'}">
+									<td style="width: 200px">${CReturnBook}<Br> <input
+									type="checkbox" name="checkBookReturn" value="${order.id}">
+								</td>
+
+							</c:if>
+							
+						</tr>
+
+					</c:forEach>
+
+				</table>
+				<c:if test="${role == 'user' and checkDelete=='true'}">
+					<input type="hidden" value="deleteOrder" name="command">
+
+					<button type="submit" class="registerbtn">${button}</button>
 				</c:if>
-			
-			
-			
-			
-	
-<div class="table-conteiner">
- <form name="takeChange" method="post" action="/Library/main">
-<table>
-<tr>
-  <th >${Uname}</th>
-  <th >${Obook}</th>
-  <th >${Oplace}</th>
-    <th >${Odate}</th>
-   <c:if test="${role == 'user'}">	
-   <th >${pchoose}</th>
-   <th >${scheck}</th>
-   </c:if>
-</tr>
-<c:forEach items="${sessionScope.user.takenOrder}" var="order">
+				
+				<c:if test="${role == 'admin'}">
+					<input type="hidden" value="adminOrder" name="command">
 
-<tr >
-  <td style="width:100px">${sessionScope.user.name}</td>
-  
-  
-  <td style="width:300px"><p>${Tbook}:${order.book.title}</p><p>${Abook}:${order.book.autor.name} ${order.book.autor.surname}</p></td>
-  <td style="width:50px">${order.place}</td>
-  <c:if test="${order.takenDate == null}">		
-			 
-  <td style="width:200px">${Oconfirm}<Br> 
-		<input type="checkbox" name="checkOrderDelete" value="${order.id}">
-</td>		
-		</c:if>
-		
-   <c:if test="${order.takenDate != null}">		
-			 
-			
- 
-<td style="width:200px"> <fmt:formatDate type="date" value="${order.takenDate}"/></td>
-
-		
-		
-		</c:if>
-</tr>
-
-</c:forEach>
-
-</table>
- <c:if test="${role == 'user'}">	
-<input type="hidden" value="deleteOrder" name="command">
-
-<button type="submit" class="registerbtn"> ${button}</button>
-</c:if>
- </form>
-</div>
+					<button type="submit" class="registerbtn">${Abutton}</button>
+				</c:if>
+			</form>
+		</div>
 
 
 
 	</div>
 
 
-	</br> Hello Worlddsdsddsddddddddddddd ${login}
-	</br> ${role}
+
 </body>
 </html>

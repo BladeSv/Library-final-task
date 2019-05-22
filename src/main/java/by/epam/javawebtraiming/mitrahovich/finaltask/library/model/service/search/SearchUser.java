@@ -8,4 +8,6 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.U
 public interface SearchUser {
 	List<User> searchUser(String searchRequest) throws DaoSQLExcetion;
 
+	public List<User> searchAllUser() throws DaoSQLExcetion;
+
 }

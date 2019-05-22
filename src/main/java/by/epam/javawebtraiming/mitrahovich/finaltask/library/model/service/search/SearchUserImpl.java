@@ -65,4 +65,11 @@ public class SearchUserImpl implements SearchUser {
 		log.trace("check contins--in--" + fullName + " piece--" + searchString);
 		return fullName.toLowerCase().contains(searchString.toLowerCase());
 	}
+
+	@Override
+	public List<User> searchAllUser() throws DaoSQLExcetion {
+		UserDAO userDAO = DaoManager.getInstance().getUserDAO();
+		List<User> findUsers = userDAO.getALL();
+		return findUsers;
+	}
 }

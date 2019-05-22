@@ -41,6 +41,7 @@ public class DeleteOrderCommand extends AbstractCommand {
 				user.getTakenOrder().removeIf((o) -> o.getId() == idOrder);
 
 			}
+			request.setAttribute(ConstConteiner.ORDER_USER, user);
 		}
 		return page;
 	}
