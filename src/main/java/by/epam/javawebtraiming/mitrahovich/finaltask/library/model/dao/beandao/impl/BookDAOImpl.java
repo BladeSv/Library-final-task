@@ -18,7 +18,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.SQLR
 public class BookDAOImpl extends AbstactDAO implements BookDAO {
 
 	public BookDAOImpl() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	@Override
@@ -86,6 +86,31 @@ public class BookDAOImpl extends AbstactDAO implements BookDAO {
 		}
 
 		return books;
+	}
+
+	@Override
+	public void minusInstanceByDeleteUser(int idUser) throws DaoSQLExcetion {
+		Connection connection = getConnection();
+
+		try {
+			minusInstanceByDeleteUserTransaction(connection, idUser);
+		} finally {
+			returnConnection(connection);
+		}
+	}
+
+	@Override
+	public void minusInstanceByDeleteUserTransaction(Connection connection, int idUser) throws DaoSQLExcetion {
+		try (PreparedStatement preparedStatement = connection
+				.prepareStatement(SQLRequestConteiner.BOOK_MINUS_INSTANCE_FROM_ORDER_BY_USER_ID)) {
+			preparedStatement.setInt(1, idUser);
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			log.warn("Get all free books", e);
+			throw new DaoSQLExcetion(e.getCause());
+		}
+
 	}
 
 }

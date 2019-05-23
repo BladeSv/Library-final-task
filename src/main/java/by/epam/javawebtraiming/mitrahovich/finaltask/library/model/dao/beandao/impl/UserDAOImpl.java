@@ -9,6 +9,8 @@ import java.util.List;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.AbstactDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.BookDAO;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.OrderDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.UserDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.WrongLoginDateException;
@@ -86,36 +88,45 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 			throws DaoSQLExcetion, WrongLoginDateException {
 		User user = null;
 		Connection connection = getConnection();
+		try {
+			connection.setAutoCommit(false);
+		} catch (SQLException e) {
+			log.warn("setAutoCommit(false) ", e);
+			throw new DaoSQLExcetion(e.getCause());
+		}
 
 		try (PreparedStatement preparedStatementUser = connection
-				.prepareStatement(SQLRequestConteiner.USER_GET_BY_LOGIN_AND_PASS);
-				PreparedStatement preparedStatementRegustration = connection
-						.prepareStatement(SQLRequestConteiner.USER_REGISTRATION)) {
+				.prepareStatement(SQLRequestConteiner.USER_GET_BY_LOGIN_AND_PASS)) {
 
 			preparedStatementUser.setString(1, login);
 			preparedStatementUser.setString(2, pass);
 			ResultSet rs = preparedStatementUser.executeQuery();
 			if (rs.next()) {
-				System.out.println("rs.next()");
+
 				log.info("User exist with login: " + login + ", password:" + pass);
 				throw new WrongLoginDateException();
+			}
+		} catch (SQLException e) {
 
+			log.warn("User registration check login and pass", e);
+			throw new DaoSQLExcetion(e.getCause());
+		}
+
+		try (PreparedStatement preparedStatementRegustration = connection
+				.prepareStatement(SQLRequestConteiner.USER_REGISTRATION)) {
+
+			preparedStatementRegustration.setString(1, login);
+			preparedStatementRegustration.setString(2, pass);
+			preparedStatementRegustration.setString(3, name);
+			preparedStatementRegustration.setString(4, surname);
+			preparedStatementRegustration.setString(5, role.name());
+
+			if (preparedStatementRegustration.executeUpdate() == 1) {
+				user = login(login, pass);
+				connection.commit();
 			} else {
-
-				preparedStatementRegustration.setString(1, login);
-				preparedStatementRegustration.setString(2, pass);
-				preparedStatementRegustration.setString(3, name);
-				preparedStatementRegustration.setString(4, surname);
-				preparedStatementRegustration.setString(5, role.name());
-
-				if (preparedStatementRegustration.executeUpdate() == 1) {
-					user = login(login, pass);
-
-				} else {
-					log.info("Cant registration with login: " + login + ", password:" + pass);
-					throw new WrongLoginDateException();
-
-				}
+				log.info("Cant registration with login: " + login + ", password:" + pass);
+				throw new WrongLoginDateException();
 
 			}
 
@@ -162,4 +173,33 @@ public class UserDAOImpl extends AbstactDAO implements UserDAO {
 		return user;
 	}
 
+	@Override
+	public void deteteUser(int id) throws DaoSQLExcetion {
+
+		Connection connection = getConnection();
+
+		try {
+			connection.setAutoCommit(false);
+		} catch (SQLException e) {
+			log.warn("Detete User setAutoCommit(false)", e);
+			throw new DaoSQLExcetion(e.getCause());
+		}
+
+		BookDAO bookDAO = DaoManager.getInstance().getBookDAO();
+		bookDAO.minusInstanceByDeleteUserTransaction(connection, id);
+		OrderDAO orderDAO = DaoManager.getInstance().getOrderDAO();
+		orderDAO.remoteByUserIdTransaction(connection, id);
+
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.USER_DELETE_BY_ID)) {
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			connection.commit();
+		} catch (SQLException e) {
+			log.warn("Detete User", e);
+			throw new DaoSQLExcetion(e.getCause());
+		} finally {
+			returnConnection(connection);
+		}
+
+	}
 }

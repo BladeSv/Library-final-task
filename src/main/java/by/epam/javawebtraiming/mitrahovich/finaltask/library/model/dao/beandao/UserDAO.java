@@ -10,4 +10,6 @@ public interface UserDAO extends DAO {
 			throws DaoSQLExcetion, WrongLoginDateException;
 
 	User login(String login, String pass) throws WrongLoginDateException, DaoSQLExcetion;
+
+	void deteteUser(int id) throws DaoSQLExcetion;
 }

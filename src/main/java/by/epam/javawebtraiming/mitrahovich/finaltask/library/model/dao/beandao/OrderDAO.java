@@ -1,5 +1,6 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao;
 
+import java.sql.Connection;
 import java.util.Date;
 import java.util.List;
 
@@ -15,5 +16,9 @@ public interface OrderDAO extends DAO {
 	public void uptateDateById(Date date, int id) throws DaoSQLExcetion;
 
 	public void remote(int idOrder) throws DaoSQLExcetion;
+
+	public void remoteByUserId(int id) throws DaoSQLExcetion;
+
+	public void remoteByUserIdTransaction(Connection connection, int id) throws DaoSQLExcetion;
 
 }
