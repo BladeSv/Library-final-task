@@ -54,6 +54,8 @@ public class ConstConteiner {
 	public static final String COMMAND_PAGE_SEARCH_USER = "userSearch";
 	public static final String COMMAND_PAGE_DELETE_USER = "deteteUser";
 
+	public static final String COMMAND_PAGE_DELETE_BOOK = "deteteBook";
+
 	public static final String COMMAND_PAGE_CREATE_ORDER = "createOrder";
 	public static final String COMMAND_PAGE_DELETE_ORDER = "deleteOrder";
 	public static final String COMMAND_PAGE_ADMIN_ORDER = "adminOrder";

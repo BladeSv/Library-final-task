@@ -19,6 +19,7 @@ public class SQLRequestConteiner {
 			+ "  (SELECT COUNT(subscription.id_book)\r\n"
 			+ "  FROM subscription WHERE subscription.id_book=book.id_book)\r\n" + " \r\n" + " ";
 	public static final String BOOK_MINUS_INSTANCE_FROM_ORDER_BY_USER_ID = "UPDATE book SET book.instances=book.instances-(SELECT COUNT(subscription.id_book) FROM subscription WHERE subscription.id_user=? AND subscription.id_book=book.id_book)";
+	public static final String BOOK_DELETE_BY_BOOK_ID = "DELETE FROM book WHERE id_book=?";
 
 	public static final String ADD_ORDER = "SELECT order_book(?,?,?)";
 	public static final String ORDER_GET_ALL_BY_USER_ID = "SELECT id_subscription, subscription.id_book, book.title AS book_title, book.annotation, genre.title AS genre_title, autor.id_autor, autor.NAME AS autor_name , autor.surname, subscription.id_user,user.NAME AS user_name, user.role, taken_date, place FROM subscription\r\n"
@@ -35,5 +36,6 @@ public class SQLRequestConteiner {
 
 	public static final String ORDER_DELETE_BY_ID = "DELETE FROM subscription WHERE id_subscription=?";
 	public static final String ORDER_DELETE_BY_USER_ID = "DELETE FROM subscription WHERE id_user=?";
+	public static final String ORDER_DELETE_BY_BOOK_ID = "DELETE FROM subscription WHERE id_book=?";
 	public static final String ORDER_UPDATE_TAKEN_DATE_BY_ID = "UPDATE subscription SET taken_date=? WHERE subscription.id_subscription=?";
 }

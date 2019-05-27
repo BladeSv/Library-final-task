@@ -8,8 +8,8 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.A
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.ServiceFactory;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.pagination.PaginationHandler;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.search.SearchBook;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.table.TableHadler;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
@@ -36,24 +36,16 @@ public class SearchCommand extends AbstractCommand {
 				books = searchBook.searchAllFreeBook();
 
 			}
-
-			int numberPage = ServiceFactory.getInstance().getPageHandler().getNumberPage(request);
-			TableHadler tableHadler = ServiceFactory.getInstance().getTableHadler();
-			int numberMaxPage = tableHadler.getMaxPage(books);
-
-			books = tableHadler.getBookPage(books, numberPage);
+			PaginationHandler paginationHandler = ServiceFactory.getInstance().getPaginationHandler();
+			int numberPage = paginationHandler.getNumberPage(request);
+			int numberMaxPage = paginationHandler.getMaxPage(books);
+			List<Book> pageBooks = (List<Book>) paginationHandler.getItemPage(books, numberPage);
+			String paginationUrl = paginationHandler.getPaginationUrl(request, ConstConteiner.COMMAND_PAGE_SEARCH);
 
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_PAGE, numberPage);
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_MAX_PAGE, numberMaxPage);
-
-			searchRequest = searchRequest != null ? searchRequest : "";
-			String paginationUrl = request.getRequestURI() + "?" + ConstConteiner.SEARCH + "=" + searchRequest + "&"
-					+ ConstConteiner.COMMAND + "=" + ConstConteiner.COMMAND_PAGE_SEARCH + "&" + ConstConteiner.PAGE
-					+ "=";
-			log.trace("paginationUrl= " + paginationUrl);
-
 			request.setAttribute(ConstConteiner.PAGINATION_URL, paginationUrl);
-			request.setAttribute(ConstConteiner.TABLE_BOOKS, books);
+			request.setAttribute(ConstConteiner.TABLE_BOOKS, pageBooks);
 		} catch (DaoSQLExcetion e) {
 
 			log.warn("try search" + e);

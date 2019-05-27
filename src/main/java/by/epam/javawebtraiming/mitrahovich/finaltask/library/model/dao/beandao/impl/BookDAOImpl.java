@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.AbstactDAO;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.BookDAO;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.OrderDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Autor;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
@@ -109,6 +111,34 @@ public class BookDAOImpl extends AbstactDAO implements BookDAO {
 		} catch (SQLException e) {
 			log.warn("Get all free books", e);
 			throw new DaoSQLExcetion(e.getCause());
+		}
+
+	}
+
+	@Override
+	public void removeById(int id) throws DaoSQLExcetion {
+		Connection connection = getConnection();
+
+		try {
+			connection.setAutoCommit(false);
+		} catch (SQLException e) {
+			log.warn("Detete Book setAutoCommit(false)", e);
+			throw new DaoSQLExcetion(e.getCause());
+		}
+
+		OrderDAO orderDAO = DaoManager.getInstance().getOrderDAO();
+		orderDAO.remoteByBookIdTransaction(connection, id);
+
+		try (PreparedStatement preparedStatement = connection
+				.prepareStatement(SQLRequestConteiner.BOOK_DELETE_BY_BOOK_ID)) {
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			connection.commit();
+		} catch (SQLException e) {
+			log.warn("Detete book", e);
+			throw new DaoSQLExcetion(e.getCause());
+		} finally {
+			returnConnection(connection);
 		}
 
 	}

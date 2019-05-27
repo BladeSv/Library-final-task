@@ -17,7 +17,7 @@ public class TableHadlerImpl implements TableHadler {
 	private int maxBookOnPage;
 
 	public TableHadlerImpl() {
-		maxBookOnPage = Integer.parseInt(ManagerConfig.get("max.book.page"));
+		maxBookOnPage = Integer.parseInt(ManagerConfig.get("max.item.page"));
 		log.trace("books on page=" + maxBookOnPage);
 	}
 

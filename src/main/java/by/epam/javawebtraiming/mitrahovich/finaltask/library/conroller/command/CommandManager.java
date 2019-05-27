@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.AdminOrderCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateOrderCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteBookCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteOrderCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteUserCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToOrderPageCommand;
@@ -40,7 +41,7 @@ public class CommandManager {
 		commandList.put(ConstConteiner.COMMAND_PAGE_SEARCH_USER, new SearchUserCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_ADMIN_ORDER, new AdminOrderCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_USER, new DeleteUserCommand());
-
+		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_BOOK, new DeleteBookCommand());
 	}
 
 	public static CommandManager getInstance() {

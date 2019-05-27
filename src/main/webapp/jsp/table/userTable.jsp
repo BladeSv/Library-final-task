@@ -16,6 +16,8 @@
        <fmt:message key="table.user.delete.button" var="locBDelete"/>
 </fmt:bundle>
 
+
+
 <head>
 
 <link rel="stylesheet" type="text/css" href="${startUrl}/jsp/table/table.css" />
@@ -80,9 +82,9 @@
 </table>
  
 
- <%-- <pag:pagination maxPage="${maxPage}" paginationUrl="${paginationUrl}" numberPage="${numberPage}"/> --%>
+<pag:pagination maxPage="${maxPage}" paginationUrl="${paginationUrl}" numberPage="${numberPage}"/>
  
-  maxPage="${maxPage}" paginationUrl="${paginationUrl}" startUrl="${startUrl}" numberPage="${numberPage}"
+
 
  
 </div>

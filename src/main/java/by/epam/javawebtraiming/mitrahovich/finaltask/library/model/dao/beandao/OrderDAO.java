@@ -21,4 +21,8 @@ public interface OrderDAO extends DAO {
 
 	public void remoteByUserIdTransaction(Connection connection, int id) throws DaoSQLExcetion;
 
+	public void remoteByBookId(int id) throws DaoSQLExcetion;
+
+	public void remoteByBookIdTransaction(Connection connection, int id) throws DaoSQLExcetion;
+
 }

@@ -4,14 +4,14 @@
 
 
 <fmt:bundle basename="locale">
-	<fmt:message key="index.login" var="login" />
+	<fmt:message key="index.title" var="title" />
 </fmt:bundle>
 
 <c:set var="startUrl" value="${pageContext.request.contextPath}" />
 
 <html>
 <head>
-<title>Library</title>
+<title>${title}</title>
 <link rel="stylesheet" href="${startUrl}/css/Header.css">
 
 </head>
@@ -34,7 +34,5 @@
 	</div>
 
 
-	</br> Hello Worlddsdsddsddddddddddddd ${login}
-	</br> ${sessionScope.role}
 </body>
 </html>
