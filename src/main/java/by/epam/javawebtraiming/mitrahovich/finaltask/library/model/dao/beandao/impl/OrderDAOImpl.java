@@ -13,7 +13,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.O
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Autor;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.GenreType;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Genre;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Order;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.PlaceType;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.SQLRequestConteiner;
@@ -62,7 +62,8 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 				int idBook = rs.getInt("id_book");
 				String bookTitle = rs.getString("book_title");
 				String annotation = rs.getString("annotation");
-				GenreType genre = GenreType.valueOf(rs.getString("genre_title"));
+				int idGenre = rs.getInt("id_genre");
+				Genre genre = new Genre(idGenre, rs.getString("genre_title"));
 
 				int idAutor = rs.getInt("id_autor");
 				String autorName = rs.getString("autor_name");
@@ -112,7 +113,8 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 				int idBook = rs.getInt("id_book");
 				String bookTitle = rs.getString("book_title");
 				String annotation = rs.getString("annotation");
-				GenreType genre = GenreType.valueOf(rs.getString("genre_title"));
+				int idGenre = rs.getInt("id_genre");
+				Genre genre = new Genre(idGenre, rs.getString("genre_title"));
 
 				int idAutor = rs.getInt("id_autor");
 				String autorName = rs.getString("autor_name");

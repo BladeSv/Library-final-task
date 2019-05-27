@@ -5,7 +5,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.RoleType;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.User;
 
-public interface UserDAO extends DAO {
+public interface UserDAO extends DAO<User> {
 	User registration(String login, String pass, String name, String surname, RoleType role)
 			throws DaoSQLExcetion, WrongLoginDateException;
 

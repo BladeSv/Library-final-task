@@ -6,16 +6,22 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.AdminOrderCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateGenreCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateOrderCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteBookCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteGenreComamand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteOrderCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteUserCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToCreateGenrePageCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToGenrePageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToOrderPageCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.GoToUpdateGenreCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.LoginPageCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.LogoutCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SearchCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SearchUserCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SingUpCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.UpdateGenreCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
 public class CommandManager {
@@ -42,6 +48,14 @@ public class CommandManager {
 		commandList.put(ConstConteiner.COMMAND_PAGE_ADMIN_ORDER, new AdminOrderCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_USER, new DeleteUserCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_BOOK, new DeleteBookCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_TO_GENRE, new GoToGenrePageCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_GENRE, new DeleteGenreComamand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_TO_CREATE_GENRE, new GoToCreateGenrePageCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_CREATE_GENRE, new CreateGenreCommand());
+
+		commandList.put(ConstConteiner.COMMAND_PAGE_TO_UPDATE_GENRE, new GoToUpdateGenreCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_UPDATE_GENRE, new UpdateGenreCommand());
+
 	}
 
 	public static CommandManager getInstance() {

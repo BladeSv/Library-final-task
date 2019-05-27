@@ -8,7 +8,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Order;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.PlaceType;
 
-public interface OrderDAO extends DAO {
+public interface OrderDAO extends DAO<Order> {
 	public int add(int userId, int bookId, PlaceType place) throws DaoSQLExcetion;
 
 	public List<Order> getAllOrderUserById(int userId) throws DaoSQLExcetion;

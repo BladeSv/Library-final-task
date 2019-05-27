@@ -70,7 +70,6 @@ public class LibraryController extends HttpServlet {
 
 		if (page != null) {
 
-			System.out.println(page);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
 			dispatcher.forward(request, response);
 

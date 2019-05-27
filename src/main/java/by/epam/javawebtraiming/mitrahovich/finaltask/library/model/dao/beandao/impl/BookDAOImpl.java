@@ -14,7 +14,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.O
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Autor;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.GenreType;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Genre;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.SQLRequestConteiner;
 
 public class BookDAOImpl extends AbstactDAO implements BookDAO {
@@ -38,9 +38,11 @@ public class BookDAOImpl extends AbstactDAO implements BookDAO {
 				int idAutor = rs.getInt("id_autor");
 				String name = rs.getString("name");
 				String surname = rs.getString("surname");
+				int idGenre = rs.getInt("id_genre");
 				String genre = rs.getString("genre_title");
+
 				book = new Book(idBook, bookTitle, annotation, new Autor(idAutor, name, surname),
-						GenreType.valueOf(genre));
+						new Genre(idGenre, genre));
 			}
 		} catch (SQLException e) {
 			log.warn("Get book by Id", e);
@@ -75,9 +77,10 @@ public class BookDAOImpl extends AbstactDAO implements BookDAO {
 				int idAutor = rs.getInt("id_autor");
 				String name = rs.getString("name");
 				String surname = rs.getString("surname");
+				int idGenre = rs.getInt("id_genre");
 				String genre = rs.getString("genre_title");
 				books.add(new Book(idBook, bookTitle, annotation, new Autor(idAutor, name, surname),
-						GenreType.valueOf(genre)));
+						new Genre(idGenre, genre)));
 			}
 
 		} catch (SQLException e) {

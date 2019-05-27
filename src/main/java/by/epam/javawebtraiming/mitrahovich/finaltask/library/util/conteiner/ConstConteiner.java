@@ -39,6 +39,10 @@ public class ConstConteiner {
 	public static final String ORDER_ADMIN_DELETE_CHECK_PREFIX = "checkOrderDelete-";
 	public static final String ORDER_ADMIN_CONFIRM_CHECK_PREFIX = "checkOrderConfirm-";
 
+	public static final String GENRE_LIST_TABLE = "tableGenre";
+	public static final String GENRE_TITLE = "genreTitle";
+	public static final String GENRE_UPDATE = "changeGenre";
+
 	public static final String LOCALE = "locale";
 	public static final String DEFAULT_LOCALE = "en";
 	public static final String RU_LOCALE = "ru";
@@ -46,6 +50,7 @@ public class ConstConteiner {
 
 	public static final String WRONG_DATE_LOGIN = "wronglogin";
 	public static final String WRONG_DATE_SINGUP = "wrongsingup";
+	public static final String WRONG_DATE_GENRE = "wrongGenre";
 
 	public static final String COMMAND_PAGE_LOGIN = "login";
 	public static final String COMMAND_PAGE_LOGOUT = "logout";
@@ -61,6 +66,13 @@ public class ConstConteiner {
 	public static final String COMMAND_PAGE_ADMIN_ORDER = "adminOrder";
 
 	public static final String COMMAND_PAGE_TO_ORDER = "toOrder";
+	public static final String COMMAND_PAGE_TO_GENRE = "toGenre";
+	public static final String COMMAND_PAGE_TO_CREATE_GENRE = "toCreateGenre";
+	public static final String COMMAND_PAGE_CREATE_GENRE = "createGenre";
+	public static final String COMMAND_PAGE_TO_UPDATE_GENRE = "toUpdateGenre";
+	public static final String COMMAND_PAGE_UPDATE_GENRE = "updateGenre";
+
+	public static final String COMMAND_PAGE_DELETE_GENRE = "deteteGenre";
 
 	public static final String SEARCH_BOOK_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
 	public static final String SEARCH_USER_REQUEST_SPLIT_REGEX = "[ ]";

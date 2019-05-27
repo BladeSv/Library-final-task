@@ -6,7 +6,8 @@
     <fmt:bundle basename="locale">
 	<fmt:message key="admin.page.title" var="title" />
 	<fmt:message key="admin.sidebar.button.books" var="BBooks" />
-	<fmt:message key="order.table.user.book" var="Obook" />
+	<fmt:message key="admin.sidebar.button.genres" var="BGenres" />
+	
 
 
 </fmt:bundle>
@@ -38,7 +39,13 @@
     <li>Коллекции</li>
     <li>Бокалы</li>
     <li>Компоненты</li>
-    <li>Фичи</li>
+    <li>
+    <form method="post" action="main">	 
+	 <input type="hidden" name="command" value="toGenre">
+    <button type="submit" class="orderbtn">${BGenres}</button>
+    </form>
+    
+    </li>
    </ul>
   </div>
   <div class="content">

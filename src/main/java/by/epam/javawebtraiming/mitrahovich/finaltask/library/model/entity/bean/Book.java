@@ -4,7 +4,7 @@ public class Book extends Item {
 	private String title;
 	private String annotation;
 	private Autor autor;
-	private GenreType genre;
+	private Genre genre;
 
 	public Book() {
 
@@ -17,7 +17,7 @@ public class Book extends Item {
 	 * @param autor
 	 * @param genre
 	 */
-	public Book(int id, String title, String annotation, Autor autor, GenreType genre) {
+	public Book(int id, String title, String annotation, Autor autor, Genre genre) {
 		super(id);
 		this.title = title;
 		this.annotation = annotation;
@@ -49,11 +49,11 @@ public class Book extends Item {
 		this.autor = autor;
 	}
 
-	public GenreType getGenre() {
+	public Genre getGenre() {
 		return genre;
 	}
 
-	public void setGenre(GenreType genre) {
+	public void setGenre(Genre genre) {
 		this.genre = genre;
 	}
 

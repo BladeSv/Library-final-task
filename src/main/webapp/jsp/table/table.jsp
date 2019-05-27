@@ -49,7 +49,7 @@
 					<td style="width: 200px;"><p>${book.title}</p>
 						<p>${autor}:${book.autor.name}${book.autor.surname}</p></td>
 					<td style="width: 700px;">${book.annotation}</td>
-					<td>${book.genre}</td>
+					<td>${book.genre.title}</td>
 					<c:if test="${role == 'user'}">
 						<td style="text-align: left, width:100px"><input
 							type="radio" name="place-${book.id}" value="out" checked>
