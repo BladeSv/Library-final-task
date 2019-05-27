@@ -91,7 +91,7 @@
 
 		</c:if>
 			<c:if test="${role == 'admin'}">
-			<input type="hidden" value="createBook" name="command">
+			<input type="hidden" value="addBook" name="command">
 
 			<button type="submit" class="registerbtn">${locAbutton}</button>
 
