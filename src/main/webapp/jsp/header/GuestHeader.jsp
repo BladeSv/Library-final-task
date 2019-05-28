@@ -23,6 +23,13 @@
   <a href="${startUrl}/main" class="logo">Library</a>
     
   <div class="header-right">
+  
+ 
+  <a href="${startUrl}/main?command=changeLang&lang=ru" class="lang <c:if test="${lang == 'ru'}">active</c:if>"  >Ru</a>
+  
+  <a href="${startUrl}/main?command=changeLang&lang=en" class="lang <c:if test="${lang == 'en'}">active</c:if>">En</a>
+ 
+  
 <c:if test="${role == 'admin'}">	
 
  

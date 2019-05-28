@@ -24,7 +24,10 @@
   font-size: 25px;
   font-weight: bold;
 }
-
+.header a.lang {
+  font-size: 13px;
+  font-weight: bold;	
+}
 
 /* Change the background color on mouse-over */
 .header a:hover {
@@ -34,7 +37,7 @@
 
 /* Style the active/current link*/
 .header a.active {
-  background-color: dodgerblue;
+  background-color: #718693;
   color: white;
 }
 

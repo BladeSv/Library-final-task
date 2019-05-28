@@ -1,9 +1,12 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener;
 
+import java.util.Locale;
+
 import javax.servlet.ServletRequestListener;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+import javax.servlet.jsp.jstl.core.Config;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
@@ -11,21 +14,31 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.Cons
  * Application Lifecycle Listener implementation class RoleListener
  *
  */
-public class RoleListener implements HttpSessionListener, ServletRequestListener {
+public class SessionInitListener implements HttpSessionListener, ServletRequestListener {
 
 	/**
 	 * Default constructor.
 	 */
-	public RoleListener() {
-		// TODO Auto-generated constructor stub
+	public SessionInitListener() {
+
 	}
 
 	/**
 	 * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
 	 */
 	public void sessionCreated(HttpSessionEvent se) {
-		HttpSession httpSession = se.getSession();
-		httpSession.setAttribute(ConstConteiner.ROLE, ConstConteiner.ROLE_GUEST);
+		if (se == null) {
+			return;
+		}
+		if (se != null) {
+			HttpSession httpSession = se.getSession();
+			httpSession.setAttribute(ConstConteiner.ROLE, ConstConteiner.ROLE_GUEST);
+
+			Locale locale = new Locale(ConstConteiner.DEFAULT_LOCALE);
+			Config.set(httpSession, Config.FMT_LOCALE, locale);
+			httpSession.setAttribute(ConstConteiner.LANG, ConstConteiner.DEFAULT_LOCALE);
+
+		}
 	}
 
 }

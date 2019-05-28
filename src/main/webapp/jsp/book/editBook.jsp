@@ -33,6 +33,11 @@
 
 		<jsp:include page="../header/GuestHeader.jsp" />
 
+
+	<c:if test="${wrongBook== 'wrongBook'}">
+				<h3 style="color: red">${locMessage}</h3>
+
+			</c:if>
 		<form action="/Library/main" method="post">
 
 			<div class="box">

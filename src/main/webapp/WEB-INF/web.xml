@@ -12,7 +12,7 @@
 		<url-pattern>/main</url-pattern>
 	</servlet-mapping>
 	<listener>
-		<listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.RoleListener</listener-class>
+		<listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.SessionInitListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.ServletInit</listener-class>

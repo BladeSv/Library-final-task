@@ -57,8 +57,8 @@ public class ConstConteiner {
 	public static final String AUTHOR_NAME = "authorName";
 	public static final String AUTHOR_SURNAME = "authorSurname";
 
-	public static final String LOCALE = "locale";
-	public static final String DEFAULT_LOCALE = "en";
+	public static final String LANG = "lang";
+	public static final String DEFAULT_LOCALE = "ru";
 	public static final String RU_LOCALE = "ru";
 	public static final String EN_LOCALE = "en";
 
@@ -96,6 +96,7 @@ public class ConstConteiner {
 	public static final String COMMAND_PAGE_TO_UPDATE_BOOK = "toUpdateBook";
 	public static final String COMMAND_PAGE_TO_UPDATE_GENRE = "toUpdateGenre";
 	public static final String COMMAND_PAGE_TO_UPDATE_AUTHOR = "toUpdateAuthor";
+	public static final String COMMAND_PAGE_UPDATE_BOOK = "updateBook";
 	public static final String COMMAND_PAGE_UPDATE_GENRE = "updateGenre";
 	public static final String COMMAND_PAGE_UPDATE_AUTHOR = "updateAuthor";
 
@@ -104,5 +105,7 @@ public class ConstConteiner {
 
 	public static final String SEARCH_BOOK_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
 	public static final String SEARCH_USER_REQUEST_SPLIT_REGEX = "[ ]";
+
 	public static final String CHARACTERS_ENCODING = "characterEncoding";
+	public static final String CHANGE_LANGUAGE = "changeLang";
 }

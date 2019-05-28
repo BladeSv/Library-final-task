@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.AdminOrderCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.ChangeLangCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateAuthorCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateBookCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateGenreCommand;
@@ -31,6 +32,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.im
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SearchUserCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.SingUpCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.UpdateAuthorCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.UpdateBookCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.UpdateGenreCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
@@ -57,7 +59,6 @@ public class CommandManager {
 		commandList.put(ConstConteiner.COMMAND_PAGE_SEARCH_USER, new SearchUserCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_ADMIN_ORDER, new AdminOrderCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_USER, new DeleteUserCommand());
-		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_BOOK, new DeleteBookCommand());
 
 		commandList.put(ConstConteiner.COMMAND_PAGE_TO_GENRE, new GoToGenrePageCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_TO_CREATE_GENRE, new GoToCreateGenrePageCommand());
@@ -77,7 +78,10 @@ public class CommandManager {
 		commandList.put(ConstConteiner.COMMAND_PAGE_TO_CREATE_BOOK, new GoToCreateBookCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_CREATE_BOOK, new CreateBookCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_TO_UPDATE_BOOK, new GoToUpdateBookCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_BOOK, new DeleteBookCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_UPDATE_BOOK, new UpdateBookCommand());
 
+		commandList.put(ConstConteiner.CHANGE_LANGUAGE, new ChangeLangCommand());
 	}
 
 	public static CommandManager getInstance() {

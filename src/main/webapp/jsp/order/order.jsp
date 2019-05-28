@@ -78,8 +78,8 @@
 
 
 							<td style="width: 300px"><p>${Tbook}:${order.book.title}</p>
-								<p>${Abook}:${order.book.autor.name}
-									${order.book.autor.surname}</p></td>
+								<p>${Abook}:${order.book.author.name}
+									${order.book.author.surname}</p></td>
 							<td style="width: 50px">${order.place}</td>
 							
 							
