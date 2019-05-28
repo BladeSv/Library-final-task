@@ -6,7 +6,8 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
 
 public interface SearchBook {
-	public List<Book> search(String searchRequest) throws DaoSQLExcetion;
+	public List<Book> searchUser(String searchRequest) throws DaoSQLExcetion;
 
-	public List<Book> searchAllFreeBook() throws DaoSQLExcetion;
+	public List<Book> searchAdmin(String searchRequest) throws DaoSQLExcetion;
+
 }

@@ -7,7 +7,7 @@
 	<fmt:message key="admin.page.title" var="title" />
 	<fmt:message key="admin.sidebar.button.books" var="BBooks" />
 	<fmt:message key="admin.sidebar.button.genres" var="BGenres" />
-	
+	<fmt:message key="admin.sidebar.button.authors" var="BAuthors" />
 
 
 </fmt:bundle>
@@ -34,11 +34,13 @@
 	 <input type="hidden" name="command" value="search">
     <button type="submit" class="orderbtn">${BBooks}</button>
     </form>
+    </li>    
+    <li>
+      <form method="post" action="main">	 
+	 <input type="hidden" name="command" value="toAuthor">
+    <button type="submit" class="orderbtn">${BAuthors}</button>
+    </form>
     </li>
-    <li>Все коктейли</li>
-    <li>Коллекции</li>
-    <li>Бокалы</li>
-    <li>Компоненты</li>
     <li>
     <form method="post" action="main">	 
 	 <input type="hidden" name="command" value="toGenre">

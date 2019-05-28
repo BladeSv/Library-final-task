@@ -27,11 +27,31 @@ public class SearchBookimp implements SearchBook {
 	}
 
 	@Override
-	public List<Book> search(String searchRequest) throws DaoSQLExcetion {
+	public List<Book> searchUser(String searchRequest) throws DaoSQLExcetion {
 
-		log.trace("Search request--" + searchRequest);
+		log.trace("Search user request--" + searchRequest);
 
-		List<Book> findBook = searchAllFreeBook();
+		BookDAO bookDAO = DaoManager.getInstance().getBookDAO();
+		List<Book> findBook = bookDAO.getAllFreeBook();
+		return search(findBook, searchRequest);
+
+	}
+
+	@Override
+	public List<Book> searchAdmin(String searchRequest) throws DaoSQLExcetion {
+		log.trace("Search admin request--" + searchRequest);
+
+		BookDAO bookDAO = DaoManager.getInstance().getBookDAO();
+		List<Book> findBook = bookDAO.getALL();
+		return search(findBook, searchRequest);
+	}
+
+	private boolean checkContains(String title, String searchString) {
+		log.trace("check contins--in--" + title + " piece--" + searchString);
+		return title.toLowerCase().contains(searchString.toLowerCase());
+	}
+
+	private List<Book> search(List<Book> findBook, String searchRequest) throws DaoSQLExcetion {
 
 		String[] split = searchRequest.split(ConstConteiner.SEARCH_BOOK_REQUEST_SPLIT_REGEX);
 		log.trace("request split on pieces--" + split.length + " pieces--" + split.toString());
@@ -63,19 +83,6 @@ public class SearchBookimp implements SearchBook {
 		}
 
 		return new ArrayList<>(searchBook);
-	}
-
-	private boolean checkContains(String title, String searchString) {
-		log.trace("check contins--in--" + title + " piece--" + searchString);
-		return title.toLowerCase().contains(searchString.toLowerCase());
-	}
-
-	@Override
-	public List<Book> searchAllFreeBook() throws DaoSQLExcetion {
-		BookDAO bookDAO = DaoManager.getInstance().getBookDAO();
-		List<Book> findBook = bookDAO.getAllFreeBook();
-
-		return findBook;
 	}
 
 }

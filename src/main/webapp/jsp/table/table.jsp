@@ -6,7 +6,7 @@
 
 <fmt:bundle basename="locale">
 	<fmt:message key="table.book.books" var="books" />
-	<fmt:message key="table.book.autor" var="autor" />
+	<fmt:message key="table.book.author" var="author" />
 	<fmt:message key="table.book.annotation" var="annotation" />
 	<fmt:message key="table.book.genre" var="genre" />
 	<fmt:message key="table.book.update" var="locUpdate" />
@@ -28,7 +28,7 @@
 	href="${startUrl}/jsp/table/table.css" />
 </head>
 <div class="table-conteiner">
-	<form name="takeOrder" method="post" action="/Library/main">
+	
 		<table>
 			<tr>
 				<th>${books}</th>
@@ -46,8 +46,13 @@
 			</tr>
 			<c:forEach items="${tableBooks}" var="book">
 				<tr style="height: 100px">
-					<td style="width: 200px;"><p>${book.title}</p>
-						<p>${autor}:${book.autor.name}${book.autor.surname}</p></td>
+				<lable>
+					<td style="width: 200px;">
+					<a href="${startUrl}/main?command=toBook&id=${book.id}" style="color: white">
+					<p>${book.title}</p>
+						<p>${author}:${book.author.name}${book.author.surname}</p>
+						</a>
+						</td>
 					<td style="width: 700px;">${book.annotation}</td>
 					<td>${book.genre.title}</td>
 					<c:if test="${role == 'user'}">
@@ -64,8 +69,8 @@
 
 						<td style="width: 50px">
 							<form action="/Library/main" method="post">
-								<input type="hidden" name="command" value="updateBook" /> <input
-									type="hidden" name="id" value="${book.id}" />
+								<input type="hidden" name="command" value="toUpdateBook" /> 
+								<input type="hidden" name="id" value="${book.id}" />
 								<button type="submit">${locBUpdate}</button>
 							</form>
 						</td>
@@ -85,18 +90,21 @@
 
 		</table>
 		<c:if test="${role == 'user'}">
+		<form method="get" action="/Library/main">
 			<input type="hidden" value="createOrder" name="command">
 
 			<button type="submit" class="registerbtn">${button}</button>
-
+</form>
 		</c:if>
 			<c:if test="${role == 'admin'}">
-			<input type="hidden" value="addBook" name="command">
+			<form method="get" action="/Library/main">
+			<input type="hidden" value="toCreateBook" name="command">
 
 			<button type="submit" class="registerbtn">${locAbutton}</button>
-
+</form>
 		</c:if>
-	</form>
+		
+	
 
 	<pag:pagination maxPage="${maxPage}" paginationUrl="${paginationUrl}"
 		numberPage="${numberPage}" />

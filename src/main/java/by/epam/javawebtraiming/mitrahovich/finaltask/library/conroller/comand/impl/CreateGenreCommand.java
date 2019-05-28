@@ -19,14 +19,15 @@ public class CreateGenreCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		String page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_GENRE).execute(request);
+		String page = null;
 
 		if (ValidationManager.getInstance().getGenreValidation().vadidate(request)) {
 			String title = request.getParameter(ConstConteiner.GENRE_TITLE);
 			GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
 			try {
 				genreDAO.add(title);
-
+				page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_CREATE_GENRE)
+						.execute(request);
 			} catch (DaoSQLExcetion e) {
 				log.warn("Create genre command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
@@ -34,8 +35,7 @@ public class CreateGenreCommand extends AbstractCommand {
 		} else {
 
 			request.setAttribute(ConstConteiner.WRONG_DATE_GENRE, ConstConteiner.WRONG_DATE_GENRE);
-			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_CREATE_GENRE)
-					.execute(request);
+
 		}
 
 		return page;

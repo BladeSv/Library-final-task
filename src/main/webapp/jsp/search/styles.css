@@ -27,10 +27,10 @@ h1{
 #searchForm{
 	/* The search form. */
 	background-color:#4C5A65;
-	padding:20px 550px 30px;
+	padding:20px 40% 30px;
 	margin:10px 0;
 	position:relative;
-
+width:100%;
 	-moz-border-radius:16px;
 	-webkit-border-radius:16px;
 	border-radius:16px;
@@ -40,7 +40,7 @@ fieldset{
 	border:none;
 }
 
-#searchInputContainer{
+#search{
 	/* This div contains the transparent search box */
 	width:420px;
 	height:36px;

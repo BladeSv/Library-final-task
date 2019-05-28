@@ -1,0 +1,29 @@
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+
+import javax.servlet.http.HttpServletRequest;
+
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.ServiceFactory;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check.RoleChecker;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
+
+public class GoToCreateAuthorPageCommand extends AbstractCommand {
+
+	public GoToCreateAuthorPageCommand() {
+
+	}
+
+	@Override
+	public String execute(HttpServletRequest request) {
+		String page = null;
+
+		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
+		if (roleChecker.isAdmin(request)) {
+
+			page = ManagerConfig.get("path.page.author.edit");
+		}
+
+		return page;
+	}
+
+}

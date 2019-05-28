@@ -3,14 +3,11 @@ package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean;
 /**
  * @author Mitrahovich
  */
-/**
- * @author Mitrahovich
- */
-public class Autor extends Item {
+public class Author extends Item {
 	private String name;
 	private String surname;
 
-	public Autor() {
+	public Author() {
 	}
 
 	/**
@@ -18,7 +15,7 @@ public class Autor extends Item {
 	 * @param name
 	 * @param surname
 	 */
-	public Autor(int id, String name, String surname) {
+	public Author(int id, String name, String surname) {
 		super(id);
 		this.name = name;
 		this.surname = surname;
@@ -57,7 +54,7 @@ public class Autor extends Item {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Autor other = (Autor) obj;
+		Author other = (Author) obj;
 		if (name == null) {
 			if (other.name != null)
 				return false;

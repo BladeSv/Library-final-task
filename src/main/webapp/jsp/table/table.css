@@ -38,7 +38,7 @@ border-left: 2px solid #56433D;
   margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 10%;
+  width: 100px;
   opacity: 0.9;
 }
 .registerbtn:hover {

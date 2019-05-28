@@ -1,9 +1,11 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao;
 
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.AuthorDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.BookDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.GenreDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.OrderDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.UserDAO;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.impl.AuthorDAOImpl;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.impl.BookDAOImpl;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.impl.GenreDAOImpl;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.impl.OrderDAOImpl;
@@ -16,6 +18,7 @@ public class DaoManager {
 	private BookDAO bookDAO = new BookDAOImpl();
 	private OrderDAO orderDAO = new OrderDAOImpl();
 	private GenreDAO genreDAO = new GenreDAOImpl();
+	private AuthorDAO authorDAO = new AuthorDAOImpl();
 
 	private DaoManager() {
 
@@ -39,6 +42,10 @@ public class DaoManager {
 
 	public GenreDAO getGenreDAO() {
 		return genreDAO;
+	}
+
+	public AuthorDAO getAuthorDAO() {
+		return authorDAO;
 	}
 
 }

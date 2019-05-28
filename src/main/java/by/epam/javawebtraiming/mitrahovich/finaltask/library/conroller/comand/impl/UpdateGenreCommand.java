@@ -20,16 +20,16 @@ public class UpdateGenreCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request) {
-		String page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_GENRE).execute(request);
-		if (ValidationManager.getInstance().getGenreValidation().vadidate(request)) {
+		String page = null;
+		if (ValidationManager.getInstance().getAuthorValidation().vadidate(request)) {
 			String title = request.getParameter(ConstConteiner.GENRE_TITLE);
 			int idGenre = Integer.parseInt(request.getParameter(ConstConteiner.ID));
 			GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
 			try {
 				genreDAO.update(new Genre(idGenre, title));
-
+				page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_GENRE).execute(request);
 			} catch (DaoSQLExcetion e) {
-				log.warn("Create genre command" + e);
+				log.warn("Update genre command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
 		} else {

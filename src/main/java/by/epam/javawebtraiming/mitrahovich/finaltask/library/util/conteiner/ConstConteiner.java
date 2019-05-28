@@ -30,6 +30,15 @@ public class ConstConteiner {
 	public static final String TABLE_BOOKS_CHECK = "checkBookOrder";
 	public static final String TABLE_BOOKS_PLACE_PREFIX = "place-";
 
+	public static final String BOOK_VIEW = "viewBook";
+	public static final String BOOK_TITLE = "bookTitle";
+	public static final String BOOK_AUTHOR = "bookAutor";
+	public static final String BOOK_GENRE = "bookGenre";
+	public static final String BOOK_NUMBER = "bookNumber";
+	public static final String BOOK_ANNOTATION = "bookAnnotation";
+	public static final String BOOK_UPDATE = "changeBook";
+	public static final String BOOK_UPDATE_NUMBER = "changeBookNumber";
+
 	public static final String TABLE_USERS = "tableUsers";
 
 	public static final String ORDER_DELETE_CHECK = "checkOrderDelete";
@@ -43,6 +52,11 @@ public class ConstConteiner {
 	public static final String GENRE_TITLE = "genreTitle";
 	public static final String GENRE_UPDATE = "changeGenre";
 
+	public static final String AUTHOR_LIST_TABLE = "tableAuthor";
+	public static final String AUTHOR_UPDATE = "changeAuthor";
+	public static final String AUTHOR_NAME = "authorName";
+	public static final String AUTHOR_SURNAME = "authorSurname";
+
 	public static final String LOCALE = "locale";
 	public static final String DEFAULT_LOCALE = "en";
 	public static final String RU_LOCALE = "ru";
@@ -51,6 +65,8 @@ public class ConstConteiner {
 	public static final String WRONG_DATE_LOGIN = "wronglogin";
 	public static final String WRONG_DATE_SINGUP = "wrongsingup";
 	public static final String WRONG_DATE_GENRE = "wrongGenre";
+	public static final String WRONG_DATE_AUTHOR = "wrongAuthor";
+	public static final String WRONG_DATE_BOOK = "wrongBook";
 
 	public static final String COMMAND_PAGE_LOGIN = "login";
 	public static final String COMMAND_PAGE_LOGOUT = "logout";
@@ -66,13 +82,25 @@ public class ConstConteiner {
 	public static final String COMMAND_PAGE_ADMIN_ORDER = "adminOrder";
 
 	public static final String COMMAND_PAGE_TO_ORDER = "toOrder";
+	public static final String COMMAND_PAGE_TO_BOOK = "toBook";
 	public static final String COMMAND_PAGE_TO_GENRE = "toGenre";
+	public static final String COMMAND_PAGE_TO_AUTHOR = "toAuthor";
+	public static final String COMMAND_PAGE_TO_CREATE_BOOK = "toCreateBook";
 	public static final String COMMAND_PAGE_TO_CREATE_GENRE = "toCreateGenre";
+	public static final String COMMAND_PAGE_TO_CREATE_AUTHOR = "toCreateAuthor";
+
+	public static final String COMMAND_PAGE_CREATE_BOOK = "createBook";
 	public static final String COMMAND_PAGE_CREATE_GENRE = "createGenre";
+	public static final String COMMAND_PAGE_CREATE_AUTHOR = "createAuthor";
+
+	public static final String COMMAND_PAGE_TO_UPDATE_BOOK = "toUpdateBook";
 	public static final String COMMAND_PAGE_TO_UPDATE_GENRE = "toUpdateGenre";
+	public static final String COMMAND_PAGE_TO_UPDATE_AUTHOR = "toUpdateAuthor";
 	public static final String COMMAND_PAGE_UPDATE_GENRE = "updateGenre";
+	public static final String COMMAND_PAGE_UPDATE_AUTHOR = "updateAuthor";
 
 	public static final String COMMAND_PAGE_DELETE_GENRE = "deteteGenre";
+	public static final String COMMAND_PAGE_DELETE_AUTHOR = "deteteAuthor";
 
 	public static final String SEARCH_BOOK_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
 	public static final String SEARCH_USER_REQUEST_SPLIT_REGEX = "[ ]";

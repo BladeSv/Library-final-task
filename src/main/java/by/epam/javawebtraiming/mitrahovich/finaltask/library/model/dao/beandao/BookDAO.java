@@ -7,7 +7,15 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
 
 public interface BookDAO extends DAO<Book> {
+
+	void add(String title, String annotation, int idAuthor, int idGenre, int instance) throws DaoSQLExcetion;
+
+	void update(int idBook, String title, String annotation, int idAuthor, int idGenre, int instance)
+			throws DaoSQLExcetion;
+
 	List<Book> getAllFreeBook() throws DaoSQLExcetion;
+
+	int getInstanceById(int id) throws DaoSQLExcetion;
 
 	void removeById(int id) throws DaoSQLExcetion;
 

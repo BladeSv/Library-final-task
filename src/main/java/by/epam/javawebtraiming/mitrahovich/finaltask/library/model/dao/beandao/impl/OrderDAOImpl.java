@@ -11,7 +11,7 @@ import java.util.List;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.AbstactDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.OrderDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Autor;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Author;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Genre;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Order;
@@ -65,8 +65,8 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 				int idGenre = rs.getInt("id_genre");
 				Genre genre = new Genre(idGenre, rs.getString("genre_title"));
 
-				int idAutor = rs.getInt("id_autor");
-				String autorName = rs.getString("autor_name");
+				int idAutor = rs.getInt("id_author");
+				String autorName = rs.getString("author_name");
 				String autorSurname = rs.getString("surname");
 
 				PlaceType place = PlaceType.valueOf(rs.getString("place"));
@@ -77,8 +77,8 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 					takenDate = new java.util.Date(takenDateSQL.getTime());
 				}
 
-				Autor autor = new Autor(idAutor, autorName, autorSurname);
-				Book book = new Book(idBook, bookTitle, annotation, autor, genre);
+				Author author = new Author(idAutor, autorName, autorSurname);
+				Book book = new Book(idBook, bookTitle, annotation, author, genre);
 
 				order = new Order(idOrder, book, place, takenDate);
 
@@ -116,8 +116,8 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 				int idGenre = rs.getInt("id_genre");
 				Genre genre = new Genre(idGenre, rs.getString("genre_title"));
 
-				int idAutor = rs.getInt("id_autor");
-				String autorName = rs.getString("autor_name");
+				int idAutor = rs.getInt("id_author");
+				String autorName = rs.getString("author_name");
 				String autorSurname = rs.getString("surname");
 
 				PlaceType place = PlaceType.valueOf(rs.getString("place"));
@@ -129,8 +129,8 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 
 				}
 
-				Autor autor = new Autor(idAutor, autorName, autorSurname);
-				Book book = new Book(idBook, bookTitle, annotation, autor, genre);
+				Author author = new Author(idAutor, autorName, autorSurname);
+				Book book = new Book(idBook, bookTitle, annotation, author, genre);
 
 				Order order = new Order(idOrder, book, place, takenDate);
 				orders.add(order);

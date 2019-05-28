@@ -4,25 +4,30 @@
 
 
 <fmt:bundle basename="locale">
-	<fmt:message key="page.genre.title" var="locTitle" />
-	<fmt:message key="page.genre.genre.title" var="locGenre" />
-	<fmt:message key="page.genre.genre.update" var="locUpdate" />
-	<fmt:message key="page.genre.genre.update.button" var="locBUpdate" />
-	<fmt:message key="page.genre.genre.delete" var="locDelete" />
-	<fmt:message key="page.genre.genre.delete.button" var="locBDelete" />
-	<fmt:message key="page.genre.genre.add.button" var="locBAdd" />
+	<fmt:message key="page.author.title" var="locTitle" />
+	<fmt:message key="page.author.author.name" var="locName" />
+	<fmt:message key="page.author.author.surname" var="locSurname" />	
+	<fmt:message key="page.author.author.update" var="locUpdate" />
+	<fmt:message key="page.author.author.update.button" var="locBUpdate" />
+	<fmt:message key="page.author.author.delete" var="locDelete" />
+	<fmt:message key="page.author.author.delete.button" var="locBDelete" />
+	<fmt:message key="page.author.author.add.button" var="locBAdd" />
 
 
 
 
 </fmt:bundle>
 
+
+
+
+
 <c:set var="startUrl" value="${pageContext.request.contextPath}" />
 
 <html>
 <head>
 <title>${locTitle}</title>
-<link rel="stylesheet" href="${startUrl}/jsp/autor/autor.css">
+<link rel="stylesheet" href="${startUrl}/jsp/author/author.css">
 
 </head>
 <body>
@@ -38,30 +43,32 @@
 		<div class="table-conteiner">
 		<table style="width: 200px">
 			<tr>
-				<th>${locGenre}</th>
+				<th>${locName}</th>
+				<th>${locSurname}</th>
 							<c:if test="${role == 'admin'}">
 					<th>${locUpdate}</th>
 					<th>${locDelete}</th>
 				</c:if>
 
 			</tr>
-		<c:forEach items="${tableGenre}" var="genre">
+		<c:forEach items="${tableAuthor}" var="autor">
 		<tr style="height: 100px">
-		<td>${genre.title}</td>
+		<td>${autor.name}</td>
+		<td>${autor.surname}</td>
 			<c:if test="${role == 'admin'}">
 
 
 						<td style="width: 50px">
 							<form action="/Library/main" method="post">
-								<input type="hidden" name="command" value="toUpdateGenre" /> 
-								<input	type="hidden" name="id" value="${genre.id}" />
+								<input type="hidden" name="command" value="toUpdateAuthor" /> 
+								<input	type="hidden" name="id" value="${autor.id}" />
 								<button type="submit">${locBUpdate}</button>
 							</form>
 						</td>
 						<td style="width: 50px">
 							<form action="/Library/main" method="post">
-								<input type="hidden" name="command" value="deteteGenre" /> <input
-									type="hidden" name="id" value="${genre.id}" />
+								<input type="hidden" name="command" value="deteteAuthor" /> <input
+									type="hidden" name="id" value="${autor.id}" />
 								<button type="submit">${locBDelete}</button>
 							</form>
 							</td>
@@ -77,14 +84,14 @@
 		
 			<c:if test="${role == 'admin'}">
 			<form action="/Library/main" method="post">
-			<input type="hidden" value="toCreateGenre" name="command">
+			<input type="hidden" value="toCreateAuthor" name="command">
 	<button type="submit" class="registerbtn">${locBAdd}</button>
-			
+			</form>
 
 		</c:if>
 			
 		</div>
-		</form>
+		
 	
 
 

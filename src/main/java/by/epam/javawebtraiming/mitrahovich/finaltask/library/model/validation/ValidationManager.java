@@ -1,16 +1,20 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation;
 
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.AuthorValidation;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.BookValidation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.GenreValidation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.LoginValidation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.SingUpValidation;
 
 public class ValidationManager {
 	private static ValidationManager manager = new ValidationManager();
-	private LoginValidation loginValidation = new LoginValidation();
+	private Validation loginValidation = new LoginValidation();
 
-	private SingUpValidation singUpValidation = new SingUpValidation();
+	private Validation singUpValidation = new SingUpValidation();
 
-	private GenreValidation genreValidation = new GenreValidation();
+	private Validation genreValidation = new GenreValidation();
+	private Validation authorValidation = new AuthorValidation();
+	private Validation bookValidation = new BookValidation();
 
 	private ValidationManager() {
 
@@ -20,16 +24,24 @@ public class ValidationManager {
 		return manager;
 	}
 
-	public LoginValidation getLoginValidation() {
+	public Validation getLoginValidation() {
 		return loginValidation;
 	}
 
-	public SingUpValidation getSingUpValidation() {
+	public Validation getSingUpValidation() {
 		return singUpValidation;
 	}
 
-	public GenreValidation getGenreValidation() {
+	public Validation getGenreValidation() {
 		return genreValidation;
+	}
+
+	public Validation getAuthorValidation() {
+		return authorValidation;
+	}
+
+	public Validation getBookValidation() {
+		return bookValidation;
 	}
 
 }

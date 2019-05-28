@@ -10,7 +10,7 @@
 	<fmt:message key="order.table.book.place" var="Oplace" />
 	<fmt:message key="order.table.date.taken" var="Odate" />
 	<fmt:message key="order.table.book.title" var="Tbook" />
-	<fmt:message key="order.table.book.autor" var="Abook" />
+	<fmt:message key="order.table.book.author" var="Abook" />
 	<fmt:message key="order.table.date.on.confirm" var="Odconfirm" />
 	<fmt:message key="order.table.checkbox.cancel.confirm" var="CCancelConfirm" />
 	<fmt:message key="order.table.checkbox.choose.confirm" var="CChooseConfirm" />

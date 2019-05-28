@@ -7,19 +7,21 @@
 	<fmt:message key="page.book.title" var="locTitle" />
 	<fmt:message key="page.book.book.title" var="locBTitle" />
 	<fmt:message key="page.book.book.annotation" var="locAnnotation" />
-	<fmt:message key="page.book.book.autor" var="locAutor" />
+	<fmt:message key="page.book.book.author" var="locAuthor" />
 	<fmt:message key="page.book.book.genre" var="locGenre" />
-	<fmt:message key="page.book.book.number" var="locNumber" />
-	<fmt:message key="page.book.book.button.create" var="locCBButton" />
-
+	<fmt:message key="page.book.book.empty" var="locEmpty" />
 </fmt:bundle>
+
+
+
+
 
 <c:set var="startUrl" value="${pageContext.request.contextPath}" />
 
 <html>
 <head>
 <title>${locTitle}</title>
-<link rel="stylesheet" href="${startUrl}/css/Header.css">
+<link rel="stylesheet" href="${startUrl}/jsp/book/book.css">
 
 </head>
 <body>
@@ -28,32 +30,30 @@
 
 
 		<jsp:include page="../header/GuestHeader.jsp" />
-
-		<form action="/Library/main" method="post">
-			<input type="hidden" name="command" value="createBook" /> 
-			
-			<label for="bookTitle">${locBTitle}</label>
-			<input type="text" id="bookTitle" name="bookTitle">
-			
-			<label for="bookAutor">${locAutor}</label>
-			<input type="text" id="bookAutor" name="bookAutor">
-			
-			<label for="bookGenre">${locGenre}</label>
-			<input type="text" id="bookGenre" name="bookGenre">
-			
-			<label for="bookNumber">${locNumber}</label>
-			<input type="number" id="bookNumber" name="bookNumber">
-			
-			<label for="bookAnnotation">${locAnnotation}</label>
-			<textarea name="bookAnnotation" rows="10" cols="30" id="bookAnnotation">
-
-			</textarea>
-			
-			
-			<button type="submit">${locCBButton}</button>
-		</form>
+		<c:if test="${not empty viewBook}">
 
 
+			<div class="box">
+				<h4>${locBTitle}</h4>
+				<p>${viewBook.title}</p>
+			</div>
+			<div class="box">
+				<h4>${locAuthor}</h4>
+				<p>${viewBook.author.name} ${viewBook.author.surname}</p>
+			</div>
+			<div class="box">
+				<h4>${locGenre}</h4>
+				<p>${viewBook.genre.title}</p>
+			</div>
+			<div class="box">
+				<h4>${locAnnotation}</h4>
+				<p >${viewBook.annotation}</p>
+			</div>
+		</c:if>
+		<c:if test="${ empty viewBook}">
+
+			<h3>${locEmpty}</h3>
+		</c:if>
 
 
 	</div>

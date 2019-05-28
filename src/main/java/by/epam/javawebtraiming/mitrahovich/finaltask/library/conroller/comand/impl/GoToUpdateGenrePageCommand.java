@@ -12,9 +12,9 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
-public class GoToUpdateGenreCommand extends AbstractCommand {
+public class GoToUpdateGenrePageCommand extends AbstractCommand {
 
-	public GoToUpdateGenreCommand() {
+	public GoToUpdateGenrePageCommand() {
 
 	}
 

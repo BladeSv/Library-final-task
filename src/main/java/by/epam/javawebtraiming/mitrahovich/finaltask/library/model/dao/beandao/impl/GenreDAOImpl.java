@@ -111,9 +111,9 @@ public class GenreDAOImpl extends AbstactDAO implements GenreDAO {
 	public void add(String title) throws DaoSQLExcetion {
 		Connection connection = getConnection();
 
-		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.GENRE_CREATE)) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.AUTHOR_CREATE)) {
 			preparedStatement.setString(1, title);
-
+			preparedStatement.setString(1, title);
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
