@@ -17,13 +17,11 @@
 	<listener>
 		<listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.ServletInit</listener-class>
 	</listener>
-	<listener>
-		<listener-class>by.epam.javawebtraiming.mitrahovich.finaltask.library.web.listener.LocaleListener</listener-class>
-	</listener>
+	
 	<welcome-file-list>
 		<welcome-file>
-  index.jsp
-  </welcome-file>
+ 			index.jsp
+ 		 </welcome-file>
 	</welcome-file-list>
 	
 <jsp-config>

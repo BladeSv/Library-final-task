@@ -9,26 +9,25 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
 /**
  * Servlet Filter implementation class EncodingFilter
  */
-@WebFilter("/EncodingFilter")
+@WebFilter(urlPatterns = { "/*" }, initParams = {
+		@WebInitParam(name = ConstConteiner.CHARACTERS_ENCODING, value = ConstConteiner.CHARACTERS_ENCODING_VALUE) })
 public class EncodingFilter implements Filter {
 
-	private FilterConfig filterConfig;
+	private String code;
 
 	public EncodingFilter() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	/**
-	 * @see Filter#destroy()
-	 */
 	public void destroy() {
-		// TODO Auto-generated method stub
+		code = null;
 	}
 
 	/**
@@ -37,8 +36,12 @@ public class EncodingFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		String encoding = filterConfig.getInitParameter(ConstConteiner.CHARACTERS_ENCODING);
-		request.setCharacterEncoding(encoding);
+		String codeRequest = request.getCharacterEncoding();
+		if (code != null && code.equalsIgnoreCase(codeRequest)) {
+			request.setCharacterEncoding(code);
+			response.setCharacterEncoding(code);
+
+		}
 
 		chain.doFilter(request, response);
 	}
@@ -47,7 +50,7 @@ public class EncodingFilter implements Filter {
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		this.filterConfig = filterConfig;
+		code = fConfig.getInitParameter(ConstConteiner.CHARACTERS_ENCODING);
 	}
 
 }

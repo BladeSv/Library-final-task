@@ -105,7 +105,18 @@ public class ConstConteiner {
 
 	public static final String SEARCH_BOOK_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
 	public static final String SEARCH_USER_REQUEST_SPLIT_REGEX = "[ ]";
+	public static final String SINGUP_LOGIN_REGEX = "[\\w].";
+	public static final String RUSSIAN_WORD_REGEX = "[А-Яа-я].";
+	public static final String NUMBER_REGEX = "[\\d].";
 
-	public static final String CHARACTERS_ENCODING = "characterEncoding";
 	public static final String CHANGE_LANGUAGE = "changeLang";
+
+	public static final String CHARACTERS_ENCODING = "encoding";
+	public static final String CHARACTERS_ENCODING_VALUE = "UTF-8";
+
+	public static final int LOGIN_LENGTH_MIN = 3;
+	public static final int LOGIN_LENGTH_MAX = 16;
+	public static final int PASSWORD_LENGTH_MIN = 4;
+	public static final int PASSWORD_LENGTH_MAX = 16;
+
 }
