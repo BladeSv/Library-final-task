@@ -55,7 +55,7 @@ public class BookDAOImpl extends AbstactDAO implements BookDAO {
 	}
 
 	@Override
-	public List getALL() throws DaoSQLExcetion {
+	public List<Book> getALL() throws DaoSQLExcetion {
 		List<Book> books = null;
 		Connection connection = getConnection();
 

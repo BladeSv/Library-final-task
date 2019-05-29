@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Book;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
 public class TableHadlerImpl implements TableHadler {
 	private static Logger log;
@@ -14,51 +14,28 @@ public class TableHadlerImpl implements TableHadler {
 		log = Logger.getLogger("Service.class");
 	}
 
-	private int maxBookOnPage;
-
 	public TableHadlerImpl() {
-		maxBookOnPage = Integer.parseInt(ManagerConfig.get("max.item.page"));
-		log.trace("books on page=" + maxBookOnPage);
+
 	}
 
 	@Override
-	public List<Book> getBookPage(List<Book> bookList, int numPage) {
-		List<Book> pageBookList = null;
-		if (bookList != null && numPage >= 1) {
-			if (bookList.size() > maxBookOnPage) {
-				if (numPage > getMaxPage(bookList)) {
-					numPage = getMaxPage(bookList);
-				}
-				int maxIndex = maxBookOnPage * numPage < bookList.size() ? maxBookOnPage * numPage : bookList.size();
+	public List<Book> getBookAnnotationProcessing(List<Book> bookListe) {
 
-				pageBookList = bookList.subList(maxBookOnPage * (numPage - 1), maxIndex);
-
-				System.out.println(pageBookList);
-
-			} else {
-				pageBookList = bookList;
-			}
-
+		if (bookListe == null) {
+			return null;
 		}
 
-		return pageBookList;
-	}
+		for (Book book : bookListe) {
 
-	@Override
-	public int getMaxPage(List<Book> bookList) {
-		int maxPage = 1;
-
-		if (bookList != null) {
-
-			if (bookList.size() / maxBookOnPage >= 1) {
-				maxPage = (bookList.size() % maxBookOnPage > 0) ? bookList.size() / maxBookOnPage + 1
-						: bookList.size() / maxBookOnPage;
+			if (book.getAnnotation() != null && book.getAnnotation().length() > ConstConteiner.PASSWORD_LENGTH_MAX) {
+				int lastIndex = book.getAnnotation().lastIndexOf(" ", ConstConteiner.PASSWORD_LENGTH_MAX);
+				String newannotation = book.getAnnotation().substring(0, lastIndex) + "...";
+				book.setAnnotation(newannotation);
+				log.trace("getBookAnnotationProcessing - new annotation book-" + newannotation);
 			}
-		} else {
-			maxPage = -1;
 		}
-		log.trace("Max page= " + maxPage);
-		return maxPage;
+
+		return bookListe;
 	}
 
 }

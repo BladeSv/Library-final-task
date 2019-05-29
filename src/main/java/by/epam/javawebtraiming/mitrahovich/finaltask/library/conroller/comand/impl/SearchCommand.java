@@ -24,6 +24,7 @@ public class SearchCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request) {
+
 		String page = ManagerConfig.get("path.page.main");
 		String searchRequest = request.getParameter(ConstConteiner.SEARCH);
 		SearchBook searchBook = ServiceFactory.getInstance().getSearchBooK();
@@ -52,16 +53,20 @@ public class SearchCommand extends AbstractCommand {
 
 				}
 			}
+
 			PaginationHandler paginationHandler = ServiceFactory.getInstance().getPaginationHandler();
 			int numberPage = paginationHandler.getNumberPage(request);
 			int numberMaxPage = paginationHandler.getMaxPage(books);
 			List<Book> pageBooks = (List<Book>) paginationHandler.getItemPage(books, numberPage);
 			String paginationUrl = paginationHandler.getPaginationUrl(request, ConstConteiner.COMMAND_PAGE_SEARCH);
 
+			pageBooks = ServiceFactory.getInstance().getTableHadler().getBookAnnotationProcessing(pageBooks);
+
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_PAGE, numberPage);
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_MAX_PAGE, numberMaxPage);
 			request.setAttribute(ConstConteiner.PAGINATION_URL, paginationUrl);
 			request.setAttribute(ConstConteiner.TABLE_BOOKS, pageBooks);
+
 		} catch (DaoSQLExcetion e) {
 
 			log.warn("try search" + e);

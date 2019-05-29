@@ -10,7 +10,7 @@ public class Pagination extends SimpleTagSupport {
 
 	private int numberPage;
 	private int maxPage;
-	private String startUrl;
+
 	private String paginationUrl;
 
 	public Pagination() {
@@ -23,10 +23,6 @@ public class Pagination extends SimpleTagSupport {
 
 	public void setMaxPage(int maxPage) {
 		this.maxPage = maxPage;
-	}
-
-	public void setUrlPrefix(String startUrl) {
-		this.startUrl = startUrl;
 	}
 
 	public void setPaginationUrl(String paginationUrl) {

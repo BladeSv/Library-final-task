@@ -117,6 +117,8 @@ public class ConstConteiner {
 	public static final int LOGIN_LENGTH_MIN = 3;
 	public static final int LOGIN_LENGTH_MAX = 16;
 	public static final int PASSWORD_LENGTH_MIN = 4;
-	public static final int PASSWORD_LENGTH_MAX = 16;
+	public static final int PASSWORD_LENGTH_MAX = 200;
+
+	public static final int ANNOTATION_LENGTH_MAX = 16;
 
 }
