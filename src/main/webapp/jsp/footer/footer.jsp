@@ -18,4 +18,4 @@
 <link rel="stylesheet" href="${startUrl}/jsp/footer/footer.css">
 
 </head>
- <footer class="footer">&copy; Приготовление коктейлей</footer>
+ <footer class="footer">&copy; Учение свет.</footer>

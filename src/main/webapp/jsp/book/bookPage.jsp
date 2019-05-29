@@ -55,7 +55,7 @@
 			<h3>${locEmpty}</h3>
 		</c:if>
 
-
+<jsp:include page="../footer/footer.jsp"/>
 	</div>
 
 

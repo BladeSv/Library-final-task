@@ -44,7 +44,7 @@ fieldset{
 	/* This div contains the transparent search box */
 	width:420px;
 	height:36px;
-	background:url("img/searchBox.png") no-repeat;
+
 	float:left;
 	margin-right:12px;
 }

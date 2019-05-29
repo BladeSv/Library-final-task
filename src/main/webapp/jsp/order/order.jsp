@@ -28,7 +28,7 @@
 <html>
 <head>
 <title>${title}</title>
-<link rel="stylesheet" href="${startUrl}/jsp/order/order.css">
+<link rel="stylesheet" type="text/css" href="${startUrl}/jsp/order/orderStyle.css">
 
 </head>
 <body>
@@ -74,9 +74,8 @@
 
 
 							<td style="width: 300px"><p>${Tbook}:${order.book.title}</p>
-								<p>${Abook}:${order.book.author.name}
-									${order.book.author.surname}</p></td>
-							<td style="width: 50px">${order.place}</td>
+								<p>${Abook}:${order.book.author.name} ${order.book.author.surname}</p></td>
+							<td style="width: 150px">${order.place}</td>
 							
 							
 							<c:if test="${order.takenDate == null and role == 'user'}">
@@ -130,7 +129,7 @@
 			</form>
 		</div>
 
-
+<jsp:include page="../footer/footer.jsp"/>
 
 	</div>
 

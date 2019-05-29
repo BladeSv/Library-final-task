@@ -31,7 +31,7 @@ public class NotUserLock implements Filter {
 		String role = (String) httpRequest.getSession().getAttribute(ConstConteiner.ROLE);
 
 		if (!role.equals(ConstConteiner.ROLE_ANDMIN) || !role.equals(ConstConteiner.ROLE_USER)) {
-			httpResponse.sendRedirect(ManagerConfig.get("path.page.index"));
+			httpResponse.sendRedirect(httpRequest.getContextPath() + ManagerConfig.get("path.page.index"));
 		}
 		chain.doFilter(request, response);
 	}

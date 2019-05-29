@@ -12,15 +12,16 @@
      
 </fmt:bundle>
 <head>
-<link rel="stylesheet" type="text/css" href="${startUrl}/jsp/header/header.css" />
+<link rel="stylesheet" type="text/css" href="${startUrl}/jsp/header/headerStyle.css" />
+
 </head>
 
 
 <div class="header">
   <a href="${startUrl}/main" class="logo">Library</a>
-  
+  <div class="name">${sessionScope.user.name} ${sessionScope.user.surname}</div>
  
-    
+     
   <div class="header-right">
   
  

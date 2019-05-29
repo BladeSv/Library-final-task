@@ -56,19 +56,19 @@ public class LoginPageCommand extends AbstractCommand {
 				}
 
 			} else {
-				throw new WrongLoginDateException();
+				request.setAttribute(ConstConteiner.WRONG_DATE_LOGIN, ConstConteiner.WRONG_DATE_LOGIN);
+				page = ManagerConfig.get("path.page.login");
 
 			}
-
-		} catch (WrongLoginDateException e) {
-			log.warn("try login" + e);
-			request.setAttribute(ConstConteiner.WRONG_DATE_LOGIN, ConstConteiner.WRONG_DATE_LOGIN);
-			page = ManagerConfig.get("path.page.login");
 
 		} catch (DaoSQLExcetion e) {
 			log.warn("try login" + e);
 			page = ManagerConfig.get("path.page.bad.request");
 
+		} catch (WrongLoginDateException e) {
+			log.warn("try login" + e);
+			request.setAttribute(ConstConteiner.WRONG_DATE_LOGIN, ConstConteiner.WRONG_DATE_LOGIN);
+			page = ManagerConfig.get("path.page.login");
 		}
 
 		return page;

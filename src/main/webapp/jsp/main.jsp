@@ -12,7 +12,7 @@
 <html>
 <head>
 <title>${title}</title>
-<link rel="stylesheet" href="${startUrl}/css/Header.css">
+
 
 </head>
 <body>
@@ -30,7 +30,7 @@
  <jsp:include page="table/table.jsp"/>
 </div>
 
-
+ 	<jsp:include page="/jsp/footer/footer.jsp"/>
 	</div>
 
 

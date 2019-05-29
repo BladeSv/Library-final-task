@@ -5,10 +5,10 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.Validation;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.AbstractValidation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
-public class AuthorValidation implements Validation {
+public class AuthorValidation extends AbstractValidation {
 
 	public AuthorValidation() {
 

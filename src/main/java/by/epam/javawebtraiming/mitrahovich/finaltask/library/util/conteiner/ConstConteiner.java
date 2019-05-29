@@ -105,7 +105,7 @@ public class ConstConteiner {
 
 	public static final String SEARCH_BOOK_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
 	public static final String SEARCH_USER_REQUEST_SPLIT_REGEX = "[ ]";
-	public static final String SINGUP_LOGIN_REGEX = "[\\w].";
+	public static final String SINGUP_LOGIN_REGEX = "[a-zA-Z0-9_].";
 	public static final String RUSSIAN_WORD_REGEX = "[А-Яа-я].";
 	public static final String NUMBER_REGEX = "[\\d].";
 

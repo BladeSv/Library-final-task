@@ -5,10 +5,10 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.Validation;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.AbstractValidation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
-public class SingUpValidation implements Validation {
+public class SingUpValidation extends AbstractValidation {
 
 	public SingUpValidation() {
 
@@ -28,8 +28,8 @@ public class SingUpValidation implements Validation {
 
 		Pattern p = Pattern.compile(ConstConteiner.SINGUP_LOGIN_REGEX);
 		Matcher m = p.matcher(login);
-		return login.length() > loginMix && login.length() < loginMax && m.matches() && password.length() > PassMix
-				&& password.length() < PassMax;
+		return login.length() >= loginMix && login.length() <= loginMax && m.matches() && password.length() >= PassMix
+				&& password.length() <= PassMax;
 	}
 
 }

@@ -51,12 +51,12 @@
 					href="${startUrl}/main?command=toBook&id=${book.id}"
 					style="color: white">
 						<p>${book.title}</p>
-						<p>${author}:${book.author.name}${book.author.surname}</p>
+						<p>${author}:${book.author.name} ${book.author.surname}</p>
 				</a></td>
-				<td style="width: 700px;">${book.annotation}</td>
+				<td style="width: 600px;">${book.annotation}</td>
 				<td>${book.genre.title}</td>
 				<c:if test="${role == 'user'}">
-					<td style="text-align: left, width:100px"><input type="radio"
+					<td style="text-align: left, width:200px"><input type="radio"
 						name="place-${book.id}" value="out" checked> ${out}<Br>
 						<input type="radio" name="place-${book.id}" value="hall">
 						${hall}<Br></td>
