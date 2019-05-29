@@ -12,15 +12,14 @@
      
 </fmt:bundle>
 <head>
-
-
-
-<link rel="stylesheet" type="text/css" href="${startUrl}/jsp/header/Header.css" />
+<link rel="stylesheet" type="text/css" href="${startUrl}/jsp/header/header.css" />
 </head>
 
 
 <div class="header">
   <a href="${startUrl}/main" class="logo">Library</a>
+  
+ 
     
   <div class="header-right">
   
@@ -40,7 +39,7 @@
  
  
 </c:if>
-  <c:if test="${role == 'user' or role == 'admin'}">	
+  <c:if test="${role == 'user'}">	
   
 	
 	  <form name="goToOrder" method="post" action="main">
@@ -51,12 +50,20 @@
 	  
 	  
 	  
-	 <a href="${startUrl}/main" class="logo"> ${sessionScope.user.name}</a>
-	<a href="${startUrl}/main?command=logout" >${logout}</a>
+	 
+	
 			
 		</c:if>
-    <a href="jsp/login/login.jsp">${login}</a>
+	<c:if test="${role == 'user' or role == 'admin'}">		
+	<a href="${startUrl}/main?command=logout" >${logout}</a>
+	
+	</c:if>
+	<c:if test="${role == 'guest' }">		
+	  <a href="jsp/login/login.jsp">${login}</a>
     <a href="jsp/singup/singup.jsp">${registration}</a>
+	
+	</c:if>
+  
   </div>
   
   

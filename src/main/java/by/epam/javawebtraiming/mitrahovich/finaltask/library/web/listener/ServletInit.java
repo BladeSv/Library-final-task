@@ -10,10 +10,6 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.connecton
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.LibraryObserver;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
-/**
- * Application Lifecycle Listener implementation class ServletInit
- *
- */
 public class ServletInit implements ServletContextListener {
 	private static Logger log;
 
@@ -22,16 +18,10 @@ public class ServletInit implements ServletContextListener {
 		log = Logger.getLogger("ConnectionPool");
 	}
 
-	/**
-	 * Default constructor.
-	 */
 	public ServletInit() {
-		// TODO Auto-generated constructor stub
+
 	}
 
-	/**
-	 * @see ServletContextListener#contextInitialized(ServletContextEvent)
-	 */
 	public void contextInitialized(ServletContextEvent sce) {
 		try {
 			ConnectionPool.getInstanse().creatConnectionPool();

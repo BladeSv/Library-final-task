@@ -30,7 +30,7 @@
 	href="${startUrl}/jsp/singup/css/singup.css">
 </head>
 <body>
- <jsp:include page="../header/GuestHeader.jsp"/>
+ <jsp:include page="../header/header.jsp"/>
 	<form action="/Library/main" method="post">
 		<div class="container">
 			<h1>${singup}</h1>

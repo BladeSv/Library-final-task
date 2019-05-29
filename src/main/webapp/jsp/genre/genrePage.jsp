@@ -30,7 +30,7 @@
 	<div class="main">
 
 
-		<jsp:include page="../header/GuestHeader.jsp" />
+		<jsp:include page="../header/header.jsp" />
 
 		
 		

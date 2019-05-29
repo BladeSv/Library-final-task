@@ -31,7 +31,7 @@
 	<div class="main">
 
 
-		<jsp:include page="../header/GuestHeader.jsp" />
+		<jsp:include page="../header/header.jsp" />
 
 
 	<c:if test="${wrongBook== 'wrongBook'}">

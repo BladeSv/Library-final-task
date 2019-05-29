@@ -23,7 +23,7 @@
 </head>
 <body>
 
- <jsp:include page="../header/GuestHeader.jsp"/>
+ <jsp:include page="../header/header.jsp"/>
   <jsp:include page="../search/userSearch.jsp"/>
   <div class="layout">
   

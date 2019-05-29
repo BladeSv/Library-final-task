@@ -35,13 +35,9 @@
 
 	<div class="main">
 
-		<c:if test="${role == 'guest' or role == 'user'}">
-			<jsp:include page="../header/GuestHeader.jsp" />
-		</c:if>
-		<c:if test="${role == 'admin'}">
-			<jsp:include page="../header/GuestHeader.jsp" />
-		</c:if>
-
+		
+			<jsp:include page="../header/header.jsp" />
+		
 
 
 
