@@ -61,10 +61,10 @@ public class LibraryController extends HttpServlet {
 		log.trace("command--" + command);
 
 		CommandManager commandManager = CommandManager.getInstance();
-		log.trace("command--" + command);
+
 		Command requestCommand = commandManager.getCommand(command);
-		log.trace("command--" + command + " requestCommand---" + requestCommand.getClass().getSimpleName());
-		page = requestCommand.execute(request);
+
+		page = requestCommand.execute(request, response);
 
 		log.trace("choose command--" + requestCommand.getClass().getSimpleName() + " page-" + page);
 

@@ -1,6 +1,7 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
@@ -14,14 +15,14 @@ public class LogoutCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		HttpSession session = request.getSession();
 		session.invalidate();
 		session = request.getSession(true);
 		session.setAttribute(ConstConteiner.ROLE, ConstConteiner.ROLE_GUEST);
 
-		return CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request);
+		return CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request, response);
 	}
 
 }

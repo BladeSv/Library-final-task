@@ -1,6 +1,7 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
@@ -23,7 +24,7 @@ public class LoginPageCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = null;
 		DaoManager daoManager = DaoManager.getInstance();
 		try {
@@ -46,11 +47,12 @@ public class LoginPageCommand extends AbstractCommand {
 				switch (user.getRole()) {
 				case USER:
 
-					page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request);
+					page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request,
+							response);
 					break;
 				case ADMIN:
 					page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH_USER)
-							.execute(request);
+							.execute(request, response);
 				}
 
 			} else {

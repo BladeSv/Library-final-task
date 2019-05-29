@@ -1,0 +1,7 @@
+@charset "UTF-8";
+
+   footer {
+    clear: both; /* Отмена обтекания */
+    border-top: 1px solid #ccc; padding: 10px;
+     background: #718693; margin: 0;
+   }

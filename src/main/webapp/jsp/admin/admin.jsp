@@ -57,7 +57,8 @@
 
   
   </div>
-  <div class="footer">&copy; Приготовление коктейлей</div>
+  
+  <jsp:include page="../footer/footer.jsp"/>
  </div>
 </body>
 </html>

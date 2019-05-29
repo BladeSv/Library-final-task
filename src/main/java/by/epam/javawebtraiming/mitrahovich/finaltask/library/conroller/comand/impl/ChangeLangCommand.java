@@ -3,6 +3,7 @@ package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.i
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.jstl.core.Config;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
@@ -16,7 +17,7 @@ public class ChangeLangCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		String userLocale = request.getParameter(ConstConteiner.LANG);
 
@@ -29,7 +30,7 @@ public class ChangeLangCommand extends AbstractCommand {
 			request.getSession().setAttribute(ConstConteiner.LANG, ConstConteiner.EN_LOCALE);
 		}
 
-		return CommandManager.getInstance().getCommand(ConstConteiner.SEARCH).execute(request);
+		return CommandManager.getInstance().getCommand(ConstConteiner.SEARCH).execute(request, response);
 	}
 
 }

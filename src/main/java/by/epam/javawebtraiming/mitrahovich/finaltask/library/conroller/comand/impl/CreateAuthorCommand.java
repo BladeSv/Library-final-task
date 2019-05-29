@@ -1,6 +1,9 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
@@ -18,7 +21,7 @@ public class CreateAuthorCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = null;
 
 		if (ValidationManager.getInstance().getAuthorValidation().vadidate(request)) {
@@ -27,8 +30,11 @@ public class CreateAuthorCommand extends AbstractCommand {
 			AuthorDAO authorDAO = DaoManager.getInstance().getAuthorDAO();
 			try {
 				authorDAO.add(name, surname);
-				page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_AUTHOR).execute(request);
-			} catch (DaoSQLExcetion e) {
+
+				response.sendRedirect(
+						request.getContextPath() + "/main?command=" + ConstConteiner.COMMAND_PAGE_TO_AUTHOR);
+
+			} catch (DaoSQLExcetion | IOException e) {
 				log.warn("Create author command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
@@ -36,7 +42,7 @@ public class CreateAuthorCommand extends AbstractCommand {
 
 			request.setAttribute(ConstConteiner.WRONG_DATE_AUTHOR, ConstConteiner.WRONG_DATE_AUTHOR);
 			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_CREATE_AUTHOR)
-					.execute(request);
+					.execute(request, response);
 		}
 
 		return page;

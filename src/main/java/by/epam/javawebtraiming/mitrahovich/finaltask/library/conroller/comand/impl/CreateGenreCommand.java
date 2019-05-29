@@ -1,6 +1,9 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
@@ -18,7 +21,7 @@ public class CreateGenreCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = null;
 
 		if (ValidationManager.getInstance().getGenreValidation().vadidate(request)) {
@@ -26,16 +29,17 @@ public class CreateGenreCommand extends AbstractCommand {
 			GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
 			try {
 				genreDAO.add(title);
-				page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_CREATE_GENRE)
-						.execute(request);
-			} catch (DaoSQLExcetion e) {
+				response.sendRedirect(
+						request.getContextPath() + "/main?command=" + ConstConteiner.COMMAND_PAGE_TO_GENRE);
+			} catch (DaoSQLExcetion | IOException e) {
 				log.warn("Create genre command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
 		} else {
 
 			request.setAttribute(ConstConteiner.WRONG_DATE_GENRE, ConstConteiner.WRONG_DATE_GENRE);
-
+			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_CREATE_GENRE).execute(request,
+					response);
 		}
 
 		return page;

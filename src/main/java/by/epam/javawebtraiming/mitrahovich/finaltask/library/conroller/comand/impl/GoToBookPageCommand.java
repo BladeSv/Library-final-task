@@ -1,6 +1,7 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
@@ -17,7 +18,7 @@ public class GoToBookPageCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = ManagerConfig.get("path.page.book");
 
 		BookDAO bookDAO = DaoManager.getInstance().getBookDAO();

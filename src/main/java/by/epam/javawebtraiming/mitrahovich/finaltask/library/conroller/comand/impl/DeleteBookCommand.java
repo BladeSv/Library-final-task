@@ -1,6 +1,7 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
@@ -19,7 +20,7 @@ public class DeleteBookCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
@@ -33,7 +34,8 @@ public class DeleteBookCommand extends AbstractCommand {
 				log.warn("Delete book Command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
-			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request);
+			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_SEARCH).execute(request,
+					response);
 		}
 
 		return page;

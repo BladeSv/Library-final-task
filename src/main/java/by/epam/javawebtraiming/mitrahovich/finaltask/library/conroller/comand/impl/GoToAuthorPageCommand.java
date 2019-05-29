@@ -3,6 +3,7 @@ package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.i
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
@@ -21,7 +22,7 @@ public class GoToAuthorPageCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = ManagerConfig.get("path.page.author");
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();

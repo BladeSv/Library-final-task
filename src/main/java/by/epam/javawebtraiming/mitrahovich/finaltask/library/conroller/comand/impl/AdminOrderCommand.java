@@ -1,11 +1,12 @@
 package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
 
+import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.OrderDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -22,7 +23,7 @@ public class AdminOrderCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request) {
+	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String page = null;
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 
@@ -81,7 +82,14 @@ public class AdminOrderCommand extends AbstractCommand {
 
 		}
 		if (page == null) {
-			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_ORDER).execute(request);
+			try {
+				response.sendRedirect(request.getContextPath() + "/main?command=" + ConstConteiner.COMMAND_PAGE_TO_ORDER
+						+ "&" + ConstConteiner.ID + "=" + request.getParameter(ConstConteiner.ID));
+			} catch (IOException e) {
+				log.warn("AdminOrderCommand confirm order " + e);
+				page = ManagerConfig.get("path.page.bad.request");
+			}
+
 		}
 		return page;
 	}
