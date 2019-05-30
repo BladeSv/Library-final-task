@@ -10,7 +10,8 @@
 	<fmt:message key="page.genre.edit.genre.update.button" var="locBUpdate" />
 
 	<fmt:message key="page.genre.edit.genre.create.button" var="locBCreate" />
-<fmt:message key="page.genre.edit.genre.wrongdate.message" var="locMessage" />
+	<fmt:message key="page.genre.edit.genre.wrongdate.message"
+		var="locMessage" />
 
 
 
@@ -32,14 +33,14 @@
 		<jsp:include page="../header/header.jsp" />
 
 		<form action="/Library/main" method="post">
-		
-<c:if test="${wrongGenre== 'wrongGenre'}">
-		<h3 style="color:red">${locMessage} </h3>
 
-</c:if>
-<br>
-			<label for="genreTitleid">${locGenre}</label> <input type="text"
-				id="genreTitleid" name="genreTitle" value="${changeGenre.title}">
+			<c:if test="${wrongGenre== 'wrongGenre'}">
+				<h3 style="color: red">${locMessage}</h3>
+
+			</c:if>
+			<br> <label for="genreTitleid">${locGenre}</label> <input
+				type="text" id="genreTitleid" name="genreTitle"
+				value="${changeGenre.title}">
 
 			<c:if test="${empty changeGenre}">
 				<input type="hidden" name="command" value="createGenre" />
@@ -47,15 +48,15 @@
 			</c:if>
 			<c:if test="${not empty changeGenre}">
 				<input type="hidden" name="command" value="updateGenre" />
-					<input type="hidden" name="id" value="${changeGenre.id}" />
+				<input type="hidden" name="id" value="${changeGenre.id}" />
 				<button type="submit">${locBUpdate}</button>
 			</c:if>
-			
+
 		</form>
 
 
 
-<jsp:include page="../footer/footer.jsp"/>
+		<jsp:include page="../footer/footer.jsp" />
 	</div>
 
 

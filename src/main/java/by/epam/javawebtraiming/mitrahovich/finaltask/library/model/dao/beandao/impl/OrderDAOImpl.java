@@ -96,7 +96,7 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 
 	@Override
 	public List getALL() throws DaoSQLExcetion {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
@@ -104,8 +104,7 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 	public List<Order> getAllOrderUserById(int userId) throws DaoSQLExcetion {
 		List<Order> orders = new ArrayList<>();
 		Connection connection = getConnection();
-		try (PreparedStatement preparedStatement = connection
-				.prepareStatement(SQLRequestConteiner.ORDER_GET_ALL_BY_USER_ID)) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.ORDER_GET_ALL_BY_USER_ID)) {
 			preparedStatement.setInt(1, userId);
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
@@ -152,8 +151,7 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 		Connection connection = getConnection();
 		try (
 
-				PreparedStatement preparedStatement = connection
-						.prepareStatement(SQLRequestConteiner.ORDER_DELETE_BY_ID)) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.ORDER_DELETE_BY_ID)) {
 			preparedStatement.setInt(1, idOrder);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -169,8 +167,7 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 		Connection connection = getConnection();
 		try (
 
-				PreparedStatement preparedStatement = connection
-						.prepareStatement(SQLRequestConteiner.ORDER_UPDATE_TAKEN_DATE_BY_ID)) {
+				PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.ORDER_UPDATE_TAKEN_DATE_BY_ID)) {
 			Date takenDate = null;
 			if (date != null) {
 				takenDate = new Date(date.getTime());
@@ -200,8 +197,7 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 
 	@Override
 	public void remoteByUserIdTransaction(Connection connection, int id) throws DaoSQLExcetion {
-		try (PreparedStatement preparedStatement = connection
-				.prepareStatement(SQLRequestConteiner.ORDER_DELETE_BY_USER_ID)) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.ORDER_DELETE_BY_USER_ID)) {
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -225,13 +221,25 @@ public class OrderDAOImpl extends AbstactDAO implements OrderDAO {
 	@Override
 	public void remoteByBookIdTransaction(Connection connection, int id) throws DaoSQLExcetion {
 
-		try (PreparedStatement preparedStatement = connection
-				.prepareStatement(SQLRequestConteiner.ORDER_DELETE_BY_BOOK_ID)) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.ORDER_DELETE_BY_BOOK_ID)) {
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			log.warn("Delete order by user id ", e);
 			throw new DaoSQLExcetion(e.getCause());
 		}
+	}
+
+	@Override
+	public void removeAllNotConfirm() throws DaoSQLExcetion {
+		Connection connection = getConnection();
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.ORDER_DELETE_NOT_COFIRM)) {
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			log.warn("Delete all not cofirm order by user id ", e);
+			throw new DaoSQLExcetion(e.getCause());
+		}
+
 	}
 }

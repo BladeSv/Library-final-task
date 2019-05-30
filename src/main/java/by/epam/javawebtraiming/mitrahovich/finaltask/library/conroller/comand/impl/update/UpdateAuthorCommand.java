@@ -1,4 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.update;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,24 +21,25 @@ public class UpdateAuthorCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		if (request == null || response == null) {
+			return null;
+		}
 		String page = null;
-		if (ValidationManager.getInstance().getAuthorValidation().vadidate(request)) {
+		if (ValidationManager.getInstance().getAuthorValidation().vadidate(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
 			String name = request.getParameter(ConstConteiner.AUTHOR_NAME);
 			String surname = request.getParameter(ConstConteiner.AUTHOR_SURNAME);
 			int id = Integer.parseInt(request.getParameter(ConstConteiner.ID));
 			AuthorDAO authorDAO = DaoManager.getInstance().getAuthorDAO();
 			try {
 				authorDAO.update(new Author(id, name, surname));
-				page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_AUTHOR).execute(request,
-						response);
+				page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_AUTHOR).execute(request, response);
 			} catch (DaoSQLExcetion e) {
 				log.warn("Update autor command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
 		} else {
 			request.setAttribute(ConstConteiner.WRONG_DATE_AUTHOR, ConstConteiner.WRONG_DATE_AUTHOR);
-			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_UPDATE_AUTHOR)
-					.execute(request, response);
+			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_UPDATE_AUTHOR).execute(request, response);
 
 		}
 

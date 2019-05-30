@@ -1,4 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.go_to;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.B
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Genre;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.ServiceFactory;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check.RoleChecker;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.ValidationManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
@@ -27,10 +28,13 @@ public class GoToUpdateBookCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String page = ManagerConfig.get("path.page.book.edit");
+		if (request == null || response == null) {
+			return null;
+		}
+		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
-		if (roleChecker.isAdmin(request)) {
+		if (roleChecker.isAdmin(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
 
 			try {
 
@@ -49,6 +53,7 @@ public class GoToUpdateBookCommand extends AbstractCommand {
 				GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
 				List<Genre> tableGenre = genreDAO.getALL();
 				request.setAttribute(ConstConteiner.GENRE_LIST_TABLE, tableGenre);
+				page = ManagerConfig.get("path.page.book.edit");
 			} catch (DaoSQLExcetion e) {
 
 				log.warn("go to update page book command" + e);

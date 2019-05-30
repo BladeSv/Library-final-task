@@ -1,6 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
-
-import java.util.List;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.go_to;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,37 +10,39 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Genre;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.ServiceFactory;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check.RoleChecker;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.ValidationManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
-public class GoToGenrePageCommand extends AbstractCommand {
+public class GoToUpdateGenrePageCommand extends AbstractCommand {
 
-	public GoToGenrePageCommand() {
+	public GoToUpdateGenrePageCommand() {
 
 	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		if (request == null || response == null) {
+			return null;
+		}
 
-		String page = ManagerConfig.get("path.page.genre");
+		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
-
-		if (roleChecker.isUser(request) || roleChecker.isAdmin(request)) {
-
+		if (roleChecker.isAdmin(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
+			int idGenre = Integer.parseInt(request.getParameter(ConstConteiner.ID));
 			GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
-
 			try {
-				List<Genre> genreTable = genreDAO.getALL();
-				log.trace("go to genre command");
+				Genre genre = genreDAO.getById(idGenre);
+				request.setAttribute(ConstConteiner.GENRE_UPDATE, genre);
 
-				request.setAttribute(ConstConteiner.GENRE_LIST_TABLE, genreTable);
-			} catch (NumberFormatException | DaoSQLExcetion e) {
-				log.warn("try go to genre page" + e);
+			} catch (DaoSQLExcetion e) {
+				log.warn("Go to update genre page command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
-
+			page = ManagerConfig.get("path.page.genre.edit");
 		}
+
 		return page;
 	}
 

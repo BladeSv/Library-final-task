@@ -1,4 +1,6 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.go_to;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,32 +15,38 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
-public class GoToUpdateGenrePageCommand extends AbstractCommand {
+public class GoToGenrePageCommand extends AbstractCommand {
 
-	public GoToUpdateGenrePageCommand() {
+	public GoToGenrePageCommand() {
 
 	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		if (request == null || response == null) {
+			return null;
+		}
 
 		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
-		if (roleChecker.isAdmin(request)) {
-			int idGenre = Integer.parseInt(request.getParameter(ConstConteiner.ID));
-			GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
-			try {
-				Genre genre = genreDAO.getById(idGenre);
-				request.setAttribute(ConstConteiner.GENRE_UPDATE, genre);
 
-			} catch (DaoSQLExcetion e) {
-				log.warn("Go to update genre page command" + e);
+		if (roleChecker.isUser(request) || roleChecker.isAdmin(request)) {
+
+			GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
+
+			try {
+				List<Genre> genreTable = genreDAO.getALL();
+				log.trace("go to genre command");
+
+				request.setAttribute(ConstConteiner.GENRE_LIST_TABLE, genreTable);
+				page = ManagerConfig.get("path.page.genre");
+			} catch (NumberFormatException | DaoSQLExcetion e) {
+				log.warn("try go to genre page" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
-			page = ManagerConfig.get("path.page.genre.edit");
-		}
 
+		}
 		return page;
 	}
 

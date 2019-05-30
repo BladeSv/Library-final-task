@@ -26,8 +26,7 @@ public class LoginValidation extends AbstractValidation {
 		int PassMix = ConstConteiner.PASSWORD_LENGTH_MIN;
 		int PassMax = ConstConteiner.PASSWORD_LENGTH_MAX;
 
-		return login.length() >= loginMix && login.length() <= loginMax && password.length() >= PassMix
-				&& password.length() <= PassMax;
+		return login.length() >= loginMix && login.length() <= loginMax && password.length() >= PassMix && password.length() <= PassMax;
 	}
 
 }

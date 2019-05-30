@@ -79,6 +79,7 @@ public class ConstConteiner {
 
 	public static final String COMMAND_PAGE_CREATE_ORDER = "createOrder";
 	public static final String COMMAND_PAGE_DELETE_ORDER = "deleteOrder";
+	public static final String COMMAND_PAGE_DELETE_ORDER_NOT_CONFIRM = "deleteOrderNotConfirm";
 	public static final String COMMAND_PAGE_ADMIN_ORDER = "adminOrder";
 
 	public static final String COMMAND_PAGE_TO_ORDER = "toOrder";

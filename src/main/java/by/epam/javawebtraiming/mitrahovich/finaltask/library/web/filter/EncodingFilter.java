@@ -16,8 +16,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.Cons
 /**
  * Servlet Filter implementation class EncodingFilter
  */
-@WebFilter(urlPatterns = { "/*" }, initParams = {
-		@WebInitParam(name = ConstConteiner.CHARACTERS_ENCODING, value = ConstConteiner.CHARACTERS_ENCODING_VALUE) })
+@WebFilter(urlPatterns = { "/*" }, initParams = { @WebInitParam(name = ConstConteiner.CHARACTERS_ENCODING, value = ConstConteiner.CHARACTERS_ENCODING_VALUE) })
 public class EncodingFilter implements Filter {
 
 	private String code;
@@ -33,8 +32,7 @@ public class EncodingFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
 		String codeRequest = request.getCharacterEncoding();
 		if (code != null && code.equalsIgnoreCase(codeRequest)) {

@@ -1,4 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.go_to;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +16,9 @@ public class GoToCreateGenrePageCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		if (request == null || response == null) {
+			return null;
+		}
 		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();

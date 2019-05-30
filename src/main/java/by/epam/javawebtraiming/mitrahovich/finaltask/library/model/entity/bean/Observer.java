@@ -7,4 +7,6 @@ public interface Observer {
 
 	public void removeOrder(int idOrder);
 
+	public void removeNotConfirOrder();
+
 }

@@ -40,4 +40,11 @@ public class LibraryObserver implements Observable {
 		}
 	}
 
+	@Override
+	public void NotifyRemoveAllNotConfirmOrder() {
+		for (Observer obs : observers) {
+			obs.removeNotConfirOrder();
+		}
+	}
+
 }

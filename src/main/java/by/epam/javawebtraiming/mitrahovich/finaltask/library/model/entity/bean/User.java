@@ -102,8 +102,7 @@ public class User extends Item implements Observer {
 
 	@Override
 	public String toString() {
-		return super.toString() + ", name: " + name + ", surname: " + surname + ", role: " + role + ", taken order: "
-				+ takenOrder;
+		return super.toString() + ", name: " + name + ", surname: " + surname + ", role: " + role + ", taken order: " + takenOrder;
 
 	}
 
@@ -122,6 +121,12 @@ public class User extends Item implements Observer {
 	public void removeOrder(int idOrder) {
 
 		takenOrder.removeIf(order -> order.getId() == idOrder);
+
+	}
+
+	@Override
+	public void removeNotConfirOrder() {
+		takenOrder.removeIf(order -> order.getTakenDate() == null);
 
 	}
 

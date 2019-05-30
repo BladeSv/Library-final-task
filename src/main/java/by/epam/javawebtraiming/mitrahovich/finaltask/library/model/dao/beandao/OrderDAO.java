@@ -25,4 +25,6 @@ public interface OrderDAO extends DAO<Order> {
 
 	public void remoteByBookIdTransaction(Connection connection, int id) throws DaoSQLExcetion;
 
+	public void removeAllNotConfirm() throws DaoSQLExcetion;
+
 }

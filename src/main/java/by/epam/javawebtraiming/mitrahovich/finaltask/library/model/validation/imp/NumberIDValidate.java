@@ -23,9 +23,9 @@ public class NumberIDValidate extends AbstractValidation {
 
 		String idS = request.getParameter(ConstConteiner.ID);
 		if (idS != null) {
-			Pattern p = Pattern.compile(ConstConteiner.RUSSIAN_WORD_REGEX);
-			Matcher m = p.matcher(genre);
-
+			Pattern p = Pattern.compile(ConstConteiner.NUMBER_REGEX);
+			Matcher m = p.matcher(idS);
+			check = m.matches();
 		}
 
 		return check;

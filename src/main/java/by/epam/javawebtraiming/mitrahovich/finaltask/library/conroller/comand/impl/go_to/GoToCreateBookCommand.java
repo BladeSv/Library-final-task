@@ -1,4 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.go_to;
 
 import java.util.List;
 
@@ -25,7 +25,10 @@ public class GoToCreateBookCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String page = ManagerConfig.get("path.page.book.edit");
+		if (request == null || response == null) {
+			return null;
+		}
+		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 		if (roleChecker.isAdmin(request)) {
@@ -38,6 +41,7 @@ public class GoToCreateBookCommand extends AbstractCommand {
 				GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
 				List<Genre> tableGenre = genreDAO.getALL();
 				request.setAttribute(ConstConteiner.GENRE_LIST_TABLE, tableGenre);
+				page = ManagerConfig.get("path.page.book.edit");
 			} catch (DaoSQLExcetion e) {
 
 				log.warn("try search" + e);

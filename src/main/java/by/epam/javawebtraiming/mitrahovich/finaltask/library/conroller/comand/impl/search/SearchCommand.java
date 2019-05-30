@@ -1,4 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.search;
 
 import java.util.List;
 
@@ -25,8 +25,11 @@ public class SearchCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		if (request == null || response == null) {
+			return null;
+		}
 
-		String page = ManagerConfig.get("path.page.main");
+		String page = null;
 		String searchRequest = request.getParameter(ConstConteiner.SEARCH);
 		SearchBook searchBook = ServiceFactory.getInstance().getSearchBooK();
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
@@ -67,7 +70,7 @@ public class SearchCommand extends AbstractCommand {
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_MAX_PAGE, numberMaxPage);
 			request.setAttribute(ConstConteiner.PAGINATION_URL, paginationUrl);
 			request.setAttribute(ConstConteiner.TABLE_BOOKS, pageBooks);
-
+			page = ManagerConfig.get("path.page.main");
 		} catch (DaoSQLExcetion e) {
 
 			log.warn("try search" + e);

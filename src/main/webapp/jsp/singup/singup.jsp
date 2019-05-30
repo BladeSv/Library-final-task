@@ -12,8 +12,8 @@
 	<fmt:message key="singup.password.placeholder" var="ppassword" />
 	<fmt:message key="singup.name" var="name" />
 	<fmt:message key="singup.name.placeholder" var="pname" />
-		<fmt:message key="singup.surname" var="surname" />
-		<fmt:message key="singup.surname.placeholder" var="psurname" />
+	<fmt:message key="singup.surname" var="surname" />
+	<fmt:message key="singup.surname.placeholder" var="psurname" />
 	<fmt:message key="singup.button" var="button" />
 	<fmt:message key="singup.worng.data.message" var="message" />
 
@@ -30,14 +30,14 @@
 	href="${startUrl}/jsp/singup/css/singup.css">
 </head>
 <body>
- <jsp:include page="../header/header.jsp"/>
+	<jsp:include page="../header/header.jsp" />
 	<form action="/Library/main" method="post">
 		<div class="container">
 			<h1>${singup}</h1>
 			<c:if test="${wrongsingup== 'wrongsingup'}">
-						<span  style="color:red"> ${message} </span>
-						
-					</c:if>
+				<span style="color: red"> ${message} </span>
+
+			</c:if>
 			<h3>${title}</h3>
 			<hr>
 
@@ -46,10 +46,10 @@
 				for="psw"><b>${password}</b></label> <input type="password"
 				placeholder="${ppassword}" name="password" required> <label
 				for="psw-repeat"><b>${name}</b></label> <input type="text"
-				placeholder="${pname}" name="name" required>
-				<label for="psw-repeat"><b>${surname}</b></label> <input type="text"
+				placeholder="${pname}" name="name" required> <label
+				for="psw-repeat"><b>${surname}</b></label> <input type="text"
 				placeholder="${psurname}" name="surmame" required>
-				
+
 			<hr>
 
 			<input type="hidden" name="command" value="singup">

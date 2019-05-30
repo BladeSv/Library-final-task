@@ -1,76 +1,74 @@
 @charset "UTF-8";
+
 table {
-border-spacing: 0 10px;
-font-family: 'Open Sans', sans-serif;
-font-weight: bold;
-	
-
-  width : 100%;  
+	border-spacing: 0 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	width: 100%;
 }
 
-.table-conteiner{
-width : 80%;
-	width : 80%;
+.table-conteiner {
+	width: 80%;
+	width: 80%;
 	margin-left: auto;
-margin-right: auto;
+	margin-right: auto;
 }
+
 td {
-vertical-align: middle;
-padding: 10px;
-font-size: 14px;
-text-align: center;
-border-top: 2px solid #56433D;
-border-bottom: 2px solid #56433D;
-border-right: 2px solid #56433D;
+	vertical-align: middle;
+	padding: 10px;
+	font-size: 14px;
+	text-align: center;
+	border-top: 2px solid #56433D;
+	border-bottom: 2px solid #56433D;
+	border-right: 2px solid #56433D;
 }
+
 td:first-child {
-border-left: 2px solid #56433D;
-border-right: 2px solid #56433D;
+	border-left: 2px solid #56433D;
+	border-right: 2px solid #56433D;
 }
-td:nth-child(2){
-text-align: left;
-border-left: 2px solid #56433D;
+
+td:nth-child(2) {
+	text-align: left;
+	border-left: 2px solid #56433D;
 }
+
 .registerbtn {
-  background-color: #4C5A65;
-  color: white;
-  padding: 16px 20px;
-  margin: 8px 8px;
-  border: none;
-  cursor: pointer;
-  width: 150px;
-  opacity: 0.9;
+	background-color: #4C5A65;
+	color: white;
+	padding: 16px 20px;
+	margin: 8px 8px;
+	border: none;
+	cursor: pointer;
+	width: 150px;
+	opacity: 0.9;
 }
+
 .registerbtn:hover {
-  background-color: grey;
-
+	background-color: grey;
 }
 
-.paginator{
-	
-	
+.paginator {
 	
 }
+
 .paginator div {
-  
-    margin: 0 45%;
- 
-  padding: 10px;
- display: inline-block;
-  white-space: nowrap;
-
-  background-color: #ecf0f1;
+	margin: 0 45%;
+	padding: 10px;
+	display: inline-block;
+	white-space: nowrap;
+	background-color: #ecf0f1;
 }
 
-.paginator a,
-.paginator span {
-  display: inline-block;
-  min-width: 20px;
-  height: 30px;
-  padding: 0 10px;
-  background-color: #95a5a6;
+.paginator a, .paginator span {
+	display: inline-block;
+	min-width: 20px;
+	height: 30px;
+	padding: 0 10px;
+	background-color: #95a5a6;
 }
-.paginator a.active{
-	  background-color: #718693;
-	
+
+.paginator a.active {
+	background-color: #718693;
 }

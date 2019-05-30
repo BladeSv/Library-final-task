@@ -16,6 +16,9 @@ public class LogoutCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		if (request == null || response == null) {
+			return null;
+		}
 
 		HttpSession session = request.getSession();
 		session.invalidate();

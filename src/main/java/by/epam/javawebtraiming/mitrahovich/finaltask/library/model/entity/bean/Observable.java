@@ -10,4 +10,6 @@ public interface Observable {
 	public void NotifyConfirmOrder(int idOrder, Date takenDate);
 
 	public void NotifyRemoveOrder(int idOrder);
+
+	public void NotifyRemoveAllNotConfirmOrder();
 }

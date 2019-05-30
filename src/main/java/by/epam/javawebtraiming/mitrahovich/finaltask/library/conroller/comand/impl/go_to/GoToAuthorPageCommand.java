@@ -1,21 +1,23 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.go_to;
+
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.AuthorDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Author;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.ServiceFactory;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check.RoleChecker;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
-public class DeleteAuthorCommand extends AbstractCommand {
+public class GoToAuthorPageCommand extends AbstractCommand {
 
-	public DeleteAuthorCommand() {
+	public GoToAuthorPageCommand() {
 
 	}
 
@@ -28,25 +30,23 @@ public class DeleteAuthorCommand extends AbstractCommand {
 		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
-		if (roleChecker.isAdmin(request)) {
 
-			String idAuthorString = request.getParameter(ConstConteiner.ID);
-			if (idAuthorString != null && idAuthorString != "") {
+		if (roleChecker.isUser(request) || roleChecker.isAdmin(request)) {
 
-				int idAuthor = Integer.parseInt(idAuthorString);
+			AuthorDAO authorDAO = DaoManager.getInstance().getAuthorDAO();
 
-				AuthorDAO authorDAO = DaoManager.getInstance().getAuthorDAO();
-				try {
-					authorDAO.removeById(idAuthor);
-				} catch (DaoSQLExcetion e) {
-					log.warn("Delete author Command" + e);
-					page = ManagerConfig.get("path.page.bad.request");
-				}
+			try {
+				List<Author> authorTable = authorDAO.getALL();
+				log.trace("go to author command");
+
+				request.setAttribute(ConstConteiner.AUTHOR_LIST_TABLE, authorTable);
+				page = ManagerConfig.get("path.page.author");
+			} catch (NumberFormatException | DaoSQLExcetion e) {
+				log.warn("try go to author page" + e);
+				page = ManagerConfig.get("path.page.bad.request");
 			}
-			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_AUTHOR).execute(request,
-					response);
-		}
 
+		}
 		return page;
 	}
 

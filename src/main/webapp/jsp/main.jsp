@@ -13,24 +13,23 @@
 <head>
 <title>${title}</title>
 
-
 </head>
 <body>
 
 	<div class="main">
-	
-	
-			 <jsp:include page="header/header.jsp"/>
-		
 
-<div>
- <jsp:include page="search/search.jsp"/>
-</div>
-<div>
- <jsp:include page="table/table.jsp"/>
-</div>
 
- 	<jsp:include page="/jsp/footer/footer.jsp"/>
+		<jsp:include page="header/header.jsp" />
+
+
+		<div>
+			<jsp:include page="search/search.jsp" />
+		</div>
+		<div>
+			<jsp:include page="table/table.jsp" />
+		</div>
+
+		<jsp:include page="/jsp/footer/footer.jsp" />
 	</div>
 
 

@@ -1,9 +1,31 @@
 @charset "UTF-8";
-  body { background: #718693; margin: 0; color:#718693;}
-   .layout { width: 80%; margin: 10px auto 10px; background: #718693; }
-   .content { margin-left: 350px; padding: 10px;  background: #718693; border: 1px solid black;}
-   .sidebar {  background: #808080;  float: left; }
-   .footer {
-    clear: both; /* Отмена обтекания */
-    border-top: 1px solid #ccc; padding: 10px;
-   }
+
+body {
+	background: #718693;
+	margin: 0;
+	color: #718693;
+}
+
+.layout {
+	width: 80%;
+	margin: 10px auto 10px;
+	background: #718693;
+}
+
+.content {
+	margin-left: 350px;
+	padding: 10px;
+	background: #718693;
+	border: 1px solid black;
+}
+
+.sidebar {
+	background: #808080;
+	float: left;
+}
+
+.footer {
+	clear: both; /* Отмена обтекания */
+	border-top: 1px solid #ccc;
+	padding: 10px;
+}

@@ -69,8 +69,7 @@ public class PaginationHandlerImpl implements PaginationHandler {
 		if (ItemList != null) {
 
 			if (ItemList.size() / maxBookOnPage >= 1) {
-				maxPage = (ItemList.size() % maxBookOnPage > 0) ? ItemList.size() / maxBookOnPage + 1
-						: ItemList.size() / maxBookOnPage;
+				maxPage = (ItemList.size() % maxBookOnPage > 0) ? ItemList.size() / maxBookOnPage + 1 : ItemList.size() / maxBookOnPage;
 			}
 		} else {
 			maxPage = -1;
@@ -84,8 +83,7 @@ public class PaginationHandlerImpl implements PaginationHandler {
 
 		String searchRequest = request.getParameter(ConstConteiner.SEARCH);
 		searchRequest = searchRequest != null ? searchRequest : "";
-		String paginationUrl = request.getRequestURI() + "?" + ConstConteiner.SEARCH + "=" + searchRequest + "&"
-				+ ConstConteiner.COMMAND + "=" + commandName + "&" + ConstConteiner.PAGE + "=";
+		String paginationUrl = request.getRequestURI() + "?" + ConstConteiner.SEARCH + "=" + searchRequest + "&" + ConstConteiner.COMMAND + "=" + commandName + "&" + ConstConteiner.PAGE + "=";
 
 		return paginationUrl;
 	}

@@ -11,6 +11,7 @@
 	<fmt:message key="page.genre.genre.delete" var="locDelete" />
 	<fmt:message key="page.genre.genre.delete.button" var="locBDelete" />
 	<fmt:message key="page.genre.genre.add.button" var="locBAdd" />
+	<fmt:message key="table.empty" var="locEmpty" />
 
 
 
@@ -32,63 +33,75 @@
 
 		<jsp:include page="../header/header.jsp" />
 
-		
-		
-			
+
+
+
 		<div class="table-conteiner">
-		<table style="width: 200px">
-			<tr>
-				<th>${locGenre}</th>
-							<c:if test="${role == 'admin'}">
-					<th>${locUpdate}</th>
-					<th>${locDelete}</th>
-				</c:if>
-
-			</tr>
-		<c:forEach items="${tableGenre}" var="genre">
-		<tr style="height: 100px">
-		<td>${genre.title}</td>
-			<c:if test="${role == 'admin'}">
-
-
-						<td style="width: 50px">
-							<form action="/Library/main" method="post">
-								<input type="hidden" name="command" value="toUpdateGenre" /> 
-								<input	type="hidden" name="id" value="${genre.id}" />
-								<button type="submit">${locBUpdate}</button>
-							</form>
-						</td>
-						<td style="width: 50px">
-							<form action="/Library/main" method="post">
-								<input type="hidden" name="command" value="deteteGenre" /> <input
-									type="hidden" name="id" value="${genre.id}" />
-								<button type="submit">${locBDelete}</button>
-							</form>
-							</td>
+			<table style="width: 200px">
+				<tr>
+					<th>${locGenre}</th>
+					<c:if test="${role == 'admin'}">
+						<th>${locUpdate}</th>
+						<th>${locDelete}</th>
 					</c:if>
-		
-		
-		
-		</tr>
-		
-		</c:forEach>
-			</table>
-	
-		
-			<c:if test="${role == 'admin'}">
-			<form action="/Library/main" method="post">
-			<input type="hidden" value="toCreateGenre" name="command">
-	<button type="submit" class="registerbtn">${locBAdd}</button>
-			
 
-		</c:if>
-			
+				</tr>
+				
+				
+				<c:if test="${not empty tableGenre }">
+						
+					
+				<c:forEach items="${tableGenre}" var="genre">
+					<tr style="height: 100px">
+						<td>${genre.title}</td>
+						<c:if test="${role == 'admin'}">
+
+
+							<td style="width: 50px">
+								<form action="/Library/main" method="post">
+									<input type="hidden" name="command" value="toUpdateGenre" /> <input
+										type="hidden" name="id" value="${genre.id}" />
+									<button type="submit">${locBUpdate}</button>
+								</form>
+							</td>
+							<td style="width: 50px">
+								<form action="/Library/main" method="post">
+									<input type="hidden" name="command" value="deteteGenre" /> <input
+										type="hidden" name="id" value="${genre.id}" />
+									<button type="submit">${locBDelete}</button>
+								</form>
+							</td>
+						</c:if>
+
+
+
+					</tr>
+
+				</c:forEach>
+				</c:if>
+				<c:if test="${empty tableGenre }">
+					<tr style="height: 100px">
+
+						<td colspan="3">
+							<h3>${locEmpty}</h3>
+						</td>
+					</tr>
+				</c:if>
+			</table>
+
+
+			<c:if test="${role == 'admin'}">
+				<form action="/Library/main" method="post">
+					<input type="hidden" value="toCreateGenre" name="command">
+					<button type="submit" class="registerbtn">${locBAdd}</button>
+			</c:if>
+
 		</div>
 		</form>
-	
 
 
-<jsp:include page="../footer/footer.jsp"/>
+
+		<jsp:include page="../footer/footer.jsp" />
 	</div>
 
 

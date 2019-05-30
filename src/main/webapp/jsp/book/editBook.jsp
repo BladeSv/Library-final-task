@@ -34,10 +34,10 @@
 		<jsp:include page="../header/header.jsp" />
 
 
-	<c:if test="${wrongBook== 'wrongBook'}">
-				<h3 style="color: red">${locMessage}</h3>
+		<c:if test="${wrongBook== 'wrongBook'}">
+			<h3 style="color: red">${locMessage}</h3>
 
-			</c:if>
+		</c:if>
 		<form action="/Library/main" method="post">
 
 			<div class="box">
@@ -143,7 +143,7 @@
 
 
 
-<jsp:include page="../footer/footer.jsp"/>
+		<jsp:include page="../footer/footer.jsp" />
 	</div>
 
 

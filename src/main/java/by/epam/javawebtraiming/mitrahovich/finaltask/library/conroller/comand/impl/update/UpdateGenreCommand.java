@@ -1,4 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.update;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,34 +8,38 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.C
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.GenreDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.ServiceFactory;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check.RoleChecker;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Genre;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.ValidationManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
-public class DeleteGenreComamand extends AbstractCommand {
+public class UpdateGenreCommand extends AbstractCommand {
 
-	public DeleteGenreComamand() {
+	public UpdateGenreCommand() {
 
 	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		if (request == null || response == null) {
+			return null;
+		}
 		String page = null;
-
-		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
-		if (roleChecker.isAdmin(request)) {
+		if (ValidationManager.getInstance().getAuthorValidation().vadidate(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
+			String title = request.getParameter(ConstConteiner.GENRE_TITLE);
 			int idGenre = Integer.parseInt(request.getParameter(ConstConteiner.ID));
-
 			GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
 			try {
-				genreDAO.removeById(idGenre);
+				genreDAO.update(new Genre(idGenre, title));
+				page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_GENRE).execute(request, response);
 			} catch (DaoSQLExcetion e) {
-				log.warn("Delete genre Command" + e);
+				log.warn("Update genre command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
-			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_GENRE).execute(request,
-					response);
+		} else {
+			request.setAttribute(ConstConteiner.WRONG_DATE_GENRE, ConstConteiner.WRONG_DATE_GENRE);
+			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_UPDATE_GENRE).execute(request, response);
+
 		}
 
 		return page;

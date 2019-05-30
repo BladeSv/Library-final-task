@@ -1,4 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.update;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,8 +20,11 @@ public class UpdateBookCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		if (request == null || response == null) {
+			return null;
+		}
 		String page = null;
-		if (ValidationManager.getInstance().getBookValidation().vadidate(request)) {
+		if (ValidationManager.getInstance().getBookValidation().vadidate(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
 			String bookTitle = request.getParameter(ConstConteiner.BOOK_TITLE);
 			int idAuthor = Integer.parseInt(request.getParameter(ConstConteiner.BOOK_AUTHOR));
 			int idGenre = Integer.parseInt(request.getParameter(ConstConteiner.BOOK_GENRE));
@@ -40,8 +43,7 @@ public class UpdateBookCommand extends AbstractCommand {
 			}
 		} else {
 			request.setAttribute(ConstConteiner.WRONG_DATE_BOOK, ConstConteiner.WRONG_DATE_BOOK);
-			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_UPDATE_BOOK).execute(request,
-					response);
+			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_UPDATE_BOOK).execute(request, response);
 
 		}
 

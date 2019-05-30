@@ -1,4 +1,5 @@
-	<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%>
 
@@ -7,10 +8,12 @@
 	<fmt:message key="page.author.edit.title" var="locTitle" />
 	<fmt:message key="page.author.edit.author.name" var="locName" />
 	<fmt:message key="page.author.edit.author.surname" var="locSurname" />
-	
-	<fmt:message key="page.author.edit.author.update.button" var="locBUpdate" />
 
-	<fmt:message key="page.author.edit.author.create.button" var="locBCreate" />
+	<fmt:message key="page.author.edit.author.update.button"
+		var="locBUpdate" />
+
+	<fmt:message key="page.author.edit.author.create.button"
+		var="locBCreate" />
 	<fmt:message key="page.author.edit.author.wrongdate.message"
 		var="locMessage" />
 
@@ -41,11 +44,11 @@
 			</c:if>
 			<br> <label for="autorNameId">${locName}</label> <input
 				type="text" id="autorNameId" name="authorName"
-				value="${changeAuthor.name}"> <br><br>
-				 <label	for="autorSurnameId">${locSurname}</label>
-				  <input type="text" id="autorSurnameId" name="authorSurname"
-				value="${changeAuthor.surname}">
-<br><br>
+				value="${changeAuthor.name}"> <br>
+			<br> <label for="autorSurnameId">${locSurname}</label> <input
+				type="text" id="autorSurnameId" name="authorSurname"
+				value="${changeAuthor.surname}"> <br>
+			<br>
 			<c:if test="${empty changeAuthor}">
 				<input type="hidden" name="command" value="createAuthor" />
 				<button type="submit">${locBCreate}</button>
@@ -60,7 +63,7 @@
 
 
 
-<jsp:include page="../footer/footer.jsp"/>
+		<jsp:include page="../footer/footer.jsp" />
 	</div>
 
 

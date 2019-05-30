@@ -4,6 +4,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.im
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.BookValidation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.GenreValidation;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.LoginValidation;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.NumberIDValidate;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.imp.SingUpValidation;
 
 public class ValidationManager {
@@ -15,6 +16,7 @@ public class ValidationManager {
 	private Validation genreValidation = new GenreValidation();
 	private Validation authorValidation = new AuthorValidation();
 	private Validation bookValidation = new BookValidation();
+	private Validation numberIDValidate = new NumberIDValidate();
 
 	private ValidationManager() {
 
@@ -42,6 +44,10 @@ public class ValidationManager {
 
 	public Validation getBookValidation() {
 		return bookValidation;
+	}
+
+	public Validation getNumberIDValidate() {
+		return numberIDValidate;
 	}
 
 }

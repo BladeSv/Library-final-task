@@ -1,6 +1,4 @@
-package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl;
-
-import java.util.List;
+package by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.go_to;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,35 +10,36 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.Author;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.ServiceFactory;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.check.RoleChecker;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.validation.ValidationManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
-public class GoToAuthorPageCommand extends AbstractCommand {
+public class GoToUpdateAuthorPageCommand extends AbstractCommand {
 
-	public GoToAuthorPageCommand() {
+	public GoToUpdateAuthorPageCommand() {
 
 	}
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		String page = ManagerConfig.get("path.page.author");
+		if (request == null || response == null) {
+			return null;
+		}
+		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
-
-		if (roleChecker.isUser(request) || roleChecker.isAdmin(request)) {
-
+		if (roleChecker.isAdmin(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
+			int idGenre = Integer.parseInt(request.getParameter(ConstConteiner.ID));
 			AuthorDAO authorDAO = DaoManager.getInstance().getAuthorDAO();
-
 			try {
-				List<Author> authorTable = authorDAO.getALL();
-				log.trace("go to genre command");
+				Author author = authorDAO.getById(idGenre);
+				request.setAttribute(ConstConteiner.AUTHOR_UPDATE, author);
 
-				request.setAttribute(ConstConteiner.AUTHOR_LIST_TABLE, authorTable);
-			} catch (NumberFormatException | DaoSQLExcetion e) {
-				log.warn("try go to author page" + e);
+			} catch (DaoSQLExcetion e) {
+				log.warn("Go to update author page command" + e);
 				page = ManagerConfig.get("path.page.bad.request");
 			}
-
+			page = ManagerConfig.get("path.page.author.edit");
 		}
 		return page;
 	}
