@@ -28,8 +28,8 @@
 <html>
 <head>
 <title>${title}</title>
-<link rel="stylesheet" type="text/css" href="${startUrl}/jsp/order/orderStyle.css">
 
+<link rel="stylesheet"  type="text/css"  href="${startUrl}/jsp/order/orderS.css">
 </head>
 <body>
 

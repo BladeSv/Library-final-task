@@ -24,13 +24,12 @@ public class NotUserLock implements Filter {
 
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String role = (String) httpRequest.getSession().getAttribute(ConstConteiner.ROLE);
 
-		if (!role.equals(ConstConteiner.ROLE_ANDMIN) || !role.equals(ConstConteiner.ROLE_USER)) {
+		if ((!role.equals(ConstConteiner.ROLE_ANDMIN)) && (!role.equals(ConstConteiner.ROLE_USER))) {
 			httpResponse.sendRedirect(httpRequest.getContextPath() + ManagerConfig.get("path.page.index"));
 		}
 		chain.doFilter(request, response);
