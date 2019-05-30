@@ -46,7 +46,7 @@ public class GenreDAOImpl extends AbstactDAO implements GenreDAO {
 	}
 
 	@Override
-	public List getALL() throws DaoSQLExcetion {
+	public List<Genre> getALL() throws DaoSQLExcetion {
 		List<Genre> genreList = null;
 		Connection connection = getConnection();
 

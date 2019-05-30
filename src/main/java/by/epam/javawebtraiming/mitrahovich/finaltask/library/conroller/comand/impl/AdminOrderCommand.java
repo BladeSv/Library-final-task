@@ -24,17 +24,24 @@ public class AdminOrderCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+
+		if (request == null || response == null) {
+			return null;
+		}
+
 		String page = null;
+
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 
 		if (roleChecker.isAdmin(request)) {
 			Observable observer = (Observable) request.getServletContext()
 					.getAttribute(ConstConteiner.LIBRARY_OBSERVER);
+
 			OrderDAO orderDAO = DaoManager.getInstance().getOrderDAO();
 			String[] returnBook = request.getParameterValues(ConstConteiner.ORDER_ADMIN_RETURN_CHECK);
 			if (returnBook != null) {
 				for (int i = 0; i < returnBook.length; i++) {
-					Integer idOrder = Integer.parseInt(returnBook[i]);
+					int idOrder = Integer.parseInt(returnBook[i]);
 					log.trace("AdminOrderCommand- return book order -id order- " + idOrder);
 					try {
 						orderDAO.remote(idOrder);

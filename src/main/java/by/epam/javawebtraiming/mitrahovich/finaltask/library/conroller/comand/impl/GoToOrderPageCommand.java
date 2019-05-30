@@ -26,7 +26,7 @@ public class GoToOrderPageCommand extends AbstractCommand {
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 
-		if (roleChecker.isUser(request) || roleChecker.isAdmin(request)) {
+		if (roleChecker.isAdmin(request)) {
 
 			String id = request.getParameter(ConstConteiner.ID);
 

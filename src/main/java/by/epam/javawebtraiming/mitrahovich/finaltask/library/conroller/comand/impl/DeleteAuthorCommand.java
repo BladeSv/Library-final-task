@@ -21,18 +21,27 @@ public class DeleteAuthorCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+
+		if (request == null || response == null) {
+			return null;
+		}
 		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 		if (roleChecker.isAdmin(request)) {
-			int idAuthor = Integer.parseInt(request.getParameter(ConstConteiner.ID));
 
-			AuthorDAO authorDAO = DaoManager.getInstance().getAuthorDAO();
-			try {
-				authorDAO.removeById(idAuthor);
-			} catch (DaoSQLExcetion e) {
-				log.warn("Delete author Command" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+			String idAuthorString = request.getParameter(ConstConteiner.ID);
+			if (idAuthorString != null && idAuthorString != "") {
+
+				int idAuthor = Integer.parseInt(idAuthorString);
+
+				AuthorDAO authorDAO = DaoManager.getInstance().getAuthorDAO();
+				try {
+					authorDAO.removeById(idAuthor);
+				} catch (DaoSQLExcetion e) {
+					log.warn("Delete author Command" + e);
+					page = ManagerConfig.get("path.page.bad.request");
+				}
 			}
 			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_AUTHOR).execute(request,
 					response);

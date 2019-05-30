@@ -22,6 +22,10 @@ public class CreateGenreCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+
+		if (request == null || response == null) {
+			return null;
+		}
 		String page = null;
 
 		if (ValidationManager.getInstance().getGenreValidation().vadidate(request)) {

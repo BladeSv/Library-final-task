@@ -10,7 +10,7 @@ import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.im
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateAuthorCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateBookCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateGenreCommand;
-import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateOrderCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.CreateOrderUserCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteAuthorCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteBookCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.comand.impl.DeleteGenreComamand;
@@ -48,12 +48,12 @@ public class CommandManager {
 	private CommandManager() {
 
 		commandList = new HashMap<String, Command>();
-		commandList.put(ConstConteiner.COMMAND_PAGE_TO_ORDER, new GoToOrderPageCommand());
 
 		commandList.put(ConstConteiner.COMMAND_PAGE_LOGIN, new LoginPageCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_SINGUP, new SingUpCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_SEARCH, new SearchCommand());
-		commandList.put(ConstConteiner.COMMAND_PAGE_CREATE_ORDER, new CreateOrderCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_TO_ORDER, new GoToOrderPageCommand());
+		commandList.put(ConstConteiner.COMMAND_PAGE_CREATE_ORDER, new CreateOrderUserCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_DELETE_ORDER, new DeleteOrderCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_LOGOUT, new LogoutCommand());
 		commandList.put(ConstConteiner.COMMAND_PAGE_SEARCH_USER, new SearchUserCommand());

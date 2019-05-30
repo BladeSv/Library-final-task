@@ -19,8 +19,15 @@ public class AbstactDAO {
 	public Connection getConnection() throws DaoSQLExcetion {
 
 		try {
+			Connection connection = ConnectionPool.getInstanse().getConnertion();
+			if (connection != null) {
 
-			return ConnectionPool.getInstanse().getConnertion();
+				return connection;
+			} else {
+
+				throw new ConnectionPoolException();
+			}
+
 		} catch (ConnectionPoolException e) {
 			log.warn("get connection from pool", e);
 			throw new DaoSQLExcetion(e.getCause());

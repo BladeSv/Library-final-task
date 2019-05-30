@@ -8,4 +8,8 @@ public class ConnectionPoolException extends LibraryException {
 		super(cause);
 	}
 
+	public ConnectionPoolException() {
+		super();
+	}
+
 }

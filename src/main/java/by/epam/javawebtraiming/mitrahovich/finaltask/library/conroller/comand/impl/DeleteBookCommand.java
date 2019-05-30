@@ -21,11 +21,18 @@ public class DeleteBookCommand extends AbstractCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+
+		if (request == null || response == null) {
+			return null;
+		}
 		String page = null;
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 		if (roleChecker.isAdmin(request)) {
-			int idBook = Integer.parseInt(request.getParameter(ConstConteiner.ID));
+
+			String idBookString = request.getParameter(ConstConteiner.ID);
+
+			int idBook = Integer.parseInt();
 
 			BookDAO bookDAO = DaoManager.getInstance().getBookDAO();
 			try {
