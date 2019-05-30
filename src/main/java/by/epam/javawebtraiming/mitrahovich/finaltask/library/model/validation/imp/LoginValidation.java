@@ -21,6 +21,9 @@ public class LoginValidation extends AbstractValidation {
 		log.trace("login-login-" + login);
 		String password = request.getParameter(ConstConteiner.PASSWORD);
 		log.trace("login-password-" + login);
+		if (login == null || password == null) {
+			return false;
+		}
 		int loginMix = ConstConteiner.LOGIN_LENGTH_MIN;
 		int loginMax = ConstConteiner.LOGIN_LENGTH_MAX;
 		int PassMix = ConstConteiner.PASSWORD_LENGTH_MIN;

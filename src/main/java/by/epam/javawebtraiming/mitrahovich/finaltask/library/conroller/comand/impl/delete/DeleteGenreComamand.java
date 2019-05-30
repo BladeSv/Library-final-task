@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.GenreDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -21,11 +23,11 @@ public class DeleteGenreComamand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
-		String page = null;
+		ResultCommand page = new ResultCommand();
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 		if (roleChecker.isAdmin(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
@@ -36,7 +38,8 @@ public class DeleteGenreComamand extends AbstractCommand {
 				genreDAO.removeById(idGenre);
 			} catch (DaoSQLExcetion e) {
 				log.warn("Delete genre Command" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.bad.request"));
 			}
 			page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_GENRE).execute(request, response);
 		}

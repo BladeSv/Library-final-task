@@ -22,10 +22,12 @@ public class NumberIDValidate extends AbstractValidation {
 		boolean check = false;
 
 		String idS = request.getParameter(ConstConteiner.ID);
+		log.trace("number validation service-get id-" + idS);
 		if (idS != null) {
 			Pattern p = Pattern.compile(ConstConteiner.NUMBER_REGEX);
 			Matcher m = p.matcher(idS);
 			check = m.matches();
+			log.trace("number validation service-result-" + check);
 		}
 
 		return check;

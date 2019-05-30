@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.entity.bean.User;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.service.ServiceFactory;
@@ -22,13 +24,13 @@ public class SearchUserCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 
 		if (request == null || response == null) {
 			return null;
 		}
 
-		String page = null;
+		ResultCommand page = new ResultCommand();
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 		if (roleChecker.isAdmin(request)) {
@@ -61,10 +63,13 @@ public class SearchUserCommand extends AbstractCommand {
 				request.setAttribute(ConstConteiner.PAGINATION_URL, paginationUrl);
 
 				request.setAttribute(ConstConteiner.TABLE_USERS, pageUsers);
-				page = ManagerConfig.get("path.page.admin");
+
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.admin"));
 			} catch (DaoSQLExcetion e) {
 				log.warn("try search users" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.bad.request"));
 			}
 		}
 		return page;

@@ -75,8 +75,7 @@ public class GenreDAOImpl extends AbstactDAO implements GenreDAO {
 	public void removeById(int id) throws DaoSQLExcetion {
 		Connection connection = getConnection();
 
-		try (PreparedStatement preparedStatement = connection
-				.prepareStatement(SQLRequestConteiner.GENRE_DELETE_BY_ID)) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.GENRE_DELETE_BY_ID)) {
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 
@@ -93,8 +92,7 @@ public class GenreDAOImpl extends AbstactDAO implements GenreDAO {
 	public void update(Genre genre) throws DaoSQLExcetion {
 		Connection connection = getConnection();
 
-		try (PreparedStatement preparedStatement = connection
-				.prepareStatement(SQLRequestConteiner.GENRE_UPDATE_BY_ID)) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.GENRE_UPDATE_BY_ID)) {
 			preparedStatement.setString(1, genre.getTitle());
 			preparedStatement.setInt(2, genre.getId());
 			preparedStatement.executeUpdate();
@@ -111,9 +109,9 @@ public class GenreDAOImpl extends AbstactDAO implements GenreDAO {
 	public void add(String title) throws DaoSQLExcetion {
 		Connection connection = getConnection();
 
-		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.AUTHOR_CREATE)) {
+		try (PreparedStatement preparedStatement = connection.prepareStatement(SQLRequestConteiner.GENRE_CREATE)) {
 			preparedStatement.setString(1, title);
-			preparedStatement.setString(1, title);
+
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {

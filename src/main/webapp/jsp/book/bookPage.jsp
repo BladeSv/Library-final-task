@@ -39,7 +39,7 @@
 			</div>
 			<div class="box">
 				<h4>${locAuthor}</h4>
-				<p>${viewBook.author.name}${viewBook.author.surname}</p>
+				<p>${viewBook.author.name} ${viewBook.author.surname}</p>
 			</div>
 			<div class="box">
 				<h4>${locGenre}</h4>

@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.UserDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -21,17 +23,18 @@ public class GoToOrderPageCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
 
-		String page = ManagerConfig.get("path.page.order");
+		ResultCommand page = new ResultCommand();
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 
 		if (roleChecker.isUser(request)) {
-			page = ManagerConfig.get("path.page.order");
+			page.setAction(Do.FORWARD);
+			page.setPage(ManagerConfig.get("path.page.order"));
 
 		} else if (roleChecker.isAdmin(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
 
@@ -41,10 +44,12 @@ public class GoToOrderPageCommand extends AbstractCommand {
 				User user = (User) userDAO.getById(Integer.parseInt(request.getParameter(ConstConteiner.ID)));
 				log.trace("go to order command--user--" + user);
 				request.setAttribute(ConstConteiner.ORDER_USER, user);
-				page = ManagerConfig.get("path.page.order");
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.order"));
 			} catch (NumberFormatException | DaoSQLExcetion e) {
 				log.warn("try go to order page" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.bad.request"));
 			}
 		}
 		return page;

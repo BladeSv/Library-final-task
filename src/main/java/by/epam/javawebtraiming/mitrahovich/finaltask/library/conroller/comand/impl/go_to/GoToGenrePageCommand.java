@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.GenreDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -22,12 +24,12 @@ public class GoToGenrePageCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
 
-		String page = null;
+		ResultCommand page = new ResultCommand();
 
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
 
@@ -40,10 +42,13 @@ public class GoToGenrePageCommand extends AbstractCommand {
 				log.trace("go to genre command");
 
 				request.setAttribute(ConstConteiner.GENRE_LIST_TABLE, genreTable);
-				page = ManagerConfig.get("path.page.genre");
+
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.genre"));
 			} catch (NumberFormatException | DaoSQLExcetion e) {
 				log.warn("try go to genre page" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.bad.request"));
 			}
 
 		}

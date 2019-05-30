@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.BookDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -19,11 +21,11 @@ public class GoToBookPageCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
-		String page = null;
+		ResultCommand page = new ResultCommand();
 		if (ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
 			BookDAO bookDAO = DaoManager.getInstance().getBookDAO();
 
@@ -35,10 +37,13 @@ public class GoToBookPageCommand extends AbstractCommand {
 				log.trace("go to genre command");
 
 				request.setAttribute(ConstConteiner.BOOK_VIEW, book);
-				page = ManagerConfig.get("path.page.book");
+
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.book"));
 			} catch (NumberFormatException | DaoSQLExcetion e) {
 				log.warn("try go to book page" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.bad.request"));
 			}
 		}
 		return page;

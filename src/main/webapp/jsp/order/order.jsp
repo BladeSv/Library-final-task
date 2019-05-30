@@ -11,7 +11,7 @@
 	<fmt:message key="order.table.date.taken" var="Odate" />
 	<fmt:message key="order.table.book.title" var="Tbook" />
 	<fmt:message key="order.table.book.author" var="Abook" />
-	<fmt:message key="order.table.date.on.confirm" var="Odconfirm" />
+	<fmt:message key="order.table.date.on.confirm" var="Oconfirm" />
 	<fmt:message key="order.table.checkbox.cancel.confirm"
 		var="CCancelConfirm" />
 	<fmt:message key="order.table.checkbox.choose.confirm"
@@ -22,7 +22,7 @@
 	<fmt:message key="order.button" var="button" />
 	<fmt:message key="table.empty" var="locEmpty" />
 	<fmt:message key="table.book.out" var="locOut" />
-	H<fmt:message key="table.book.hall" var="locHall" />
+	<fmt:message key="table.book.hall" var="locHall" />
 </fmt:bundle>
 
 
@@ -78,8 +78,8 @@
 						<c:forEach items="${currentUser.takenOrder}" var="order">
 
 							<tr>
-								<td style="width: 100px">${orderUser.name}
-									${orderUser.surname}</td>
+								<td style="width: 100px">${currentUser.name}
+									${currentUser.surname}</td>
 
 
 								<td style="width: 300px"><p>${Tbook}:${order.book.title}</p>
@@ -103,14 +103,14 @@
 								</c:if>
 
 								<c:if test="${order.takenDate == null and role == 'admin'}">
-
+									<input type="hidden" value="${order.id}" name="notConfirmOrder">
 									<td style="width: 200px">${CCancelConfirm}<Br> <input
-										type="radio" name="notConfirmOrder"
-										value="checkOrderDelete-${order.id}">
+										type="radio" name="notConfirmOrder-${order.id}"
+										value="checkOrderDelete">
 									</td>
 									<td style="width: 200px">${CChooseConfirm}<Br> <input
-										type="radio" name="notConfirmOrder"
-										value="checkOrderConfirm-${order.id}">
+										type="radio" name="notConfirmOrder-${order.id}"
+										value="checkOrderConfirm">
 									</td>
 
 								</c:if>

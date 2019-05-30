@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.BookDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -19,11 +21,11 @@ public class UpdateBookCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
-		String page = null;
+		ResultCommand page = new ResultCommand();
 		if (ValidationManager.getInstance().getBookValidation().vadidate(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
 			String bookTitle = request.getParameter(ConstConteiner.BOOK_TITLE);
 			int idAuthor = Integer.parseInt(request.getParameter(ConstConteiner.BOOK_AUTHOR));
@@ -39,7 +41,8 @@ public class UpdateBookCommand extends AbstractCommand {
 				page = CommandManager.getInstance().getCommand(ConstConteiner.SEARCH).execute(request, response);
 			} catch (DaoSQLExcetion e) {
 				log.warn("Update book command" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.bad.request"));
 			}
 		} else {
 			request.setAttribute(ConstConteiner.WRONG_DATE_BOOK, ConstConteiner.WRONG_DATE_BOOK);

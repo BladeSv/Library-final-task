@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.WrongLoginDateException;
@@ -24,11 +26,11 @@ public class LoginPageCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
-		String page = null;
+		ResultCommand page = new ResultCommand();
 
 		try {
 			Validation validation = ValidationManager.getInstance().getLoginValidation();
@@ -58,18 +60,21 @@ public class LoginPageCommand extends AbstractCommand {
 
 			} else {
 				request.setAttribute(ConstConteiner.WRONG_DATE_LOGIN, ConstConteiner.WRONG_DATE_LOGIN);
-				page = ManagerConfig.get("path.page.login");
+
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.login"));
 
 			}
 
 		} catch (DaoSQLExcetion e) {
-			log.warn("try login" + e);
-			page = ManagerConfig.get("path.page.bad.request");
+			page.setAction(Do.FORWARD);
+			page.setPage(ManagerConfig.get("path.page.bad.request"));
 
 		} catch (WrongLoginDateException e) {
 			log.warn("try login" + e);
 			request.setAttribute(ConstConteiner.WRONG_DATE_LOGIN, ConstConteiner.WRONG_DATE_LOGIN);
-			page = ManagerConfig.get("path.page.login");
+			page.setAction(Do.FORWARD);
+			page.setPage(ManagerConfig.get("path.page.login"));
 		}
 
 		return page;

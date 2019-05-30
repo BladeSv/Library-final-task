@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.GenreDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -20,12 +22,12 @@ public class UpdateGenreCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
-		String page = null;
-		if (ValidationManager.getInstance().getAuthorValidation().vadidate(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
+		ResultCommand page = new ResultCommand();
+		if (ValidationManager.getInstance().getGenreValidation().vadidate(request) && ValidationManager.getInstance().getNumberIDValidate().vadidate(request)) {
 			String title = request.getParameter(ConstConteiner.GENRE_TITLE);
 			int idGenre = Integer.parseInt(request.getParameter(ConstConteiner.ID));
 			GenreDAO genreDAO = DaoManager.getInstance().getGenreDAO();
@@ -34,7 +36,8 @@ public class UpdateGenreCommand extends AbstractCommand {
 				page = CommandManager.getInstance().getCommand(ConstConteiner.COMMAND_PAGE_TO_GENRE).execute(request, response);
 			} catch (DaoSQLExcetion e) {
 				log.warn("Update genre command" + e);
-				page = ManagerConfig.get("path.page.bad.request");
+				page.setAction(Do.FORWARD);
+				page.setPage(ManagerConfig.get("path.page.bad.request"));
 			}
 		} else {
 			request.setAttribute(ConstConteiner.WRONG_DATE_GENRE, ConstConteiner.WRONG_DATE_GENRE);

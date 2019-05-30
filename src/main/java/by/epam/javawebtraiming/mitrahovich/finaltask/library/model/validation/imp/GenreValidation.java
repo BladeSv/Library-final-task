@@ -20,9 +20,13 @@ public class GenreValidation extends AbstractValidation {
 			return false;
 		}
 		String genre = request.getParameter(ConstConteiner.GENRE_TITLE);
+		if (genre == null) {
+			return false;
+		}
+		log.trace("Genre validate servce-from request-" + genre);
 		Pattern p = Pattern.compile(ConstConteiner.RUSSIAN_WORD_REGEX);
 		Matcher m = p.matcher(genre);
-
+		log.trace("Genre validate servce-result-" + m.matches());
 		return m.matches();
 	}
 

@@ -12,6 +12,8 @@ import org.apache.log4j.Logger;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.Command;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.properties.ManagerConfig;
 
@@ -37,8 +39,7 @@ public class LibraryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		processRequest(request, response);
 
 	}
@@ -47,15 +48,13 @@ public class LibraryController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		processRequest(request, response);
 	}
 
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String page = null;
+	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		log.trace("start processRequest");
 		String command = request.getParameter(ConstConteiner.COMMAND);
 		log.trace("command--" + command);
@@ -64,18 +63,24 @@ public class LibraryController extends HttpServlet {
 
 		Command requestCommand = commandManager.getCommand(command);
 
-		page = requestCommand.execute(request, response);
+		ResultCommand page = requestCommand.execute(request, response);
 
 		log.trace("choose command--" + requestCommand.getClass().getSimpleName() + " page-" + page);
 
-		if (page != null) {
+		if (page != null || page.getPage() != null) {
 
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-			dispatcher.forward(request, response);
+			if (page.getAction() == Do.FORWARD) {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page.getPage());
+				dispatcher.forward(request, response);
+
+			} else {
+
+				response.sendRedirect(page.getPage());
+			}
 
 		} else {
-			page = ManagerConfig.get("path.page.index");
-			response.sendRedirect(request.getContextPath() + page);
+
+			response.sendRedirect(request.getContextPath() + ManagerConfig.get("path.page.index"));
 		}
 
 	}

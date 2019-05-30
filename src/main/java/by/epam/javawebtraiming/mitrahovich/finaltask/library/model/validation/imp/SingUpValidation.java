@@ -21,6 +21,9 @@ public class SingUpValidation extends AbstractValidation {
 		}
 		String login = request.getParameter(ConstConteiner.LOGIN);
 		String password = request.getParameter(ConstConteiner.PASSWORD);
+		if (login == null || password == null) {
+			return false;
+		}
 		int loginMix = ConstConteiner.LOGIN_LENGTH_MIN;
 		int loginMax = ConstConteiner.LOGIN_LENGTH_MAX;
 		int PassMix = ConstConteiner.PASSWORD_LENGTH_MIN;
@@ -28,8 +31,7 @@ public class SingUpValidation extends AbstractValidation {
 
 		Pattern p = Pattern.compile(ConstConteiner.SINGUP_LOGIN_REGEX);
 		Matcher m = p.matcher(login);
-		return login.length() >= loginMix && login.length() <= loginMax && m.matches() && password.length() >= PassMix
-				&& password.length() <= PassMax;
+		return login.length() >= loginMix && login.length() <= loginMax && m.matches() && password.length() >= PassMix && password.length() <= PassMax;
 	}
 
 }

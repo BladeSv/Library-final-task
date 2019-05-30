@@ -45,8 +45,8 @@ public class ConstConteiner {
 	public static final String ORDER_USER = "orderUser";
 	public static final String ORDER_ADMIN_RETURN_CHECK = "checkBookReturn";
 	public static final String ORDER_ADMIN_NOT_CONFIRM_CHECK = "notConfirmOrder";
-	public static final String ORDER_ADMIN_DELETE_CHECK_PREFIX = "checkOrderDelete-";
-	public static final String ORDER_ADMIN_CONFIRM_CHECK_PREFIX = "checkOrderConfirm-";
+	public static final String ORDER_ADMIN_DELETE_CHECK = "checkOrderDelete";
+	public static final String ORDER_ADMIN_CONFIRM_CHECK = "checkOrderConfirm";
 
 	public static final String GENRE_LIST_TABLE = "tableGenre";
 	public static final String GENRE_TITLE = "genreTitle";
@@ -106,14 +106,15 @@ public class ConstConteiner {
 
 	public static final String SEARCH_BOOK_REQUEST_SPLIT_REGEX = "[. ,;:\"'!?]";
 	public static final String SEARCH_USER_REQUEST_SPLIT_REGEX = "[ ]";
-	public static final String SINGUP_LOGIN_REGEX = "[a-zA-Z0-9_].";
-	public static final String RUSSIAN_WORD_REGEX = "[А-Яа-я].";
-	public static final String NUMBER_REGEX = "[\\d].";
+	public static final String SINGUP_LOGIN_REGEX = "[a-zA-Z0-9_]+";
+	public static final String RUSSIAN_WORD_REGEX = "[А-Яа-я]+";
+
+	public static final String NUMBER_REGEX = "[\\d]+";
 
 	public static final String CHANGE_LANGUAGE = "changeLang";
 
 	public static final String CHARACTERS_ENCODING = "encoding";
-	public static final String CHARACTERS_ENCODING_VALUE = "UTF-8";
+	public static final String CHARACTERS_ENCODING_VALUE = "utf-8";
 
 	public static final int LOGIN_LENGTH_MIN = 3;
 	public static final int LOGIN_LENGTH_MAX = 16;

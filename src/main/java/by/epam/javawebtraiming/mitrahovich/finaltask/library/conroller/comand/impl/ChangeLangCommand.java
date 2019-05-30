@@ -8,6 +8,7 @@ import javax.servlet.jsp.jstl.core.Config;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.CommandManager;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.util.conteiner.ConstConteiner;
 
 public class ChangeLangCommand extends AbstractCommand {
@@ -17,11 +18,12 @@ public class ChangeLangCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 
 		if (request == null || response == null) {
 			return null;
 		}
+
 		String userLocale = request.getParameter(ConstConteiner.LANG);
 		if (userLocale != null) {
 

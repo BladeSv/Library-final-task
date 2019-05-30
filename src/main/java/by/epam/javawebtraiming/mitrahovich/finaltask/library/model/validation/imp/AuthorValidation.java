@@ -22,6 +22,9 @@ public class AuthorValidation extends AbstractValidation {
 		String name = request.getParameter(ConstConteiner.AUTHOR_NAME);
 		String surname = request.getParameter(ConstConteiner.AUTHOR_SURNAME);
 
+		if (name == null || surname == null) {
+			return false;
+		}
 		Pattern p = Pattern.compile(ConstConteiner.RUSSIAN_WORD_REGEX);
 		Matcher nameM = p.matcher(name);
 		Matcher surnameM = p.matcher(surname);

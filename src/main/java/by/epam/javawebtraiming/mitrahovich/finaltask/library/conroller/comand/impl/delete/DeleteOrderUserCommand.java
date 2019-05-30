@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.OrderDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -19,11 +21,15 @@ public class DeleteOrderUserCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
-		String page = ManagerConfig.get("path.page.order");
+
+		ResultCommand page = new ResultCommand();
+		page.setAction(Do.FORWARD);
+		page.setPage(ManagerConfig.get("path.page.order"));
+
 		String[] checkedOrder = request.getParameterValues(ConstConteiner.ORDER_DELETE_CHECK);
 		if (checkedOrder != null) {
 			HttpSession session = request.getSession();
@@ -39,7 +45,8 @@ public class DeleteOrderUserCommand extends AbstractCommand {
 						orderDAO.remote(idOrder);
 					} catch (DaoSQLExcetion e) {
 						log.warn("delete order command" + e);
-						page = ManagerConfig.get("path.page.bad.request");
+						page.setAction(Do.FORWARD);
+						page.setPage(ManagerConfig.get("path.page.bad.request"));
 					}
 
 					user.getTakenOrder().removeIf((o) -> o.getId() == idOrder);

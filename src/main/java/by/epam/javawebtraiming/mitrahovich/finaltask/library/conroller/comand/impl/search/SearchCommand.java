@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.AbstractCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand;
+import by.epam.javawebtraiming.mitrahovich.finaltask.library.conroller.command.ResultCommand.Do;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.DaoManager;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.beandao.BookDAO;
 import by.epam.javawebtraiming.mitrahovich.finaltask.library.model.dao.exception.DaoSQLExcetion;
@@ -24,12 +26,12 @@ public class SearchCommand extends AbstractCommand {
 	}
 
 	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) {
+	public ResultCommand execute(HttpServletRequest request, HttpServletResponse response) {
 		if (request == null || response == null) {
 			return null;
 		}
 
-		String page = null;
+		ResultCommand page = new ResultCommand();
 		String searchRequest = request.getParameter(ConstConteiner.SEARCH);
 		SearchBook searchBook = ServiceFactory.getInstance().getSearchBooK();
 		RoleChecker roleChecker = ServiceFactory.getInstance().getRoleChecker();
@@ -70,11 +72,14 @@ public class SearchCommand extends AbstractCommand {
 			request.setAttribute(ConstConteiner.PAGINATION_NUMBER_MAX_PAGE, numberMaxPage);
 			request.setAttribute(ConstConteiner.PAGINATION_URL, paginationUrl);
 			request.setAttribute(ConstConteiner.TABLE_BOOKS, pageBooks);
-			page = ManagerConfig.get("path.page.main");
+
+			page.setAction(Do.FORWARD);
+			page.setPage(ManagerConfig.get("path.page.main"));
 		} catch (DaoSQLExcetion e) {
 
 			log.warn("try search" + e);
-			page = ManagerConfig.get("path.page.bad.request");
+			page.setAction(Do.FORWARD);
+			page.setPage(ManagerConfig.get("path.page.bad.request"));
 
 		}
 
